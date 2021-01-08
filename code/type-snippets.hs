@@ -16,6 +16,6 @@ pair x y = (x, y)
 
 double x = x*x
 
-plaindrome xs = xs == reverse xs
+palindrome xs = xs == reverse xs
 
 twice f x = f (f x)
