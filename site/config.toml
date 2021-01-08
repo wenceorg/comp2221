@@ -41,4 +41,4 @@ ModulePage = 'https://www.dur.ac.uk/faculty.handbook/module_description/?year=20
 BookEditPath = 'edit/main'
 contentDir = 'site/content'
 ImageDir = 'images'
-CopyRight = '&copy; 2020-- [Lawrence Mitchell](mailto:lawrence@wence.uk) & [Durham University](https://www.dur.ac.uk/).'
+CopyRight = '&copy; 2021-- [Lawrence Mitchell](mailto:lawrence@wence.uk) & [Durham University](https://www.dur.ac.uk/).'
