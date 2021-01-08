@@ -1,0 +1,10 @@
+<div class="book-brand">
+{{- with .Site.Params.BookLogo -}}
+<img class="book-center" src="{{ . | relURL }}" alt="Logo" />
+{{- end -}}
+<h2>
+  <a href="{{ .Site.BaseURL | relLangURL }}">
+    {{ .Site.Title }}
+  </a>
+</h2>
+</div>

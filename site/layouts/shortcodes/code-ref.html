@@ -1,0 +1,7 @@
+{{- $path := "" -}}
+{{- if .Get 1 -}}
+{{- $path = (printf "code/exercise%02d/%s" (.Get 0) (.Get 1)) -}}
+{{- else -}}
+{{- $path = (printf "code/%s" (.Get 0)) -}}
+{{- end -}}
+{{- trim ($path | absURL) "\n" -}}

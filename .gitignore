@@ -1,0 +1,10 @@
+/site/resources/_gen
+/site/public
+/site/package-lock.json
+/site/node_modules
+/site/static/images/auto
+/site/static/code
+/figures/*.png
+/figures/*.pdf
+.DS_Store
+/code/.ipynb_checkpoints/

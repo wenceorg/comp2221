@@ -1,0 +1,26 @@
+{{/*
+
+  Include a code file with a link to download it.
+
+  Usage {{< code-include "file/relative/to/code.c" "filetype" >}}
+
+*/}}
+
+{{ $name := .Get 0 }}
+{{ $file := (printf "/static/code/%s" (.Get 0)) | readFile}}
+{{ $url := (printf "code/%s" (.Get 0)) | absURL}}
+{{ $lang := .Get 1 }}
+
+
+<div class="book-include">
+  <div class="book-include-heading">
+    <tt>{{ $name }}</tt>
+  </div>
+  <div class="book-include-download">
+    <a href="{{ $url }}">Download</a>
+  </div>
+  <div class="book-include-content">
+    {{ (printf "```%s\n%s```" $lang $file) | markdownify | safeHTML }}
+  </div>
+</div>
+

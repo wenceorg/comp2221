@@ -1,0 +1,91 @@
+/* You can add custom styles here. */
+
+// @import "plugins/numbered";
+
+.book-menu {
+    img {
+        width: 75%;
+    }
+}
+
+.markdown {
+    .question {
+        border-color: #4a4;
+        background-color: rgba(#4a4, 0.1);
+    }
+    .task {
+        border-color: #f60;
+        background-color: rgba(#f60, 0.1);
+    }
+    .exercise {
+        border-color: #03a;
+        background-color: rgba(#03a, 0.1);
+        border: $padding-2 solid #03a;
+    }
+
+    figure {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    figure img {
+        width: 100%;
+    }
+    .book-center {
+        display: block;
+        
+    }
+    .book-include {
+        padding: 0;
+        margin-top: $padding-16;
+        margin-bottom: $padding-16;
+
+        overflow: hidden;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        .book-include-heading {
+            display: inline-block;
+            border: $padding-1 solid $gray-400;
+            background: $gray-100;
+            border-radius: $border-radius;
+            z-index: 1;
+            padding: $padding-8 $padding-16;
+            margin: 0;
+            padding-top: $padding-4;
+            padding-bottom: $padding-4;
+            margin-bottom: -$padding-16;
+        }
+
+        .book-include-download {
+            display: inline-block;
+            border: $padding-1 solid $gray-400;
+            background: $gray-100;
+            border-radius: $border-radius;
+            z-index: 1;
+            padding: $padding-8 $padding-16;
+            margin: 0;
+            padding-top: $padding-4;
+            padding-bottom: $padding-4;
+            margin-bottom: -$padding-16;
+        }
+            
+        .book-include-content {
+            border: $padding-1 solid $gray-400;
+            border-radius: $border-radius;
+            order: 999; //Move content blocks to the end
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            background: $gray-100;
+            margin-top: $padding-4;
+            pre {
+                margin: 0;
+            }
+        
+        }
+    }
+}
+
