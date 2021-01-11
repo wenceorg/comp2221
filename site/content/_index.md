@@ -28,15 +28,26 @@ these details is available at
 
 ### Practical sessions
 
-There are five practical sessions which will start in the second week
-of term. We'll cover the [exercises]({{< ref "exercises.md" >}}), and
-any other queries you might have.
+There are five weeks of practical sessions which will start in the
+second week of term. We'll cover the [exercises]({{< ref
+"exercises.md" >}}), and any other queries you might have.
 
-{{< hint info >}}
+Practicals run through the week, you've been allocated to one of them
+(see DUO for details: the allocation is as for Systems Programming
+last term). They all use the [same Zoom link as last
+term](https://durhamuniversity.zoom.us/j/99762711221?pwd=d084NjgyTHBleWpLdlMyNkNkWnZCdz09).
 
-FIXME: add Zoom details.
+The practical slots run at:
 
-{{< /hint >}}
+| Day      | Time |
+|----------|------|
+| Monday   | 2pm  |
+| Monday   | 3pm  |
+| Thursday | 9am  |
+| Friday   | 9am  |
+| Friday   | 10am |
+| Friday   | 2pm  |
+| Friday   | 3pm  |
 
 ### Discussion forum
 
