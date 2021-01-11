@@ -40,7 +40,7 @@ Prelude> allTrue [1, 2, 3]
 
 Here Haskell has determined that the types are wrong. It is telling me
 that the deduced type of the argument, which is `Num a => [a]` (that
-is, a list of numbers), does not satisfy the requirement that `a` be
+is, a list of numbers), does not satisfy the requirement that `a` is
 of type `Bool`.
 
 {{< exercise >}}
@@ -119,6 +119,9 @@ Haskell has particularly strong builtin support for list manipulation
 (although there are many others too!). We'll look at some simple
 exercises manipulating lists in various ways.
 
+You can find a template file for these exercises at
+[`code/lists-exercise2.hs`]({{< code-ref "lists-exercise2.hs" >}}).
+
 {{< exercise >}}
 
 `last :: [a] -> a` returns the final element of a non-empty list.
@@ -164,7 +167,7 @@ To turn off this extra output, do `:unset +s`.
 
 {{< exercise >}}
 
-`tail :: [a] -> a` returns the tail of a list, and raise an exception
+`tail :: [a] -> [a]` returns the tail of a list, and raise an exception
 when applied to the _empty list_, `[]`
 
 ```
@@ -172,7 +175,7 @@ Prelude> tail []
 *** Exception: Prelude.tail: empty list
 ```
 
-Define a function `safetail :: [a] -> a` which maps the empty list to
+Define a function `safetail :: [a] -> [a]` which maps the empty list to
 itself and otherwise behaves like `tail`, in three ways:
 
 1. Using a conditional expression;
