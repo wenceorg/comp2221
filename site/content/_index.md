@@ -57,6 +57,15 @@ can ask, and answer, questions. You'll need a
 of those already, right? Note that this repository and forum is
 publically visible.
 
+### Office hours
+
+Open office hours (no appointment needed) will run for the first 5
+weeks at 3pm on Wednesdays. As usual, via
+[Zoom](https://durhamuniversity.zoom.us/j/93552238271?pwd=WWlpNEtNSmtYbVlCYjM3SWdVK0dmUT09)
+(Meeting ID: 935 5223 8271; Passcode: 914577).
+After that, or if you need to get in touch some other time, please
+[email me](mailto:lawrence.mitchell@durham.ac.uk) to arrange something.
+
 ### Other feedback routes
 
 Feel free to ask questions in the live sessions if you want, I will
