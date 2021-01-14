@@ -15,6 +15,40 @@ account) here.
   "slides/2020-21/Lec01.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c27a685e-8450-417b-8eda-acae00dc4ebc),
   [code]({{< code-ref "lectures/Lec01.hs" >}})
-  
+
   We got about halfway through the slides, we'll pick up where we left
   off next time.
+
+- 2021-01-14: [Annotated slides]({{< static-ref
+  "slides/2020-21/Lec02.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=add4bf82-312c-4e35-a99e-acb000d97c33),
+  [code]({{< code-ref "lectures/Lec02.hs" >}})
+
+  We went through the remainder of the slides from Tuesday. I skipped
+  over the dark blue slides introducing Haskell syntax since we saw
+  that in the coding examples as well. We covered most of the stuff in
+  the second set of slides. I'll go back over the currying business
+  next time. We tried to emphasise the importance of types and showed
+  that Haskell is quite strict. For a fun take on the importance of
+  type safety, spend five minutes watching [Gary
+  Bernhardt's](https://www.destroyallsoftware.com/) [WAT
+  talk](https://www.destroyallsoftware.com/talks/wat).
+
+  Some of you may have noticed that my definition of `xor` was not
+  particularly succint. I guess I didn't manage it in live conditions!
+  In Python we could have written
+
+  ```python
+  def xor(a, b):
+      return a != b
+  ```
+
+  In Haskell, `!=` is written as `/=`, and I could have written
+
+  ```hs
+  xor :: Bool -> Bool -> Bool
+  xor x y = x /= y
+  ```
+
+  Except that I had defined a new data type for `Bool` (for expository
+  purposes) and we haven't defined equality on it yet.
