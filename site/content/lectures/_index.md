@@ -52,3 +52,17 @@ account) here.
 
   Except that I had defined a new data type for `Bool` (for expository
   purposes) and we haven't defined equality on it yet.
+
+- 2021-01-19: [Annotated slides]({{< static-ref
+  "slides/2020-21/Lec03.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=8e9814b4-f7d2-47d0-b966-acb500d971b0),
+  [code]({{< code-ref "lectures/Lec03.hs" >}})
+
+  We started introducing the concept of functions that might fail, and
+  the Maybe datatype. We looked a little bit at polymorphism, and I
+  touched on constraining polymorphic functions (more next time!),
+  when we considered
+  ```hs
+  chopPrefix :: Eq a => [a] -> [a] -> Maybe [a]
+  ```
+  Much more to come!
