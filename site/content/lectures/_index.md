@@ -66,3 +66,25 @@ account) here.
   chopPrefix :: Eq a => [a] -> [a] -> Maybe [a]
   ```
   Much more to come!
+
+- 2021-01-21: [Annotated slides]({{< static-ref
+  "slides/2020-21/Lec03a.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7e061c40-b269-4879-ba02-acb700d9784d),
+  [code]({{< code-ref "lectures/Lec04.hs" >}})
+
+  We revisited the `chopPrefix` example and looked at a little bit of
+  theory for different types of polymorphism. The [wikipedia
+  page](https://en.wikipedia.org/wiki/Polymorphism_(computer_science))
+  has a nice overview as usual. The classic work on subtyping is from
+  [Barbara Liskov](https://en.wikipedia.org/wiki/Barbara_Liskov)
+  from 1987. The method that Haskell uses for constrained (ad-hoc)
+  polymorphism based on type classes was introduced by [Phil Wadler](http://homepages.inf.ed.ac.uk/wadler/)
+  and [Stephen Blott](https://www.computing.dcu.ie/~sblott/) in [_How
+  to make ad-hoc polymorphism less ad
+  hoc_](http://homepages.inf.ed.ac.uk/wadler/topics/type-classes.html#class).
+  [Here's a video](https://www.youtube.com/watch?v=6COvD8oynmI) of
+  Simon Peyton Jones giving an introductory talk on type classes and
+  their implementation in GHC.
+
+  We introduced some example type classes and how we implement them
+  for our own types.
