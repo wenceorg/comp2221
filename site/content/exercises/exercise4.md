@@ -207,7 +207,7 @@ Hint: be careful that you don't recurse depth-first down one
 of the leaves of the tree (as I did the first go I had)
 {{< /details >}}
 
-For example, you should seee something like
+For example, you should see something like
 ```
 Prelude> take 10 (treeGen [[2, 1]])
 [[3,2],[5,2],[4,1],[4,3],[8,3],[7,2],[8,5],[12,5],[9,2],[7,4]]
