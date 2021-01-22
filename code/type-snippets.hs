@@ -14,7 +14,7 @@ swap (x, y) = (y, x)
 
 pair x y = (x, y)
 
-double x = x*x
+square x = x*x
 
 palindrome xs = xs == reverse xs
 
