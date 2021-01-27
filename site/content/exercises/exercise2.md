@@ -113,7 +113,7 @@ functions](https://en.wikipedia.org/wiki/Computable_function) and the
 {{< /details >}}
 {{< /question >}}
 
-# Some list manipulation
+## Some list manipulation
 
 Haskell has particularly strong builtin support for list manipulation
 (although there are many others too!). We'll look at some simple
@@ -188,3 +188,10 @@ not [total](https://en.wikipedia.org/wiki/Partial_function), using the
 `Maybe` datatype. We will see this in action later in the course.
 {{< /hint >}}
 {{< /exercise >}}
+
+## Solutions
+
+I've added some [commented solutions]({{< code-ref
+"exercises/exercise2-solutions.hs" >}}) to these exercises. If you
+have queries about them please ask in the practical sessions or else
+[get in touch]({{< ref "/#discussion-forum" >}}).
