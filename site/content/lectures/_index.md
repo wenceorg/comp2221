@@ -88,3 +88,35 @@ account) here.
 
   We introduced some example type classes and how we implement them
   for our own types.
+
+  The "Lecture 4" slides are unannotated (so what is on DUO is fine)
+  but they are also available [here]({{< static-ref
+  "slides/2020-21/Lec04.pdf" >}}).
+
+- 2021-01-26: [Annotated slides]({{< static-ref
+  "slides/2020-21/Lec05.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5bd9d66c-b4ba-4d86-8603-acbc00d86fe5),
+  [code]({{< code-ref "lectures/Lec05.hs" >}})
+
+  We finished off writing some functions on our own list type, and
+  saw two ways of writing reversal of a list, one slow and one fast.
+  To understand the fast approach, I talked a little bit about tail
+  recursion, and how you can write "loopy" code in a recursive
+  language.
+
+  I then discussed a step-by-step approach to writing recursive
+  functions. We then got a bit side-tracked talking about what it
+  means to drop a negative number of entries from a list, and I
+  showed a way to enforce that dropping values from a list can only
+  take positive integers. This way the type system enforces
+  correctness. It's rather ugly to do this, so I added a few notes
+  and pointers to what people are doing around Haskell with
+  [dependent](https://serokell.io/blog/why-dependent-haskell)
+  and [refinement
+  types](https://ucsd-progsys.github.io/liquidhaskell-blog/), which
+  provide more sophisticated approaches to type safety.
+
+  We didn't make it as far as the "maps and folds" section of the
+  slides so we'll do that next time.
+
+  I added some commented solutions for the first two exercise pages.
