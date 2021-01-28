@@ -120,3 +120,35 @@ account) here.
   slides so we'll do that next time.
 
   I added some commented solutions for the first two exercise pages.
+
+- 2021-01-28: [Annotated slides]({{< static-ref
+  "slides/2020-21/Lec06.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ec066488-74e4-4dfd-b26b-acbe00d9dd09)
+  [code]({{< code-ref "lectures/Lec06.hs" >}})
+
+  I didn't go through a lot of slides this time and mostly did the
+  code (which is annotated). We looked at some list comprehensions,
+  which are very similar to those available in Python.
+
+  I also showed "parallel" list comprehensions which run multiple
+  generators in parallel.
+
+  We then talked a bit about higher order functions (of which `map` is
+  an example), and I said a little bit about why these patterns are
+  useful in library design. They give us a common interface with a
+  contract behind which we can hide all sorts of fancy implementation.
+  For example, mapping over a list can be trivially parallelised in a
+  language where there is a guarantee that states are not modified in
+  place (because we can do things in any order). This is the
+  parallelisation paradigm that is the foundation of the
+  [mapreduce](https://en.wikipedia.org/wiki/MapReduce) programming
+  model.
+
+  Finally we started looking for recognisable patterns in some of the
+  recursive functions we've been writing on lists. We wrote the
+  implementation of a few "summarisation" functions that linearly
+  recurse on the list and combine the entries in some way to produce a
+  result.
+
+  We then spotted a common pattern and wrote a "fold" function that
+  abstracted this out. We'll start there next time.
