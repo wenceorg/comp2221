@@ -123,7 +123,7 @@ account) here.
 
 - 2021-01-28: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec06.pdf" >}}),
-  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ec066488-74e4-4dfd-b26b-acbe00d9dd09)
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ec066488-74e4-4dfd-b26b-acbe00d9dd09),
   [code]({{< code-ref "lectures/Lec06.hs" >}})
 
   I didn't go through a lot of slides this time and mostly did the
