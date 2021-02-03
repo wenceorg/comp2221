@@ -152,3 +152,39 @@ account) here.
 
   We then spotted a common pattern and wrote a "fold" function that
   abstracted this out. We'll start there next time.
+
+- 2021-02-02: [Annotated slides]({{< static-ref
+  "slides/2020-21/Lec06a.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e0ef9d4e-77e9-4fb7-91cd-acc300dc21cf),
+  [code]({{< code-ref "lectures/Lec07.hs" >}})
+
+  Following on from the end of last time, we introduce `foldr` and
+  `foldl` and discussed how they can be seen on lists as rebuilding
+  the structure with a new binary operator (instead of `(:)`) and
+  termination element (instead of `[]`).
+
+  We then looked at a little bit of theory on data types, particularly
+  [sum](https://en.wikipedia.org/wiki/Tagged_union) and
+  [product](https://en.wikipedia.org/wiki/Product_type) types.
+  Haskell's datatypes are [Algebraic
+  Datatypes](https://en.wikipedia.org/wiki/Algebraic_data_type). I
+  also pointed to this nice article on [why sum types are nice to
+  have](https://chadaustin.me/2015/07/sum-types/).
+
+  We then defined a few more of our own data structures including a
+  binary tree and a [rose
+  tree](https://en.wikipedia.org/wiki/Rose_tree) (the latter is what
+  you get if you import the
+  [`Data.Tree`](https://hackage.haskell.org/package/containers-0.6.4.1/docs/Data-Tree.html)
+  module).
+
+  We looked at the mapping pattern which lifts a function `a -> b` to
+  a function between containers of `as` and `bs` (e.g. `[a] -> [b]`
+  for lists), and noticed that the same pattern appears in mapping
+  over lots of datatypes. To make this generic, we introduced
+  Haskell's
+  [`Functor`](https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html#t:Functor)
+  type class which implements a generic `fmap`.
+
+  We foreshadowed, but didn't do, an equivalent interface for
+  "foldable" datatypes.
