@@ -23,7 +23,7 @@ and' = myFold (&&) True
 -- with a right- (respectively left-) associative binary operator.
 foldr' :: (a -> b -> b) -> b -> [a] -> b
 foldr' _ z [] = z
-foldr' f z (x:xs) = x `f` (foldr' f z xs)
+foldr' f z (x:xs) = x `f` foldr' f z xs
 
 foldl' :: (b -> a -> b) -> b -> [a] -> b
 foldl' _ z [] = z
@@ -147,4 +147,3 @@ mappedList = fmap (*2) [1, 2, 3]
 mappedMaybe = fmap (*2) (Just 4)
 mappedBTree = fmap (*2) (Node 4 (Node 6 Leaf Leaf) (Node 2 Leaf (Node 8 Leaf Leaf)))
 mappedRTree = fmap (*2) (RNode 4 [RNode 6 [], RNode 2 [RNode 8 []]])
-
