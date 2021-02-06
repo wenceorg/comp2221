@@ -188,3 +188,32 @@ account) here.
 
   We foreshadowed, but didn't do, an equivalent interface for
   "foldable" datatypes.
+
+- 2021-02-04: [Annotated slides]({{< static-ref
+  "slides/2020-21/Lec07.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a380fb7b-8c34-421f-8170-acc500dc51e0),
+  [code]({{< code-ref "lectures/Lec08.hs" >}})
+  
+  We looked at examples of containers that are not functorial. Then we
+  looked at building `Foldable` instances for some datatypes. GHC can
+  actually derive these for you (and `Functor` instances) if you add
+  ```hs
+  {-# LANGUAGE DeriveFunctor #-}
+  {-# LANGUAGE DeriveFoldable #-}
+  ```
+  at the top of your files. It's useful to think about to understand
+  what is going on though.
+  
+  We then went through some slides on lazy evaluation, and we looked
+  at the difference between the call-by-value of _eager_ languages and
+  call-by-name of _lazy_ languages (like Haskell). We just about got
+  on to sharing of expression evaluation.
+  
+  At the end of the lecture someone asked for another explanation of
+  the `Maybe` datatype, and why it might be useful. So I went through
+  that (there's about 5 or so minutes). There's a brief explanation of
+  the usefulness in the section "Sum types are general" of [this
+  post](Sum Types are General).
+
+
+  
