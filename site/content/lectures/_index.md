@@ -193,7 +193,7 @@ account) here.
   "slides/2020-21/Lec07.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a380fb7b-8c34-421f-8170-acc500dc51e0),
   [code]({{< code-ref "lectures/Lec08.hs" >}})
-  
+
   We looked at examples of containers that are not functorial. Then we
   looked at building `Foldable` instances for some datatypes. GHC can
   actually derive these for you (and `Functor` instances) if you add
@@ -203,17 +203,71 @@ account) here.
   ```
   at the top of your files. It's useful to think about to understand
   what is going on though.
-  
+
   We then went through some slides on lazy evaluation, and we looked
   at the difference between the call-by-value of _eager_ languages and
   call-by-name of _lazy_ languages (like Haskell). We just about got
   on to sharing of expression evaluation.
-  
+
   At the end of the lecture someone asked for another explanation of
   the `Maybe` datatype, and why it might be useful. So I went through
   that (there's about 5 or so minutes). There's a brief explanation of
   the usefulness in the section "Sum types are general" of [this
   post](Sum Types are General).
 
+- 2021-02-09: Annotated slides ([lazy eval]({{< static-ref
+  "slides/2020-21/Lec07a.pdf" >}}), [IO]({{< static-ref
+  "slides/2020-21/Lec08.pdf" >}})),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=798b939c-ed53-4974-8d8f-acca00db13bf),
+  [code]({{< code-ref "lectures/Lec09.hs" >}})
 
-  
+  There wasn't actually a lot of code today. I talked a little bit
+  about how Haskell evaluates expression graphs. Then how we might do
+  strict (eager) evaluation with `($!)`. We had a question on whether
+  GHC would optimise the difference between lazy and strict
+  expressions, and I thought it wouldn't. We can check this with a bit
+  of profiling.
+
+  {{< code-include "strictvslazy.hs" "hs" >}}
+
+  GHC has some facility for
+  [profiling](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/profiling.html)
+  built in. So if I invoke the relevant magic incantations and run the
+  program I get a `strictvslazy.prof` output file that includes
+
+  ```
+     	Tue Feb  9 17:55 2021 Time and Allocation Profiling Report  (Final)
+
+   	   strictvslazy +RTS -P -V0.0001 -RTS
+
+   	total time  =        0.43 secs   (4302 ticks @ 100 us, 1 processor)
+   	total alloc = 880,079,712 bytes  (excludes profiling overheads)
+
+   COST CENTRE  MODULE SRC                       %time %alloc  ticks     bytes
+
+   foldr_strict Main   strictvslazy.hs:14:36-50   27.8   45.5   1194 400000000
+   foldr_lazy   Main   strictvslazy.hs:12:34-47   24.4    0.0   1050        16
+   main.xs      Main   strictvslazy.hs:6:7-45     15.3   54.5    659 480000032
+   foldl_lazy   Main   strictvslazy.hs:16:34-47   10.7    0.0    459        16
+   foldl_strict Main   strictvslazy.hs:18:36-50   10.4    0.0    449        16
+   length_xs    Main   strictvslazy.hs:10:33-41    7.6    0.0    329         0
+   last_xs      Main   strictvslazy.hs:8:31-37     3.7    0.0    161        16
+   ```
+
+   So it seems an appropriate optimisation is being done in this case
+   for the lazy vs. strict versions of `foldl`, but not for `foldr`
+   (although note that the strict version churns through a lot of
+   memory).
+
+   For most of the rest of the session we covered input/output and the
+   type `IO a`. The main takeaway here is that we have to wrap these
+   impure "actions" up so that we don't break purity and referential
+   transparency in the language.
+
+   We introduced `do` notation for peeking inside actions.
+
+   I didn't get to it, but the slides develop a simple "hangman"
+   program that demonstrates some composition of IO actions. This is
+   modified slightly from an example in [Graham Hutton's book]() and the code
+   is available in [`code/lectures/hangman.hs`]({{< code-ref
+   "lectures/hangman.hs" >}})
