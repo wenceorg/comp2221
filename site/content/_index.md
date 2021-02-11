@@ -86,7 +86,7 @@ library](https://library.dur.ac.uk/record=b2094512~S1).
 
 In addition, there a number of excellent introductory Haskell
 tutorials, which you may find enlightening (if you don't like my
-explanations). 
+explanations).
 
 The [Haskell wiki](https://wiki.haskell.org/) links to a number of
 [tutorials](https://wiki.haskell.org/Learning_Haskell#Online_tutorials).

@@ -116,6 +116,13 @@ You may assume that both vectors have the same length.
 Which do you prefer, and why?
 {{< /question >}}
 
+### Solutions
+
+I've added some [commented solutions]({{< code-ref
+"exercises/exercise3-solutions.hs" >}}) to these exercises. If you
+have queries about them please ask in the practical sessions or else
+[get in touch]({{< ref "/#discussion-forum" >}}).
+
 ## Merge sort
 
 Now we're going to implement sorting of lists using the [merge
@@ -335,3 +342,10 @@ Prelude> sortReversedByLengthSnd [(5, "a"), (2, "foo"), (3, "four"), (7, "ab")]
 You should not write this comparison function by hand, but just
 compose together functions which you already have.
 {{< /exercise >}}
+
+### Solutions
+
+I've added some [commented solutions]({{< code-ref
+"exercises/mergesort-solutions.hs" >}}) to these exercises. If you
+have queries about them please ask in the practical sessions or else
+[get in touch]({{< ref "/#discussion-forum" >}}).
