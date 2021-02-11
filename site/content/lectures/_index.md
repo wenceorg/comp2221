@@ -271,3 +271,53 @@ account) here.
    modified slightly from an example in [Graham Hutton's book]() and the code
    is available in [`code/lectures/hangman.hs`]({{< code-ref
    "lectures/hangman.hs" >}})
+
+- 2021-02-11: [Handwritten slides]({{< static-ref
+  "slides/2020-21/Lec10.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=cc5f85e3-2586-4ef7-9adf-accc00db2388),
+  [code]({{< code-ref "lectures/Lec10.lean" >}})
+
+  We recapped the concept of reducible expressions with an example of
+  an expression graph with reducible and irreducible bits.
+
+  I talked for a while about what I thought the important and
+  interesting concepts were that we covered through the course. I
+  mentioned [Rust](https://www.rust-lang.org) again, when talking
+  about compile-time correct APIs for communication and cryptographic
+  protocols. If you're interested, here's a nice article about the
+  [typestate pattern](http://cliffle.com/blog/rust-typestate/) that's
+  a concrete realisation of this idea. Aside: I think Rust is an
+  excellent language to try and come to grips with if you like
+  slightly "low-level" programming.
+
+  I showed an example in the
+  [Lean](https://leanprover-community.github.io) theorem prover of
+  proving the Functor laws for `map` on a list. I don't expect you to
+  know any Lean really, but hopefully it was interesting.
+
+  We also talked a bit about the exam in the summer. The major change
+  is that there won't be any bookwork questions. I will summarise
+  those questions from past papers that I think are relevant for
+  looking at. The paper will have 2 questions predominantly on the
+  Haskell part of the course (and 2 on the OO part). In each case
+  there will be one question worth in total 30 marks, and a "short
+  essay" question worth 20 marks. The idea is that you show some
+  understanding of the programming aspect, and then also synthesis of
+  concepts. I will prepare a model paper (since none of the past
+  papers have essay questions in them) before the end of term.
+
+  There'll be some revision lectures at the start of Term 3, so look
+  out for those.
+
+  There were some questions about pointers to bigger programs in
+  Haskell. For self-contained things, you might look at the Imperial
+  [January Haskell tests](http://wp.doc.ic.ac.uk/ajf/haskell-tests/).
+  For bigger things you might start at the [Haskell
+  wiki](https://wiki.haskell.org/Applications_and_libraries). One
+  thing to note is that lots of the libraries in the wild will use
+  more advanced features than we saw in the course (but maybe that's
+  helpful).
+
+  Finally, please do fill out the [anonymous feedback
+  form](https://forms.office.com/Pages/ResponsePage.aspx?id=i9hQcmhLKUW-RNWaLYpvlH6j_ORl2wpMpbvCR6TejgNUNU5HMkk0TDFGQTNKMTRTVTJFRlNCSjQwNi4u)
+  if you have any comments (preferably constructive) on the course.
