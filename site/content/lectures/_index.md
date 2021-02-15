@@ -213,7 +213,7 @@ account) here.
   the `Maybe` datatype, and why it might be useful. So I went through
   that (there's about 5 or so minutes). There's a brief explanation of
   the usefulness in the section "Sum types are general" of [this
-  post](Sum Types are General).
+  post](https://chadaustin.me/2015/07/sum-types/).
 
 - 2021-02-09: Annotated slides ([lazy eval]({{< static-ref
   "slides/2020-21/Lec07a.pdf" >}}), [IO]({{< static-ref

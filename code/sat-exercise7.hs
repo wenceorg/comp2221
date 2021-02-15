@@ -46,3 +46,30 @@ uniquify (x:xs) = x : filter (/= x) (uniquify xs)
 -- boolean values to the free variables in the expression
 bindings :: Expr -> [Bindings]
 bindings = undefined
+
+-- Is an expression satisfiable? If yes, return Just the bindings that
+-- satisfy it.
+sat :: Expr -> Maybe Bindings
+sat = undefined
+
+-- Now with existential quantifiers
+
+data QuantifiedExpr
+  = Bare Expr
+  | Forall String QuantifiedExpr
+  | Exists String QuantifiedExpr
+  deriving Eq
+
+instance Show QuantifiedExpr where
+  show (Exists c e) = "∃" ++ c ++ "." ++ show e
+  show (Forall c e) = "∀" ++ c ++ "." ++ show e
+  show (Bare e)     = show e
+
+satQuantified :: QuantifiedExpr -> Maybe Bindings
+satQuantified = sat . rewrite
+
+-- We just need to implement this rewriting rule
+-- forall a.expr(a) -> expr(True) ^ expr(False)
+-- exists a.expr(a) -> expr(False) v expr(True)
+rewrite :: QuantifiedExpr -> Expr
+rewrite = undefined

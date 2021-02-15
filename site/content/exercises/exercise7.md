@@ -23,12 +23,13 @@ Field at Imperial.
 {{< /hint >}}
 
 The template file for this exercise is available as
-[`code/sat-exercise6.hs`]({{< code-ref "sat-exercise6.hs" >}})
+[`code/sat-exercise7.hs`]({{< code-ref "sat-exercise7.hs" >}})
 
 ## Introduction
 We'll use a data type to represent out expressions
 ```hs
-data Expr = Const Bool
+data Expr
+  = Const Bool
   | Var String
   | Not Expr
   | And [Expr]
@@ -62,7 +63,7 @@ type Bindings = [(String, Bool)]
 {{< exercise >}} 
 
 Your first job is to write a function which, given a variable name (of
-type `Strring`), looks it up in a list of bindings and returns the
+type `String`), looks it up in a list of bindings and returns the
 corresponding value. You can assume that the bindings will contain no
 duplicate entries (we will ensure this later). So define a function
 
@@ -147,8 +148,116 @@ assignments which result in the expression evaluating to True.
 Conversely, if the expression is not satisfiable, you should return
 `Nothing`.
 
+You may find it helpful to define a helper function
 ```hs
 sat' :: Expr -> [Bindings] -> Maybe Bindings
 ```
 which iterates through the list of bindings until one of them results
 in the expression being satisfied.
+
+## Extension: existential and universal quantifiers
+
+Sometimes it is convenient to write boolean expressions using
+[universal](https://en.wikipedia.org/wiki/Universal_quantification)
+(for all) and
+[existential](https://en.wikipedia.org/wiki/Existential_quantification)
+(there exists) quantifiers.
+
+For example an expression
+$$
+\exists a . a \wedge b
+$$
+read as "there exists an $a$ such that $a \wedge b$" is true if there
+is an assignment to $a$ such that $a \wedge b$ evaluates to true.
+
+Similarly, an expression
+$$
+\forall a . a \wedge b
+$$
+read as "for all $a$, $a \wedge b$" is true if all assignments to $a$
+result in $a \wedge b$ being true.
+
+To handle this case we could modify our existing `data` declaration
+to add these new ones.
+```hs
+data Expr
+  = Const Bool
+  | Var String
+  | Not Expr
+  | And [Expr]
+  | Or [Expr]
+  | Exists String Expr
+  | Forall String Expr
+  deriving Eq
+```
+As discussed in the lectures, the disadvantage with this approach is
+that we need to go back and implement all of our functions to handle
+these new cases.
+
+We will actually handle the quantifiers using _rewrite rules_. That
+is, we will keep our existing solver for unquantified expressions and
+expand out any quantification
+$$
+\begin{aligned}
+\exists a . e(a) &\to e(\text{True}) \vee e(\text{False}) \\
+\forall a . e(a) &\to e(\text{True}) \wedge e(\text{False}).
+\end{aligned}
+$$
+We could do this eagerly, by providing functions
+```hs
+forall :: String -> Expr -> Expr
+exists :: String -> Expr -> Expr
+```
+That construct rewritten expressions on the fly. However, this would
+preclude doing clever things with the quantification. Instead we will
+implement a new `QuantifiedExpr` type and rewriting functionality.
+
+```hs
+data QuantifiedExpr
+  = Bare Expr
+  | Exists String QuantifiedExpr
+  | Forall String QuantifiedExpr
+  deriving Eq
+```
+Again, I don't derive from `Show` because I want a pretty-printable
+version of the expressions.
+
+{{< question >}}
+Do you understand why we need a `Bare` constructor for the "base"
+`Expr` we might want to hold?
+{{< /question >}}
+
+{{< exercise >}}
+To handle problems with `QuantifiedExpr` types, we will rewrite them
+into plain `Expr` types. That is, we'll write
+```hs
+rewrite :: QuantifiedExpr -> Expr
+```
+
+A function to check sat of quantified expressions is then just
+```hs
+satQuantified :: QuantifiedExpr -> Maybe Bindings
+satQuantified = sat . rewrite
+```
+{{< /exercise >}}
+
+One approach is to write a helper
+
+```hs
+rewrite' :: QuantifiedExpr -> Bindings -> Expr
+```
+that takes a (possibly empty) list of bindings of variables to values
+and attempts to substitute them in the expression. Encountering a
+`Forall` or `Exists` should augment the list of bindings with ones for
+the quantified variable.
+
+For example
+```
+rewrite' (Forall "a" (Bare (Or [Var "a", Var "b"])) []
+== (And [rewrite' (Bare (Or [Var "a", Var "b"])) [("a", False)],
+         rewrite' (Bare (Or [Var "a", Var "b"])) [("a", True)]])
+== (And [Or [Const False, Var "b"],
+         Or [Const True, Var "b"]])
+```
+
+You may think of a better way of doing this.
