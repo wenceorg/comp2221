@@ -26,7 +26,7 @@ The template file for this exercise is available as
 [`code/sat-exercise7.hs`]({{< code-ref "sat-exercise7.hs" >}})
 
 ## Introduction
-We'll use a data type to represent out expressions
+We'll use a data type to represent our expressions
 ```hs
 data Expr
   = Const Bool
