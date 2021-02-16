@@ -118,7 +118,7 @@ things.
 {{< /question >}}
 
 
-We'll call binary trees _symmetric__ if we can draw a vertical line
+We'll call binary trees _symmetric_ if we can draw a vertical line
 through the root node such that right subtree is the mirror image of
 the left subtree.
 
