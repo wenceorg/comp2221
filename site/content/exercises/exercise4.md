@@ -219,3 +219,10 @@ over the list of pairs obtained from `treeGen`, starting with `[2,
 1]`.
 
 {{< /exercise >}}
+
+## Solutions
+
+I've added some [commented solutions]({{< code-ref
+"exercises/exercise4-solutions.hs" >}}) to these exercises. If you
+have queries about them please ask in the practical sessions or else
+[get in touch]({{< ref "/#discussion-forum" >}}).
