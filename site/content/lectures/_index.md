@@ -321,3 +321,13 @@ account) here.
   Finally, please do fill out the [anonymous feedback
   form](https://forms.office.com/Pages/ResponsePage.aspx?id=i9hQcmhLKUW-RNWaLYpvlH6j_ORl2wpMpbvCR6TejgNUNU5HMkk0TDFGQTNKMTRTVTJFRlNCSjQwNi4u)
   if you have any comments (preferably constructive) on the course.
+
+- 2021-05-04: [Annotated slides]({{< static-ref
+  "slides/2020-21/revision.pdf" >}}), [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e3a85195-913f-4a55-ad83-ad1e00cb673c)<div id="revision" />
+
+  We briefly went over the key points from the course and discussed
+  some of the styles of exam questions, along with a bit of logistics.
+  We then recapped some queries from the course.
+
+  If you have further questions during revision, do [get in touch]({{<
+  ref "/#discussion-forum" >}}).
