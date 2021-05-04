@@ -16,6 +16,18 @@ language, [Haskell](https://www.haskell.org). We will introduce the
 language and also try and show how developments in Haskell are adopted
 by other (perhaps more mainstream) languages, and why you might care.
 
+{{< hint info >}}
+## Updates
+
+I uploaded the slides/video of the [revision lecture]({{< ref
+"lectures#revision" >}}).
+
+If you have further queries, get in touch via the [discussion
+forum]({{< ref "#discussion-forum" >}}) or
+[email](mailto:lawrence.mitchell@durham.ac.uk).
+
+{{< /hint >}}
+
 ## Course organisation
 
 The course will run over five weeks on Tuesdays and Thursdays at 12pm
