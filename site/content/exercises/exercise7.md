@@ -197,12 +197,15 @@ these new cases.
 We will actually handle the quantifiers using _rewrite rules_. That
 is, we will keep our existing solver for unquantified expressions and
 expand out any quantification
+{{< rawhtml >}}
 $$
 \begin{aligned}
 \exists a . e(a) &\to e(\text{True}) \vee e(\text{False}) \\
 \forall a . e(a) &\to e(\text{True}) \wedge e(\text{False}).
 \end{aligned}
 $$
+{{< /rawhtml >}}
+
 We could do this eagerly, by providing functions
 ```hs
 forall :: String -> Expr -> Expr
