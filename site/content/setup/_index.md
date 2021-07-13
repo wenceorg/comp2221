@@ -57,8 +57,8 @@ This will download a bunch of stuff and hook up with your existing
 Haskell installation so that you get type-checking hints and
 autocompletion.
 
-For [Emacs](https://www.gnu.org/software/emacs/), I recommend the
-[intero](https://chrisdone.github.io/intero/) package, which provides
+For [Emacs](https://www.gnu.org/software/emacs/), I recommend LSP, in
+particular the [lsp-haskell](https://emacs-lsp.github.io/lsp-haskell/) plugin, which provides
 similar functionality to the VS Code plugin.
 
 For other editors, you might find some helpful pointers
