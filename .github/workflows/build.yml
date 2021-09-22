@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches: [ main ]
 
 jobs:
   build:
@@ -14,7 +16,7 @@ jobs:
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
       with:
-        hugo-version: '0.80.0'
+        hugo-version: '0.85.0'
         extended: true
     - name: Setup Python
       uses: actions/setup-python@v2
@@ -26,3 +28,15 @@ jobs:
     - name: Build
       run:
         make html
+    - name: Deploy
+      uses: crazy-max/ghaction-github-pages@v2.5.0
+      if: ${{ github.ref == 'refs/heads/main' }}
+      with:
+        target_branch: gh-pages
+        build_dir: ./site/public
+        keep_history: false
+        allow_empty_commit: false
+        jekyll: false
+        fqdn: teaching.wence.uk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
