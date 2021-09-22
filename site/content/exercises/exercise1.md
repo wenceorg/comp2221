@@ -205,10 +205,3 @@ with
     ys = [a | a <- xs, a < x]
 ```
 {{< /question >}}
-
-## Solutions
-
-I've added some [commented solutions]({{< code-ref
-"exercises/exercise1-solutions.hs" >}}) to these exercises. If you
-have queries about them please ask in the practical sessions or else
-[get in touch]({{< ref "/#discussion-forum" >}}).

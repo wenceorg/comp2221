@@ -204,10 +204,3 @@ This says: "replace `Val` nodes with their contents, and replace
 {{< exercise >}}
 Implement `folde` and then the functions `collect` and `size` using it.
 {{< /exercise >}}
-
-## Solutions
-
-I've added some [commented solutions]({{< code-ref
-"exercises/exercise6-solutions.hs" >}}) to these exercises. If you
-have queries about them please ask in the practical sessions or else
-[get in touch]({{< ref "/#discussion-forum" >}}).

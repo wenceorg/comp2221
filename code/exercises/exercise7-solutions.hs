@@ -102,7 +102,7 @@ sat' _ [] = Nothing
 -- So try it, if the expression evaluates to True, we are done, and
 -- return Just bs, otherwise recurse on the rest of the bindings.
 sat' e (bs:bss) = let expr = eval e bs in
-                  if expr 
+                  if expr
                   then Just bs
                   else sat' e bss
 

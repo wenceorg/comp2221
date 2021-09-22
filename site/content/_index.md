@@ -16,50 +16,16 @@ language, [Haskell](https://www.haskell.org). We will introduce the
 language and also try and show how developments in Haskell are adopted
 by other (perhaps more mainstream) languages, and why you might care.
 
-{{< hint info >}}
-## Updates
-
-I uploaded the slides/video of the [revision lecture]({{< ref
-"lectures#revision" >}}).
-
-If you have further queries, get in touch via the [discussion
-forum]({{< ref "#discussion-forum" >}}) or
-[email](mailto:lawrence.mitchell@durham.ac.uk).
-
-{{< /hint >}}
-
 ## Course organisation
 
-The course will run over five weeks on Tuesdays and Thursdays at 12pm
-starting on 12th January 2021, via
-[Zoom](https://durhamuniversity.zoom.us/j/95350957043?pwd=SEhqZkxWVGJoNlN5UG9BWk9WbzJBQT09)
-(Meeting ID: 953 5095 7043; Password: 667975). You will need to be
-logged in with your Durham credentials. A calendar subscription with
-these details is available at
-[https://tinyurl.com/2021comp2221ics](https://tinyurl.com/2021comp2221ics).
+The course will run over five weeks on Mondays (4pm) and Fridays (1pm)
+starting on 10th January 2021 in L50 (Psychology).
 
 ### Practical sessions
 
 There are five weeks of practical sessions which will start in the
 second week of term. We'll cover the [exercises]({{< ref
 "exercises.md" >}}), and any other queries you might have.
-
-Practicals run through the week, you've been allocated to one of them
-(see DUO for details: the allocation is as for Systems Programming
-last term). They all use the [same Zoom link as last
-term](https://durhamuniversity.zoom.us/j/99762711221?pwd=d084NjgyTHBleWpLdlMyNkNkWnZCdz09).
-
-The practical slots run at:
-
-| Day      | Time |
-|----------|------|
-| Monday   | 2pm  |
-| Monday   | 3pm  |
-| Thursday | 9am  |
-| Friday   | 9am  |
-| Friday   | 10am |
-| Friday   | 2pm  |
-| Friday   | 3pm  |
 
 ### Discussion forum
 
@@ -71,12 +37,10 @@ publically visible.
 
 ### Office hours
 
-Open office hours (no appointment needed) will run for the first 5
-weeks at 3pm on Wednesdays. As usual, via
-[Zoom](https://durhamuniversity.zoom.us/j/93552238271?pwd=WWlpNEtNSmtYbVlCYjM3SWdVK0dmUT09)
-(Meeting ID: 935 5223 8271; Passcode: 914577).
-After that, or if you need to get in touch some other time, please
-[email me](mailto:lawrence.mitchell@durham.ac.uk) to arrange something.
+Open office hours (no appointment needed) will be advertised here.
+
+If you need to get in touch some other time, please [email
+me](mailto:lawrence.mitchell@durham.ac.uk) to arrange something.
 
 ### Other feedback routes
 

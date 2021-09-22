@@ -181,10 +181,3 @@ one form and the other, so optimising compilers can exploit the
 property.
 {{< /details >}}
 {{< /exercise >}}
-
-## Solutions
-
-I've added some [commented solutions]({{< code-ref
-"exercises/exercise5-solutions.hs" >}}) to these exercises. If you
-have queries about them please ask in the practical sessions or else
-[get in touch]({{< ref "/#discussion-forum" >}}).
