@@ -342,10 +342,3 @@ Prelude> sortReversedByLengthSnd [(5, "a"), (2, "foo"), (3, "four"), (7, "ab")]
 You should not write this comparison function by hand, but just
 compose together functions which you already have.
 {{< /exercise >}}
-
-### Solutions
-
-I've added some [commented solutions]({{< code-ref
-"exercises/mergesort-solutions.hs" >}}) to these exercises. If you
-have queries about them please ask in the practical sessions or else
-[get in touch]({{< ref "/#discussion-forum" >}}).

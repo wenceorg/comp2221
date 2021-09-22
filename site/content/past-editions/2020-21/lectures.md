@@ -7,14 +7,14 @@ BookToc: false
 
 # Lecture slides and video links
 
-As the course progresses, I'll upload lecture slides, the live code
-examples, and add links to the videos (accessible with a Durham
-account) here.
+As the course progressed, I uploaded lecture slides, the live code
+examples, and added links to the videos (accessible with a Durham
+account).
 
 - 2021-01-12: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec01.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c27a685e-8450-417b-8eda-acae00dc4ebc),
-  [code]({{< code-ref "lectures/Lec01.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec01.hs" >}})
 
   We got about halfway through the slides, we'll pick up where we left
   off next time.
@@ -22,7 +22,7 @@ account) here.
 - 2021-01-14: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec02.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=add4bf82-312c-4e35-a99e-acb000d97c33),
-  [code]({{< code-ref "lectures/Lec02.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec02.hs" >}})
 
   We went through the remainder of the slides from Tuesday. I skipped
   over the dark blue slides introducing Haskell syntax since we saw
@@ -56,7 +56,7 @@ account) here.
 - 2021-01-19: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec03.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=8e9814b4-f7d2-47d0-b966-acb500d971b0),
-  [code]({{< code-ref "lectures/Lec03.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec03.hs" >}})
 
   We started introducing the concept of functions that might fail, and
   the Maybe datatype. We looked a little bit at polymorphism, and I
@@ -70,7 +70,7 @@ account) here.
 - 2021-01-21: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec03a.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7e061c40-b269-4879-ba02-acb700d9784d),
-  [code]({{< code-ref "lectures/Lec04.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec04.hs" >}})
 
   We revisited the `chopPrefix` example and looked at a little bit of
   theory for different types of polymorphism. The [wikipedia
@@ -96,7 +96,7 @@ account) here.
 - 2021-01-26: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec05.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5bd9d66c-b4ba-4d86-8603-acbc00d86fe5),
-  [code]({{< code-ref "lectures/Lec05.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec05.hs" >}})
 
   We finished off writing some functions on our own list type, and
   saw two ways of writing reversal of a list, one slow and one fast.
@@ -124,7 +124,7 @@ account) here.
 - 2021-01-28: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec06.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ec066488-74e4-4dfd-b26b-acbe00d9dd09),
-  [code]({{< code-ref "lectures/Lec06.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec06.hs" >}})
 
   I didn't go through a lot of slides this time and mostly did the
   code (which is annotated). We looked at some list comprehensions,
@@ -156,7 +156,7 @@ account) here.
 - 2021-02-02: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec06a.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e0ef9d4e-77e9-4fb7-91cd-acc300dc21cf),
-  [code]({{< code-ref "lectures/Lec07.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec07.hs" >}})
 
   Following on from the end of last time, we introduce `foldr` and
   `foldl` and discussed how they can be seen on lists as rebuilding
@@ -192,7 +192,7 @@ account) here.
 - 2021-02-04: [Annotated slides]({{< static-ref
   "slides/2020-21/Lec07.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a380fb7b-8c34-421f-8170-acc500dc51e0),
-  [code]({{< code-ref "lectures/Lec08.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec08.hs" >}})
 
   We looked at examples of containers that are not functorial. Then we
   looked at building `Foldable` instances for some datatypes. GHC can
@@ -219,7 +219,7 @@ account) here.
   "slides/2020-21/Lec07a.pdf" >}}), [IO]({{< static-ref
   "slides/2020-21/Lec08.pdf" >}})),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=798b939c-ed53-4974-8d8f-acca00db13bf),
-  [code]({{< code-ref "lectures/Lec09.hs" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec09.hs" >}})
 
   There wasn't actually a lot of code today. I talked a little bit
   about how Haskell evaluates expression graphs. Then how we might do
@@ -275,7 +275,7 @@ account) here.
 - 2021-02-11: [Handwritten slides]({{< static-ref
   "slides/2020-21/Lec10.pdf" >}}),
   [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=cc5f85e3-2586-4ef7-9adf-accc00db2388),
-  [code]({{< code-ref "lectures/Lec10.lean" >}})
+  [code]({{< code-ref "lectures/2020-21/Lec10.lean" >}})
 
   We recapped the concept of reducible expressions with an example of
   an expression graph with reducible and irreducible bits.
