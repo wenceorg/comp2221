@@ -6,9 +6,10 @@ weight: 1
 
 # COMP2221: Functional programming
 
-This is the course webpage for [COMP2221]({{< modulepage >}}). It
-collects the exercise sheets, syllabus, and lecture slides. The source
-repository is [hosted on GitHub]({{< repo >}}).
+This is the course webpage for the functional programming part of
+[COMP2221]({{< modulepage >}}). It collects the exercise sheets,
+syllabus, and lecture slides. The source repository is [hosted on
+GitHub]({{< repo >}}).
 
 The goal of the course is to provide an introduction to the [functional
 programming](https://en.wikipedia.org/wiki/Functional_programming)
@@ -19,7 +20,7 @@ by other (perhaps more mainstream) languages, and why you might care.
 ## Course organisation
 
 The course will run over five weeks on Mondays (4pm) and Fridays (1pm)
-starting on 10th January 2021 in L50 (Psychology).
+starting on 10th January 2021 in D110 (Archaeology).
 
 ### Practical sessions
 
