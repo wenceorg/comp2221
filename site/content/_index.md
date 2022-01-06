@@ -20,13 +20,63 @@ by other (perhaps more mainstream) languages, and why you might care.
 ## Course organisation
 
 The course will run over five weeks on Mondays (4pm) and Fridays (1pm)
-starting on 10th January 2021 in D110 (Archaeology).
+starting on 10th January 2022 in D110 (Archaeology).
+
+{{< hint warning >}}
+
+In the first two weeks of term (weeks beginning 10th and 17th
+January), the lectures are **online only**.
+
+{{< /hint >}}
+
+{{< hint info >}}
+
+You can attend remotely over [zoom](https://durhamuniversity.zoom.us/j/94737897412?pwd=ZTFyeG52SUVCK25pZFVuczhDdEVPQT09), and will need to be
+authenticated with your Durham account.
+
+Meeting ID: 947 3789 7412  
+Passcode: 756154
+{{< /hint >}}
+
+### Running code
+
+I will do a bunch of live coding during the lectures. You're
+encouraged to play around with things afterwards to make sure you
+understand stuff. All of the code will appear in the [course
+repository]({{< repo >}}) in `./code/lectures/2021-22/`.
 
 ### Practical sessions
 
 There are five weeks of practical sessions which will start in the
-second week of term. We'll cover the [exercises]({{< ref
+first week of term. We'll cover the [exercises]({{< ref
 "exercises.md" >}}), and any other queries you might have.
+
+{{< hint warning >}}
+
+In the first week of term (week beginning 10th January), practicals
+are **online only**.
+
+{{< /hint >}}
+
+
+| Date/time          | Location |
+|--------------------|----------|
+| Monday 2pm--4pm    | E216A    |
+| Thursday 11am--1pm | RH025    |
+| Friday 2pm--4pm    | RH025    |
+| Friday 2pm--4pm    | RH025    |
+
+
+{{< hint info >}}
+
+You can attend remotely over
+[zoom](https://durhamuniversity.zoom.us/j/99562589739?pwd=K3RmekY3aUJKUStaenN6VUxBMmlRUT09),
+and will need to be logged in with your Durham account.
+
+Meeting ID: 995 6258 9739  
+Passcode: 283067
+
+{{< /hint >}}
 
 ### Discussion forum
 
@@ -34,7 +84,7 @@ I have set up a [discussion forum]({{< repo >}}/discussions) where you
 can ask, and answer, questions. You'll need a
 [GitHub](https://github.com) account to use it, but you've all got one
 of those already, right? Note that this repository and forum is
-publically visible.
+publicly visible.
 
 ### Office hours
 
