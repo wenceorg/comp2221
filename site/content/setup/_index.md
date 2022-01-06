@@ -17,26 +17,19 @@ here](https://dur.unidesk.ac.uk/tas/public/ssp/content/serviceflow?unid=f407b0f6
 If you're happy using mira you can continue to do so. After logging
 in, the Haskell interpreter is available by launching `ghci`.
 
+## Via apps anywhere
+
+On windows managed desktop systems, you can launch the Haskell
+platform via apps anywhere.
+
 ## On your own device
 
-This may well be preferable to just using a terminal. You probably
-want to install the [haskell platform](https://www.haskell.org/platform/)
-
-On Debian based systems (for example Ubuntu), you'll want to install
-the `haskell-platform` package. For other Linux distributions, see the
-[haskell platform page](https://www.haskell.org/platform/linux.html).
-
-On MacOS, your best bet is via [Homebrew](https://brew.sh), which I
-recommend as a package manager for MacOS systems in general. You
-should `brew install haskell-stack`.
-
-On Windows, follow the instructions given on the [haskell platform
-page](https://www.haskell.org/platform/windows.html).
-
-{{< hint info >}}
-For other options, see the documentation
-[here](https://www.haskell.org/downloads/).
-{{< /hint >}}
+This may well be preferable to just using a terminal. Your best bet is
+probably to follow the official instructions and install
+[`ghcup`](https://www.haskell.org/ghcup/install/) and use that to manage
+installing `ghc` and any other components. I recommend installing at
+least `ghc` and the `haskell-language-server` (for editor
+integration).
 
 ## Editor support
 
@@ -62,10 +55,11 @@ particular the [lsp-haskell](https://emacs-lsp.github.io/lsp-haskell/) plugin, w
 similar functionality to the VS Code plugin.
 
 For other editors, you might find some helpful pointers
-[here](https://wiki.haskell.org/IDEs). The most recent approach
-appears to be via the [language server
+[here](https://wiki.haskell.org/IDEs). The best-supported approach is via the [language server
 protocol](https://microsoft.github.io/language-server-protocol/),
 which is implemented for Haskell
 [here](https://github.com/haskell/haskell-language-server). They
 provide some advice on [configuring your
-editor](https://github.com/haskell/haskell-language-server#configuring-your-editor).
+editor](https://haskell-language-server.readthedocs.io/en/latest/configuration.html#configuring-your-editor).
+This server is installable using `ghcup` on your own device if you're
+doing that, unfortunately it's not available on mira.

@@ -1,0 +1,4 @@
+cradle:
+  stack:
+    - path: "./code/lectures/2021-22"
+      component: "COMP2221-Y202122:lib"

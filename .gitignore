@@ -8,3 +8,5 @@
 /figures/*.pdf
 .DS_Store
 /code/.ipynb_checkpoints/
+/.stack-work/
+/stack.yaml.lock

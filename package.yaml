@@ -1,0 +1,10 @@
+name: COMP2221-Y202122
+version: 0.1
+license: CC-BY-SA-4.0
+synopsis: 2021/22 edition of COMP2221
+ghc-options: -Wall
+dependencies:
+  - base >= 4.9 && < 5
+
+library:
+  source-dirs: ./code/lectures/2021-22

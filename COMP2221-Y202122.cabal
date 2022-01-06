@@ -1,0 +1,33 @@
+cabal-version: 2.2
+
+-- This file has been generated from package.yaml by hpack version 0.34.4.
+--
+-- see: https://github.com/sol/hpack
+
+name:           COMP2221-Y202122
+version:        0.1
+synopsis:       2021/22 edition of COMP2221
+license:        CC-BY-SA-4.0
+license-file:   LICENSE
+build-type:     Simple
+
+library
+  exposed-modules:
+      Lec01
+      Lec02
+      Lec03
+      Lec04
+      Lec05
+      Lec06
+      Lec07
+      Lec08
+      Lec09
+      Lec10
+  other-modules:
+      Paths_COMP2221_Y202122
+  hs-source-dirs:
+      ./code/lectures/2021-22
+  ghc-options: -Wall
+  build-depends:
+      base >=4.9 && <5
+  default-language: Haskell2010
