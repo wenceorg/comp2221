@@ -27,7 +27,6 @@ library
       Paths_COMP2221_Y202122
   hs-source-dirs:
       ./code/lectures/2021-22
-  ghc-options: -Wall
   build-depends:
       base >=4.9 && <5
   default-language: Haskell2010
