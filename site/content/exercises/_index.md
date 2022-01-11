@@ -1,7 +1,7 @@
 ---
 title: Exercises
 draft: false
-weight: 2
+weight: 3
 ---
 
 # Overview
