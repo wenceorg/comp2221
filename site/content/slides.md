@@ -27,3 +27,22 @@ account), and some commentary.
   provided through
   [LSP](https://microsoft.github.io/language-server-protocol/) by the
   [Haskell wingman](https://haskellwingman.dev).
+
+- 2022-01-14: [Annotated slides]({{< static-ref
+  "slides/2021-22/Lec02.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=cc24733d-6605-4282-9b8f-ae1d00eaa76f),
+  [code]({{< code-ref "lectures/2021-22/Lec02.hs" >}})
+  
+  We finished off by going over the definition of `filter` we had seen
+  at the end of the last session. I've updated the lecture 1 annotated
+  slides above to include my new annotations (I wrote it out more
+  neatly).
+  
+  We then did some introductory types and started hinting at the idea
+  that function types, and especially higher-order functions, are very
+  important. We got about halfway through the slides, and I'll pick up
+  there next time.
+
+  [Gary Bernhardt](https://www.destroyallsoftware.com/) has a fun talk
+  about type errors, mostly in
+  [javascript](https://www.destroyallsoftware.com/talks/wat).

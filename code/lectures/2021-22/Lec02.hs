@@ -15,14 +15,16 @@ a = x + y
 
 -- Characters with single quotes
 someChar :: Char
-someChar = 'c'
+someChar = '👍'
 
 -- strings are just lists of characters, which we can state with a
--- type synonym.
+-- type synonym. Like C typedef.
+-- These lists are linked lists. And so the end of the string is that
+-- the next pointer in the linked list data structure is empty.
 type String = [Char]
 -- Strings with double quotes
 someString :: String
-someString = "abc"
+someString = "ab😊"
 
 -- Arbitrary-precision integers
 bignum :: Integer
@@ -38,7 +40,7 @@ c = 12.0
 
 -- But we can turn "ints" into numbers and then they can be cast down
 d :: Double
-d = (fromIntegral a) + c
+d = fromIntegral a + c
 
 
 -- What if we don't want to introduce global bindings? Two options.
@@ -46,7 +48,7 @@ d = (fromIntegral a) + c
 -- 2. We have a syntactic block. Introduce bindings with "where"
 -- (--> later)
 
--- Syntax: let {assignments} in {expression}
+-- Syntax: let {assignments} in expression
 e :: Int
 e = let x = 1
         y = 2
@@ -195,7 +197,7 @@ xors'' = map (\x -> xorUncurried (True, x)) values
 {- ASIDE:
 
 Currying is not named after food, but rather after Haskell Curry
-(https://en.wikipedia.org/wiki/Haskell_Curry) (as is Haskell itself)/
+(https://en.wikipedia.org/wiki/Haskell_Curry) (as is Haskell itself)
 
 He did foundational work in lambda calculus and the ideas of "programs
 as proofs"
@@ -214,4 +216,3 @@ to prove properties of the natural numbers (0, 1, 2, ...)
 https://wwwf.imperial.ac.uk/~buzzard/xena/natural_number_game/
 
 -}
-
