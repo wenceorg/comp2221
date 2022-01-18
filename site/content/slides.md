@@ -46,3 +46,22 @@ account), and some commentary.
   [Gary Bernhardt](https://www.destroyallsoftware.com/) has a fun talk
   about type errors, mostly in
   [javascript](https://www.destroyallsoftware.com/talks/wat).
+
+- 2022-01-17: [Annotated slides]({{< static-ref
+  "slides/2021-22/Lec03.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e4009fa3-8fb3-4bd2-b1fe-ae20011e6bba),
+  [code (finishing session 2)]({{< code-ref
+  "lectures/2021-22/Lec02.hs" >}}) and [starting session 3]({{< code-ref
+  "lectures/2021-22/Lec03.hs" >}})
+  
+  We finished off a few slides from session 2 (and I updated the
+  annotated ones above). Then we spent quite a lot of time looking at
+  defining functions and in particular discussing
+  [currying](https://en.wikipedia.org/wiki/Currying) and why Haskell
+  tends to prefer functions written in curried form.
+  
+  Then I showed a few session 3 slides and talked about polymorphic
+  functions and monomorphisation. We'll pick up there next time and
+  continue with session 3 stuff.
+  
+  
