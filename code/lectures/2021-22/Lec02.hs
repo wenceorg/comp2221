@@ -150,7 +150,10 @@ tuple = (False, xs)
 -- This is the uncurried version, it takes all the arguments at once,
 -- packed up in a tuple and returns a Bool.
 xorUncurried :: (Bool, Bool) -> Bool
-xorUncurried = undefined
+xorUncurried (False, False) = False
+xorUncurried (True, True) = False
+xorUncurried (True, False) = True
+xorUncurried (False, True) = True
 
 -- Here is the curried version, it takes arguments one at a time, so
 -- really, it's a function which takes a Bool and returns a function
@@ -158,8 +161,14 @@ xorUncurried = undefined
 -- The arrow -> is right-associative, so we don't need the brackets
 -- here, but I put them in for clarity.
 xor :: Bool -> (Bool -> Bool)
-xor = undefined
+xor True  True  = False
+xor True  False = True
+xor False False = False
+xor False True  = True
 
+xor' :: Bool -> (Bool -> Bool)
+xor' True  = not
+xor' False = id
 -- Which is better? And why?
 
 -- Generally, the curried form is preferred.
@@ -167,7 +176,7 @@ xor = undefined
 -- know the first argument.
 -- With the curried version, it is easy
 xorPartial :: Bool -> Bool
-xorPartial = undefined
+xorPartial = xor True
 
 values :: [Bool]
 values = [True, False, True, True]
@@ -177,20 +186,22 @@ xors' = map (xor True) values
 
 -- With the uncurried version, we have to explicitly provide a name
 -- the variable that will go in the second slot of the argument.
+-- xor with first argument being True
 xorUncurriedPartial :: Bool -> Bool
-xorUncurriedPartial = undefined
+xorUncurriedPartial x = xorUncurried (True, x)
 
 
 -- So if we want to use it in a larger function, we either have to
 -- define a name, like above, or introduce a lambda to capture the
 -- variable, which is kind of messy.
+xors' = map (xor True) values
 xors'' = map (\x -> xorUncurried (True, x)) values
 
 -- We call this idea of invoking a function with some (but not all) of
 -- its arguments _partial application_. Building more complicated
 -- programs by composition of (partially applied) functions is one of
 -- the things we're going to do a lot. The curried form of functions
--- makes this easier to read and do, so that's why (expect where it is
+-- makes this easier to read and do, so that's why (except where it is
 -- not possible)
 
 
