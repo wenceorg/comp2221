@@ -64,4 +64,23 @@ account), and some commentary.
   functions and monomorphisation. We'll pick up there next time and
   continue with session 3 stuff.
   
+- 2022-01-21:
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6e60d837-300c-4453-b60c-ae2400eaa0c9),
+  [code (finishing session 3)]({{< code-ref
+  "lectures/2021-22/Lec03.hs" >}})
+
+  We didn't see any slides this time and instead worked our way
+  through the definitions of some polymorphic functions. The main
+  focus was on figuring out how we might be able to write [total
+  functions](https://en.wikipedia.org/wiki/Partial_function) which are
+  functions which produce valid results for all possible inputs. To do
+  so, we introduced the
+  [`Maybe`](https://hackage.haskell.org/package/base-4.16.0.0/docs/Prelude.html#t:Maybe)
+  data type, which models a computation that may fail.
   
+  We then saw that to constructively work with `Maybe` types we are
+  likely going to need a way to transform values that live "inside"
+  `Maybe`s and introduced a function `applyInsideMaybe` whose type signature bore a
+  striking resemblance to that of
+  [`map`](https://hackage.haskell.org/package/base-4.16.0.0/docs/Prelude.html#v:map),
+  which is approximately where we will start next time.

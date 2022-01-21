@@ -115,6 +115,7 @@ hd (x:_) = x
 hdBool :: [Bool] -> Bool
 hdBool [] = undefined
 hdBool (x:_) = x
+
 -- This is similar to the way C++ templates (which you might have seen
 -- already) or C# generics (which you'll see later this term) work.
 
@@ -137,7 +138,19 @@ hdBool (x:_) = x
 -- should we do when asking for the nth entry of an empty list?
 -- Here we have left it undefined, but this is unsatisfactory.
 nth :: Int -> [a] -> a
-nth = undefined
+nth n [] = undefined
+nth n (a : as')
+  | n == 0    = a
+  | otherwise = nth (n - 1) as'
+
+-- We could also write this without guard expressions like so.
+-- It is common practice to leave holes in the patterns to clearly
+-- indicate that the values will not be required in the right hand
+-- side definition.
+nth' :: Int -> [a] -> a
+nth' _ [] = undefined
+nth' 0 (a:_) = a
+nth' n (_:as) = nth (n-1) as
 
 -- One way to phrase this problem is that our function is not _total_
 -- (see: https://en.wikipedia.org/wiki/Partial_function). That is, it
@@ -168,6 +181,8 @@ what' = nth 0 []
 -- Often you would have written some_kwarg=None, but this would not
 -- allow you to distinguish between
 --
+-- def fn(*args, some_kwarg=None):
+--    ...
 -- fn(some_kwarg=None) and fn()
 --
 -- Whereas the approach with a sentinel does.
@@ -179,6 +194,20 @@ safeNth' n sentinel (x:xs) | n == 0 = x
                            | otherwise = safeNth' (n-1) sentinel xs
 safeNth' _ sentinel [] = sentinel
 
+-- We had one suggestion to use a tuple type to provide the return
+-- value, and indicate failure
+-- We had one issue that if we have an empty list, we can't construct
+-- a value of type "a" out of thin air. So we proposed to keep the
+-- sentinel argument, just never look at it. We can, in this case, put
+-- undefined :: a in the first slot (since the contract is that we're
+-- only allowed to look at the first entry in the tuple if the second
+-- entry is True). However, this can't be enforced in the type system,
+-- so the approach below with Maybe is preferable.
+safeNth'' :: Int -> [a] -> (a, Bool)
+safeNth'' n (x:xs) | n == 0 = (x, True)
+                   | otherwise = safeNth'' (n-1) xs
+safeNth'' _ [] = (undefined, False)
+
 -- But how do we distinguish between the sentinel value being in the
 -- list, and a failure. We can't therefore distinguish between
 
@@ -189,7 +218,11 @@ failed = safeNth' 10 (-1) [1, 2, 3]
 
 -- The solution in Haskell (and other languages also pick up the same
 -- idea) is to have an Option type that represents a computation that
--- may fail. Rust calls this Option<T>, C++ calls it std::optional<T>.
+-- may fail.
+
+-- Rust calls this Option<T> (https://doc.rust-lang.org/std/option/)
+-- C++ calls it std::optional<T>
+-- (https://en.cppreference.com/w/cpp/utility/optional).
 
 -- In Haskell, it is called Maybe. (Normally just available in the
 -- standard Prelude, or via import Data.Maybe).
@@ -205,40 +238,82 @@ safeNth n (x:xs) | n == 0 = Just x
 safeNth _ [] = Nothing
 
 -- Why is this useful?
--- Can _safely_ distinguish "I failed" from "I succeeded".
+-- Can _safely_ distinguish "I failed" from "I succeeded", and the
+-- function becomes total.
 
 -- Now let's consider manipulating these Maybe values, to see why this
 -- might be a useful construct
 
 -- Let's first do some recursive function definitions
--- Here's a polymorphic function
+-- Here's a polymorphic function. Append is spelt (++) in the standard
+-- prelude, but we just implemented it here.
 append :: [a] -> [a] -> [a]
-append = (++)
+append xs [] = xs -- This pattern is actually redundant, can you see why?
+append [] ys = ys
+append (x:xs) ys = x : append xs ys
 
+-- Don't have to define this, Haskell calls it reverse
+-- This is an algorithmically suboptimal implementation, but
+-- OK. We'll see why, and fix that next time.
 rev :: [b] -> [b]
-rev = reverse
+rev [] = []
+rev (x:xs) = append (rev xs) [x]
 
 -- Now let's think about something a little more complicated.
 -- Consider chopping a prefix off the front of a list
 -- So
 -- chopPrefix [1, 2] [1, 2, 3, 4] == [3, 4]
 chopPrefix :: Eq a => [a] -> [a] -> Maybe [a]
-chopPrefix = undefined
+chopPrefix [] xs = Just xs
+chopPrefix _ [] = Just [] -- We decided that if the prefix is larger
+                          -- than the list, we should get Just []
+                          -- back.
+chopPrefix (p:ps) (x:xs)
+  | p == x = chopPrefix ps xs
+  | otherwise = Nothing
 
--- chopPrefix [1, 2] [1] & chopPrefix [1, 2] [1, 2]
 -- Then let's consider chopping a suffix off the end of a list
 -- So chopSuffix [1, 2] [3, 1, 2] == [3]
 chopSuffix :: Eq a => [a] -> [a] -> Maybe [a]
-chopSuffix = undefined
+chopSuffix sfx xs = chopPrefix (rev sfx) (rev xs)
 
 prefixFree = chopPrefix "hello" "hello.txt"
 
 suffixFree = chopSuffix ".boat" "kayak.boat"
 
-suffixBad = chopSuffix ".txt" "hello.txt"
--- Uh-oh, something is not right
+suffixFree' = chopSuffix ".txt" "amanaplanacanalpanama.txt"
 
+-- Everything seemed to be going well up to this point, but I had only
+-- chopped suffixes from palindromes.
+
+suffixBad = chopSuffix ".txt" "hello.txt"
+
+-- We needed to reverse inside the Just object.
+-- One suggestion was to write a safeRev function that acts on Maybe
+-- objects
+-- Like so.
+safeRev :: Maybe [a] -> Maybe [a]
+safeRev Nothing = Nothing
+safeRev (Just xs) = Just (rev xs)
+
+-- This works, but every time we introduce a new function we want to
+-- apply inside our Maybe time, we'll need to write a "safe" version
+-- of it.
+
+-- Instead, we want something that will take a function from a -> b
+-- and apply it inside a Maybe.
 -- We need to be able to apply a function inside a Maybe type
+-- Want to "lift" f :: a -> b into g :: Maybe a -> Maybe b
+-- Let us call this applyInsideMaybe
 applyInsideMaybe :: (a -> b) -> Maybe a -> Maybe b
-applyInsideMaybe = undefined
+applyInsideMaybe fab Nothing = Nothing
+applyInsideMaybe fab (Just a) = Just (fab a)
+
+-- This looks remarkably similar to the "map" we've seen earlier,
+-- which, by these naming conventions, we could call "applyInsideList"
+applyInsideList :: (a -> b) -> [a] -> [b]
+applyInsideList = map
+
+-- Next time: we'll explore these similarities and start introducing
+-- type classes.
 
