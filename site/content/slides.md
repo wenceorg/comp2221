@@ -84,3 +84,32 @@ account), and some commentary.
   striking resemblance to that of
   [`map`](https://hackage.haskell.org/package/base-4.16.0.0/docs/Prelude.html#v:map),
   which is approximately where we will start next time.
+
+- 2022-01-24:
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=39af24fe-316b-42a7-b0e2-ae27011c4f92), 
+  [annotated slides (updated from session 3)]({{< static-ref
+  "slides/2021-22/Lec03.pdf" >}}), [code]({{< code-ref
+  "lectures/2021-22/Lec04.hs" >}})
+  
+  We talked a little bit about Haskell type classes and how they are
+  used to implement constrained generic programming: that is writing
+  generic functions that can specify interfaces that the arguments
+  should satisfy.
+  
+  The [wikipedia
+  page](https://en.wikipedia.org/wiki/Polymorphism_(computer_science))
+  has a nice overview as usual on polymorphism. The classic work on
+  subtyping is from [Barbara
+  Liskov](https://en.wikipedia.org/wiki/Barbara_Liskov) from 1987. The
+  method that Haskell uses for constrained (ad-hoc) polymorphism based
+  on type classes was introduced by [Phil
+  Wadler](http://homepages.inf.ed.ac.uk/wadler/) and [Stephen
+  Blott](https://www.computing.dcu.ie/~sblott/) in [_How to make
+  ad-hoc polymorphism less ad
+  hoc_](http://homepages.inf.ed.ac.uk/wadler/topics/type-classes.html#class).
+  [Here's a video](https://www.youtube.com/watch?v=6COvD8oynmI) of
+  Simon Peyton Jones giving an introductory talk on type classes and
+  their implementation in GHC.
+  
+  We implemented our own linked list type and and discussed pattern
+  matching a bit more.
