@@ -113,3 +113,22 @@ account), and some commentary.
   
   We implemented our own linked list type and and discussed pattern
   matching a bit more.
+
+- 2022-01-28:
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a9386ccd-4791-4d18-a6fb-ae2b00eeb084),
+  [code]({{< code-ref "lectures/2021-22/Lec05.hs" >}})
+  
+  We just did code today, in particular we systematically looked at a
+  method for writing recursive functions. We have effectively covered
+  the slides up to lecture 5 (as uploaded on blackboard), we just
+  started hinting at folds in the last part of the session 5 slides.
+  
+  We saw that a number of "library" functions on lists follow the same
+  pattern, and we sketched a higher order function that captures this
+  pattern.
+  
+  I showed a way to find functions in the Haskell standard
+  library (and packages) if you know the type by using
+  [hoogle](https://hoogle.haskell.org).
+  
+  
