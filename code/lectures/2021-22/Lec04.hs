@@ -110,5 +110,7 @@ append (Cons x xs) ys = Cons x (append xs ys)
 
 -- And to reverse a list
 -- This time we'll do a linear-time algorithm
+-- Postponed to the next set of live coding
+-- We did this as reverseFast in Lec05.hs
 rev :: List a -> List a
 rev = undefined

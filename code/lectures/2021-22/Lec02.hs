@@ -194,7 +194,7 @@ xorUncurriedPartial x = xorUncurried (True, x)
 -- So if we want to use it in a larger function, we either have to
 -- define a name, like above, or introduce a lambda to capture the
 -- variable, which is kind of messy.
-xors' = map (xor True) values
+xors''' = map (xor True) values
 xors'' = map (\x -> xorUncurried (True, x)) values
 
 -- We call this idea of invoking a function with some (but not all) of
