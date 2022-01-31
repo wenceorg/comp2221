@@ -1,0 +1,5 @@
+{{ if (.Get "release") }}
+<div class="markdown-inner">
+  {{ .Inner | markdownify }}
+</div>
+{{ end }}

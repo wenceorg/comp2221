@@ -227,7 +227,7 @@ const x _ = x
 
 -- So (const x) :: b -> a is a unary function which returns x
 -- ignoring its input
-length'' = myFold undefined
+length'' = myFold (const (1+))
 
 -- These follow the pattern as well
 and' = myFold (&&) True

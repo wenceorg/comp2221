@@ -188,3 +188,13 @@ not [total](https://en.wikipedia.org/wiki/Partial_function), using the
 `Maybe` datatype. We will see this in action later in the course.
 {{< /hint >}}
 {{< /exercise >}}
+
+{{< solution release=true >}}
+## Solutions
+
+I've added some [commented solutions]({{< code-ref
+"exercises/exercise2-solutions.hs" >}}) to these exercises. If you
+have queries about them please ask in the practical sessions or else
+[get in touch]({{< ref "/#discussion-forum" >}}).
+
+{{< /solution >}}

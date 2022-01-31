@@ -13,11 +13,11 @@ lemma tree_map_id : ∀ (xs : tree α), tree_map id xs = id xs :=
 begin
   intro xs,
   induction xs with l x r hypl hypr,
-  { refl, },
+  { trivial, },
   { rw tree_map,
     rw hypl,
     rw hypr,
-    refl, },
+    trivial, },
 end
 
 lemma tree_map_composition : ∀ (xs : tree α) (f : β -> γ) (g : α -> β),
@@ -25,7 +25,7 @@ lemma tree_map_composition : ∀ (xs : tree α) (f : β -> γ) (g : α -> β),
 begin
   intros,
   induction xs with l x r hypl hypr,
-  { refl, },
+  { trivial, },
   { repeat {rw tree_map},
   rw hypl,
   rw hypr, },
