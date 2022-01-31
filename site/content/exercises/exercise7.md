@@ -264,3 +264,14 @@ rewrite' (Forall "a" (Bare (Or [Var "a", Var "b"])) []
 ```
 
 You may think of a better way of doing this.
+
+
+{{< solution release=false >}}
+## Solutions
+
+I've added some [commented solutions]({{< code-ref
+"exercises/exercise7-solutions.hs" >}}) to these exercises. If you
+have queries about them please ask in the practical sessions or else
+[get in touch]({{< ref "/#discussion-forum" >}}).
+
+{{< /solution >}}
