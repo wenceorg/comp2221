@@ -131,4 +131,37 @@ account), and some commentary.
   library (and packages) if you know the type by using
   [hoogle](https://hoogle.haskell.org).
   
+- 2022-01-31:
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c07d3261-2522-46af-b2b5-ae2e0119a7b9),
+  [annotated slides]({{< static-ref "slides/2021-22/Lec07.pdf" >}}),
+  no code today
   
+  We introduced, following on from looking for patterns, `foldr` and
+  `foldl` and saw how they can be seen on lists as rebuilding the
+  structure with a new binary operator (instead of `(:)`) and initial
+  element (instead of `[]`).
+  
+  We then also looked at two "principled" type classes, namely
+  [`Functor`](https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html#t:Functor)
+  for mappable types, and
+  [`Foldable`](https://hackage.haskell.org/package/base-4.16.0.0/docs/Prelude.html#t:Foldable),
+  for foldable types.
+  
+  The type classes are termed "principled" because their
+  implementations are expected to satisfy certain equational laws that
+  mathematically capture certain properties that an implementation
+  must obey so that it behaves "as expected". We saw the `Functor`
+  laws, but not the `Foldable` laws (which need more time than we have
+  here). Note that although I often ask you to implement `Functor` and
+  `Foldable` instances, GHC can actually derive them for you if you
+  add
+  ```hs
+  {-# LANGUAGE DeriveFunctor #-}
+  {-# LANGUAGE DeriveFoldable #-}
+  ```
+  at the top of your files.
+  
+  I've diverged a bit from the slides uploaded to blackboard, although
+  I have covered the material in a combination of the slides you've
+  seen and the live code: you may wish to browse the slides as well to
+  compare with the code we've seen.
