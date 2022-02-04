@@ -86,10 +86,10 @@ account), and some commentary.
   which is approximately where we will start next time.
 
 - 2022-01-24:
-  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=39af24fe-316b-42a7-b0e2-ae27011c4f92), 
   [annotated slides (updated from session 3)]({{< static-ref
-  "slides/2021-22/Lec03.pdf" >}}), [code]({{< code-ref
-  "lectures/2021-22/Lec04.hs" >}})
+  "slides/2021-22/Lec03.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=39af24fe-316b-42a7-b0e2-ae27011c4f92),
+  [code]({{< code-ref "lectures/2021-22/Lec04.hs" >}})
   
   We talked a little bit about Haskell type classes and how they are
   used to implement constrained generic programming: that is writing
@@ -132,8 +132,8 @@ account), and some commentary.
   [hoogle](https://hoogle.haskell.org).
   
 - 2022-01-31:
-  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c07d3261-2522-46af-b2b5-ae2e0119a7b9),
   [annotated slides]({{< static-ref "slides/2021-22/Lec07.pdf" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c07d3261-2522-46af-b2b5-ae2e0119a7b9),
   no code today
   
   We introduced, following on from looking for patterns, `foldr` and
@@ -165,3 +165,16 @@ account), and some commentary.
   I have covered the material in a combination of the slides you've
   seen and the live code: you may wish to browse the slides as well to
   compare with the code we've seen.
+
+- 2022-02-04:
+  [annotated slides]({{< static-ref "slides/2021-22/Lec08.pdf" >}}),
+  [code]({{< code-ref "lectures/2021-22/Lec08.hs" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=59cd3222-5c2f-463e-858d-ae3200ea66dd)
+
+  I finished the declarations for `Functor` and `Foldable` instances
+  for the `Maybe`, `BinaryTree`, and `RoseTree` data types we'd seen.
+  Then we talked about how Haskell evaluations expression graphs and
+  how we can do strict (eager) evaluation with `($!)`. I rushed
+  through the last few slides a little bit so will go over them again
+  briefly on Monday to wrap up the lazy evaluation aspects and then
+  talk about data encapsulation and compile-time safe APIs.
