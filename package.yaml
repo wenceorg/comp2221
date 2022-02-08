@@ -4,6 +4,7 @@ license: CC-BY-SA-4.0
 synopsis: 2021/22 edition of COMP2221
 dependencies:
   - base >= 4.9 && < 5
+  - timeit >= 2.0
 
 library:
   source-dirs: ./code/lectures/2021-22

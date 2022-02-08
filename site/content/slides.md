@@ -178,3 +178,49 @@ account), and some commentary.
   through the last few slides a little bit so will go over them again
   briefly on Monday to wrap up the lazy evaluation aspects and then
   talk about data encapsulation and compile-time safe APIs.
+
+- 2022-02-07:
+  [annotated slides]({{< static-ref "slides/2021-22/Lec09.pdf" >}}),
+  [code]({{< code-ref "lectures/2021-22/Lec09.hs" >}}) (and [main
+  file]({{< code-ref "lectures/2021-22/Main.hs" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c16f703f-b397-4865-99c4-ae35011d2515)
+  
+  I showed differences between strict and lazy evaluation for some
+  simple folds in terms of performance (particularly between `foldl`
+  and `foldl'`), though noted for this simple example that GHC does a
+  good job determining that it can evaluate things strictly. For more
+  details on this, see the [haskell
+  wiki](https://wiki.haskell.org/Performance/Strictness).
+  
+  I then talked about the design of APIs and "type-driven design", and
+  how a rich type system can help us in the design of libraries that
+  are in some sense impossible to misuse.
+  
+  This style of interface is becoming more popular because it
+  pushes a bunch of the complexity of keeping track of invariants onto
+  the type system and compiler (rather than the programmer's brain).
+  
+  In Haskell-ese an often quoted mantra is to ["make illegal states
+  unrepresentable"](https://buttondown.email/hillelwayne/archive/making-illegal-states-unrepresentable/).
+  
+  If you're interested in this kind of stuff, here are some starting
+  points for further reading
+  
+  - [Alexis King](https://lexi-lambda.github.io) has a nice article on
+    the idea of [parsing rather than
+    validating](https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/)
+  - The [Rust](https://www.rust-lang.org/) community has really got on
+    board with [type state
+    patterns](http://cliffle.com/blog/rust-typestate/)
+  - [Matt Noonan](https://mobile.twitter.com/banjotragedy) shows how
+    Haskell can provide enough dependent types to encode quite
+    complicated invariants (such as the `mergeBy` example in the
+    lecture) [in the type system](https://kataskeue.com/gdp.pdf).
+  - If you're interested in formal methods and proof systems, [Talia
+    Ringer](https://dependenttyp.es/) has an introductory course on
+    [proof
+    automation](https://dependenttyp.es/classes/598sp2022.html), and
+    [Kevin Buzzard](https://www.imperial.ac.uk/people/k.buzzard)
+    writes a lot about [formalising
+    mathematics](https://xenaproject.wordpress.com) in
+    [Lean](https://xenaproject.wordpress.com).
