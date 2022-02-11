@@ -182,7 +182,7 @@ property.
 {{< /details >}}
 {{< /exercise >}}
 
-{{< solution release=false >}}
+{{< solution release=true >}}
 ## Solutions
 
 I've added some [commented solutions]({{< code-ref

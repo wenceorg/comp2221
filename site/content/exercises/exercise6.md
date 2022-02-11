@@ -205,7 +205,7 @@ This says: "replace `Val` nodes with their contents, and replace
 Implement `folde` and then the functions `collect` and `size` using it.
 {{< /exercise >}}
 
-{{< solution release=false >}}
+{{< solution release=true >}}
 ## Solutions
 
 I've added some [commented solutions]({{< code-ref
