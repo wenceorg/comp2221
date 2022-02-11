@@ -224,3 +224,39 @@ account), and some commentary.
     writes a lot about [formalising
     mathematics](https://xenaproject.wordpress.com) in
     [Lean](https://xenaproject.wordpress.com).
+
+- 2022-02-11: [annotated summary slides]({{< static-ref
+  "lectures/2021-22/short-summary.pdf" >}}), [slides on IO actions
+  (didn't show these, only did the code)]({{< static-ref
+  "lectures/2021-22/Lec10.pdf" >}}), [code]({{< code-ref
+  "lectures/2021-22/Lec10.hs" >}}),
+  [video](https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c894a492-1eaf-4983-b75b-ae3900e95253)
+  
+  We talked a little bit about doing I/O in a pure language, which
+  forced us to introduce the concept of actions. I showed some
+  information about `do` notation for peeking inside them, and how
+  conceptually, doing I/O can be seen as taking the state of the
+  universe and producing a new state. The main takeaway is that we
+  have to wrap up impure "actions" so that we don't break referential
+  transparency in the language.
+  
+  I then summarised the course and talked a little about what I think
+  the important bits are.
+  
+  There were some questions about pointers to bigger programs in
+  Haskell. For self-contained things, you might look at the Imperial
+  [January Haskell tests](http://wp.doc.ic.ac.uk/ajf/haskell-tests/).
+  For bigger things you might start at the [Haskell
+  wiki](https://wiki.haskell.org/Applications_and_libraries). One
+  thing to note is that lots of the libraries in the wild will use
+  more advanced features than we saw in the course (but maybe that's
+  helpful).
+  
+  The [resources]({{< ref "#further-resources" >}}) section of the
+  front page also has some pointers.
+  
+  Next term there will be a revision lecture scheduled, but this was
+  my last term in Durham, so it will come from someone else. Look out
+  for announcements via ULTRA.
+  
+  Thanks again everyone, and enjoy!

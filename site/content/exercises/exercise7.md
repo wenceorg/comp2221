@@ -266,7 +266,7 @@ rewrite' (Forall "a" (Bare (Or [Var "a", Var "b"])) []
 You may think of a better way of doing this.
 
 
-{{< solution release=false >}}
+{{< solution release=true >}}
 ## Solutions
 
 I've added some [commented solutions]({{< code-ref
