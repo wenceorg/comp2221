@@ -1,0 +1,15 @@
+{
+  "name": "COMP2221 – Functional Programming",
+  "short_name": "COMP2221 – Functional Programming",
+  "start_url": "/comp2221/",
+  "scope": "/comp2221/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/comp2221/favicon.svg",
+      "sizes": "512x512"
+    }
+  ]
+}

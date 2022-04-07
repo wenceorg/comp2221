@@ -1,0 +1,109 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Thinking about types #  You&rsquo;ve probably noticed by now that GHC will complain if you write some code where the types don&rsquo;t match. To do this, it uses type inference to determine the valid types of any functions you write, and checks that everything works. For example, suppose I have a function
+allTrue :: [Bool] -> Bool allTrue [] = True allTrue (x:xs) = x && allTrue xs which checks if every entry of a list of Bools is True."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Types and lists"><meta property="og:description" content="Thinking about types #  You&rsquo;ve probably noticed by now that GHC will complain if you write some code where the types don&rsquo;t match. To do this, it uses type inference to determine the valid types of any functions you write, and checks that everything works. For example, suppose I have a function
+allTrue :: [Bool] -> Bool allTrue [] = True allTrue (x:xs) = x && allTrue xs which checks if every entry of a list of Bools is True."><meta property="og:type" content="article"><meta property="og:url" content="https://teaching.wence.uk/comp2221/exercises/exercise2/"><meta property="article:section" content="exercises"><meta property="article:modified_time" content="2022-04-07T18:06:14+01:00"><title>Types and lists | COMP2221 – Functional Programming</title><link rel=manifest href=/comp2221/manifest.json><link rel=icon href=/comp2221/favicon.png type=image/x-icon><link rel=stylesheet href=/comp2221/book.min.b85762cbec3aa7dfc1fa14ce1d900668d26349753560425c37dac8f9e08407d6.css integrity="sha256-uFdiy+w6p9/B+hTOHZAGaNJjSXU1YEJcN9rI+eCEB9Y="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><div class=book-brand><img class=book-center src=/comp2221/logo.svg alt=Logo><h2><a href=/comp2221>COMP2221 – Functional Programming</a></h2></div><ul><li><a href=/comp2221/setup/>Setup</a><ul></ul></li><li><a href=/comp2221/slides/>Slides & commentary</a></li><li><a href=/comp2221/exercises/>Exercises</a><ul><li><a href=/comp2221/exercises/exercise1/>Hello, World!</a></li><li><a href=/comp2221/exercises/exercise2/ class=active>Types and lists</a></li><li><a href=/comp2221/exercises/exercise3/>List manipulation and sorting</a></li><li><a href=/comp2221/exercises/exercise4/>Lazy evaluation and infinite datastructures</a></li><li><a href=/comp2221/exercises/exercise5/>Folds and function composition</a></li><li><a href=/comp2221/exercises/exercise6/>Some classic data structures</a></li><li><a href=/comp2221/exercises/exercise7/>Another mini expression evaluator</a></li></ul></li><li><span>Past editions</span><ul><li><span>2020/21</span><ul><li><a href=/comp2221/past-editions/2020-21/lectures/>Annotated slides</a></li></ul></li></ul></li></ul></nav><script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/comp2221/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Types and lists</strong>
+<label for=toc-control><img src=/comp2221/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#thinking-about-types>Thinking about types</a><ul><li><a href=#class-constraints>Class constraints</a></li><li><a href=#some-list-manipulation>Some list manipulation</a></li></ul></li></ul></nav></aside></header><article class=markdown><blockquote class="book-hint warning"><span>This course page was updated until March 2022 when I left Durham University.
+For future updates, please visit
+the <a href=https://comp2221.github.io/fp-website/>new version
+of the course pages</a>.</span></blockquote><h1 id=thinking-about-types>Thinking about types
+<a class=anchor href=#thinking-about-types>#</a></h1><p>You&rsquo;ve probably noticed by now that GHC will complain if you write
+some code where the types don&rsquo;t match. To do this, it uses <em>type
+inference</em> to determine the valid types of any functions you write,
+and checks that everything works. For example, suppose I have a
+function</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>allTrue</span> <span style=color:#f92672>::</span> <span style=color:#111>[</span><span style=color:#00a8c8>Bool</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Bool</span>
+<span style=color:#75af00>allTrue</span> <span style=color:#00a8c8>[]</span> <span style=color:#f92672>=</span> <span style=color:#00a8c8>True</span>
+<span style=color:#75af00>allTrue</span> <span style=color:#111>(</span><span style=color:#111>x</span><span style=color:#00a8c8>:</span><span style=color:#111>xs</span><span style=color:#111>)</span> <span style=color:#f92672>=</span> <span style=color:#111>x</span> <span style=color:#f92672>&amp;&amp;</span> <span style=color:#111>allTrue</span> <span style=color:#111>xs</span>
+</code></pre></div><p>which checks if every entry of a list of <code>Bool</code>s is True.</p><blockquote class="book-hint info"><span>This function already exists and is actually called <code>and</code> in the
+standard Prelude.</span></blockquote><p>Now suppose I try and apply this function to a list of integers</p><pre><code>Prelude&gt; allTrue [1, 2, 3]
+
+&lt;interactive&gt;:7:10: error:
+    • No instance for (Num Bool) arising from the literal ‘1’
+    • In the expression: 1
+      In the first argument of ‘allTrue’, namely ‘[1, 2, 3]’
+      In the expression: allTrue [1, 2, 3]
+</code></pre><p>Here Haskell has determined that the types are wrong. It is telling me
+that the deduced type of the argument, which is <code>Num a => [a]</code> (that
+is, a list of numbers), does not satisfy the requirement that <code>a</code> is
+of type <code>Bool</code>.</p><blockquote class=exercise><h3>Exercise</h3><span>Try this out for yourself.</span></blockquote><p>Reasoning about the types of functions is a core part of writing
+Haskell. Although GHC can usually infer the type of functions, there
+are some circumstances where it can need a bit of help. Moreover,
+type annotations provide useful documentation to the reader of the
+code. Rather than having to read the body of a function to determine
+that it takes a list of pairs of <code>Bool</code> and <code>Int</code> (say), we can just
+see it in the type definition.</p><p>As such, you should <em>always</em> annotate your function definitions with
+their types. GHC will of course check it for you, and complain if your
+annotation is not valid.</p><p>Here are some definitions without types</p><div class=book-include><div class=book-include-heading><tt>type-snippets.hs</tt></div><div class=book-include-download><a href=https://teaching.wence.uk/comp2221/code/type-snippets.hs>Download</a></div><div class=book-include-content><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#00a8c8>module</span> <span style=color:#111>Snippets</span> <span style=color:#00a8c8>where</span>
+
+<span style=color:#75af00>x1</span> <span style=color:#f92672>=</span> <span style=color:#111>[</span><span style=color:#d88200>&#39;a&#39;</span><span style=color:#111>,</span> <span style=color:#d88200>&#39;b&#39;</span><span style=color:#111>,</span> <span style=color:#d88200>&#39;c&#39;</span><span style=color:#111>]</span>
+
+<span style=color:#75af00>x2</span> <span style=color:#f92672>=</span> <span style=color:#111>(</span><span style=color:#d88200>&#39;a&#39;</span><span style=color:#111>,</span> <span style=color:#d88200>&#39;b&#39;</span><span style=color:#111>,</span> <span style=color:#d88200>&#39;c&#39;</span><span style=color:#111>)</span>
+
+<span style=color:#75af00>x3</span> <span style=color:#f92672>=</span> <span style=color:#111>[(</span><span style=color:#00a8c8>False</span><span style=color:#111>,</span> <span style=color:#ae81ff>0</span><span style=color:#111>),</span> <span style=color:#111>(</span><span style=color:#00a8c8>True</span><span style=color:#111>,</span> <span style=color:#ae81ff>10</span><span style=color:#111>)]</span>
+
+<span style=color:#75af00>x4</span> <span style=color:#f92672>=</span> <span style=color:#111>([</span><span style=color:#00a8c8>False</span><span style=color:#111>,</span> <span style=color:#00a8c8>True</span><span style=color:#111>],</span> <span style=color:#111>[</span><span style=color:#ae81ff>0</span><span style=color:#111>,</span> <span style=color:#ae81ff>1</span><span style=color:#111>])</span>
+
+<span style=color:#75af00>x5</span> <span style=color:#f92672>=</span> <span style=color:#111>[</span><span style=color:#111>tail</span><span style=color:#111>,</span> <span style=color:#111>reverse</span><span style=color:#111>,</span> <span style=color:#111>init</span><span style=color:#111>]</span>
+
+<span style=color:#75af00>swap</span> <span style=color:#111>(</span><span style=color:#111>x</span><span style=color:#111>,</span> <span style=color:#111>y</span><span style=color:#111>)</span> <span style=color:#f92672>=</span> <span style=color:#111>(</span><span style=color:#111>y</span><span style=color:#111>,</span> <span style=color:#111>x</span><span style=color:#111>)</span>
+
+<span style=color:#75af00>pair</span> <span style=color:#111>x</span> <span style=color:#111>y</span> <span style=color:#f92672>=</span> <span style=color:#111>(</span><span style=color:#111>x</span><span style=color:#111>,</span> <span style=color:#111>y</span><span style=color:#111>)</span>
+
+<span style=color:#75af00>square</span> <span style=color:#111>x</span> <span style=color:#f92672>=</span> <span style=color:#111>x</span><span style=color:#f92672>*</span><span style=color:#111>x</span>
+
+<span style=color:#75af00>palindrome</span> <span style=color:#111>xs</span> <span style=color:#f92672>=</span> <span style=color:#111>xs</span> <span style=color:#f92672>==</span> <span style=color:#111>reverse</span> <span style=color:#111>xs</span>
+
+<span style=color:#75af00>twice</span> <span style=color:#111>f</span> <span style=color:#111>x</span> <span style=color:#f92672>=</span> <span style=color:#111>f</span> <span style=color:#111>(</span><span style=color:#111>f</span> <span style=color:#111>x</span><span style=color:#111>)</span>
+</code></pre></div></div></div><blockquote class=exercise><h3>Exercise</h3><span><p>Download the file and annotate the declarations with their types.</p><p>Load it in GHC to check if you got everything right.</p></span></blockquote><blockquote class="book-hint info"><span>As well as downloading individual files, you can always clone the
+entire <a href=https://github.com/wenceorg/comp2221>course repository</a>, at which point the code will
+live in the <code>code/</code> subdirectory.</span></blockquote><h2 id=class-constraints>Class constraints
+<a class=anchor href=#class-constraints>#</a></h2><p>You probably noticed that the <code>palindrome</code> function required a <em>class
+constraint</em>, namely <code>Eq</code>. We&rsquo;ll see much more on these class
+constraints later.</p><p>This makes sense, since to check if a list is palindromic, we need to
+be able to compare its entries for equality. Try applying <code>palindrome</code>
+to a list of functions.</p><pre><code>Prelude&gt; palindrome [(+), (-), (+)]
+    • No instance for (Eq (Integer -&gt; Integer -&gt; Integer))
+        arising from a use of ‘palindrome’
+        (maybe you haven't applied a function to enough arguments?)
+    • In the expression: palindrome [(+), (-), (+)]
+      In an equation for ‘it’: it = palindrome [(+), (-), (+)]
+</code></pre><p>Here, Haskell complains that it can&rsquo;t check for equality of function
+types.</p><blockquote class=question><h3>Question</h3><span><p>Is Haskell right to complain that it can&rsquo;t check that functions are
+equal? Explain your reasoning?</p><details><summary>Hint</summary><div class=markdown-inner>Think about how you would check if two arbitrary functions (whose
+source you do not have) might be equal. Think about <a href=https://en.wikipedia.org/wiki/Computable_function>computable
+functions</a> and the
+<a href=https://en.wikipedia.org/wiki/Halting_problem>halting problem</a>.</div></details></span></blockquote><h2 id=some-list-manipulation>Some list manipulation
+<a class=anchor href=#some-list-manipulation>#</a></h2><p>Haskell has particularly strong builtin support for list manipulation
+(although there are many others too!). We&rsquo;ll look at some simple
+exercises manipulating lists in various ways.</p><p>You can find a template file for these exercises at
+<a href=https://teaching.wence.uk/comp2221/code/lists-exercise2.hs><code>code/lists-exercise2.hs</code></a>.</p><blockquote class=exercise><h3>Exercise</h3><span><p><code>last :: [a] -> a</code> returns the final element of a non-empty list.
+Write a function <code>butlast :: [a] -> a</code> which returns the penultimate
+element of a list of at least two entries.</p><p>Try it in two different ways</p><ol><li>Using existing builtin functions</li><li>Recursively, using pattern matching.</li></ol></span></blockquote><blockquote class=question><h3>Question</h3><span><p>Haskell implements lists as linked lists (not arrays). This means that
+accessing the <code>nth</code> element of a list has complexity $\mathcal{O}(n)$.
+Given this information, what is the complexity (in runtime) of your
+implementation?</p><blockquote class="book-hint info"><span><p>If you want to see this in action, you can ask GHC to tell you how
+long each computation takes by run the command <code>:set +s</code>. Here&rsquo;s an example</p><pre><code>Prelude&gt; :set +s
+Prelude&gt; xs = [1..100000000] -- Make a very long list
+(0.00 secs, 67,960 bytes)
+Prelude&gt; length xs -- Compute its length
+100000000
+(1.77 secs, 7,200,075,832 bytes)
+Prelude&gt; xs !! 1 -- Access the second entry
+2
+(0.00 secs, 70,120 bytes)
+Prelude&gt; xs !! 10000000 -- Access an entry a tenth of the way through
+10000001
+(0.19 secs, 720,075,200 bytes)
+</code></pre><p>To turn off this extra output, do <code>:unset +s</code>.</p></span></blockquote></span></blockquote><blockquote class=exercise><h3>Exercise</h3><span><p><code>tail :: [a] -> [a]</code> returns the tail of a list, and raise an exception
+when applied to the <em>empty list</em>, <code>[]</code></p><pre><code>Prelude&gt; tail []
+*** Exception: Prelude.tail: empty list
+</code></pre><p>Define a function <code>safetail :: [a] -> [a]</code> which maps the empty list to
+itself and otherwise behaves like <code>tail</code>, in three ways:</p><ol><li>Using a conditional expression;</li><li>Using guard expressions;</li><li>Using pattern matching.</li></ol><blockquote class="book-hint info"><span>In fact, Haskell has a better way of dealing with functions that are
+not <a href=https://en.wikipedia.org/wiki/Partial_function>total</a>, using the
+<code>Maybe</code> datatype. We will see this in action later in the course.</span></blockquote></span></blockquote><div class=markdown-inner><h2 id=solutions>Solutions</h2><p>I&rsquo;ve added some <a href=https://teaching.wence.uk/comp2221/code/exercises/exercise2-solutions.hs>commented solutions</a> to these exercises. If you
+have queries about them please ask in the practical sessions or else
+<a href=https://teaching.wence.uk/comp2221/#discussion-forum>get in touch</a>.</div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/commit/198deafeeeb2da156fc46b80a0adbfce2f39646c title="Last modified by Lawrence Mitchell | April 7, 2022" target=_blank rel=noopener><img src=/comp2221/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 7, 2022</span></a></div><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/edit/main/site/content/exercises/exercise2.md target=_blank rel=noopener><img src=/comp2221/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><div class="flex flex-wrap align-right"><p>© 2021&ndash; <a href=mailto:lawrence@wence.uk>Lawrence Mitchell</a> & <a href=https://www.dur.ac.uk/>Durham University</a>.</p><p><a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/><img alt="Creative Commons License" style=border-width:0 src=/comp2221/cc-by-sa.svg></a>
+This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/>Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.</p></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#thinking-about-types>Thinking about types</a><ul><li><a href=#class-constraints>Class constraints</a></li><li><a href=#some-list-manipulation>Some list manipulation</a></li></ul></li></ul></nav></aside></main></body></html>

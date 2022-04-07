@@ -1,0 +1,56 @@
+<!doctype html><html lang=en dir=ltr><head><meta name=generator content="Hugo 0.85.0"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="COMP2221: Functional programming #  This is the course webpage for the functional programming part of COMP2221. It collects the exercise sheets, syllabus, and lecture slides. The source repository is hosted on GitHub.
+The goal of the course is to provide an introduction to the functional programming language, Haskell. We will introduce the language and also try and show how developments in Haskell are adopted by other (perhaps more mainstream) languages, and why you might care."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Introduction"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="https://teaching.wence.uk/comp2221/"><title>Introduction | COMP2221 – Functional Programming</title><link rel=manifest href=/comp2221/manifest.json><link rel=icon href=/comp2221/favicon.png type=image/x-icon><link rel=stylesheet href=/comp2221/book.min.b85762cbec3aa7dfc1fa14ce1d900668d26349753560425c37dac8f9e08407d6.css integrity="sha256-uFdiy+w6p9/B+hTOHZAGaNJjSXU1YEJcN9rI+eCEB9Y="></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><div class=book-brand><img class=book-center src=/comp2221/logo.svg alt=Logo><h2><a href=/comp2221>COMP2221 – Functional Programming</a></h2></div><ul><li><a href=/comp2221/setup/>Setup</a><ul></ul></li><li><a href=/comp2221/slides/>Slides & commentary</a></li><li><a href=/comp2221/exercises/>Exercises</a><ul><li><a href=/comp2221/exercises/exercise1/>Hello, World!</a></li><li><a href=/comp2221/exercises/exercise2/>Types and lists</a></li><li><a href=/comp2221/exercises/exercise3/>List manipulation and sorting</a></li><li><a href=/comp2221/exercises/exercise4/>Lazy evaluation and infinite datastructures</a></li><li><a href=/comp2221/exercises/exercise5/>Folds and function composition</a></li><li><a href=/comp2221/exercises/exercise6/>Some classic data structures</a></li><li><a href=/comp2221/exercises/exercise7/>Another mini expression evaluator</a></li></ul></li><li><span>Past editions</span><ul><li><span>2020/21</span><ul><li><a href=/comp2221/past-editions/2020-21/lectures/>Annotated slides</a></li></ul></li></ul></li></ul></nav><script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/comp2221/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Introduction</strong>
+<label for=toc-control><img src=/comp2221/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#comp2221-functional-programming>COMP2221: Functional programming</a><ul><li><a href=#course-organisation>Course organisation</a><ul><li><a href=#running-code>Running code</a></li><li><a href=#practical-sessions>Practical sessions</a></li><li><a href=#discussion-forum>Discussion forum</a></li><li><a href=#office-hours>Office hours</a></li><li><a href=#other-feedback-routes>Other feedback routes</a></li></ul></li><li><a href=#further-resources>Further resources</a></li></ul></li></ul></nav></aside></header><article class=markdown><blockquote class="book-hint warning"><span>This course page was updated until March 2022 when I left Durham University.
+For future updates, please visit
+the <a href=https://comp2221.github.io/fp-website/>new version
+of the course pages</a>.</span></blockquote><h1 id=comp2221-functional-programming>COMP2221: Functional programming
+<a class=anchor href=#comp2221-functional-programming>#</a></h1><p>This is the course webpage for the functional programming part of
+<a href="https://www.dur.ac.uk/faculty.handbook/module_description/?year=2021&module_code=COMP2221">COMP2221</a>. It collects the exercise sheets,
+syllabus, and lecture slides. The source repository is <a href=https://github.com/wenceorg/comp2221>hosted on
+GitHub</a>.</p><p>The goal of the course is to provide an introduction to the <a href=https://en.wikipedia.org/wiki/Functional_programming>functional
+programming</a>
+language, <a href=https://www.haskell.org>Haskell</a>. We will introduce the
+language and also try and show how developments in Haskell are adopted
+by other (perhaps more mainstream) languages, and why you might care.</p><h2 id=course-organisation>Course organisation
+<a class=anchor href=#course-organisation>#</a></h2><p>The course will run over five weeks on Mondays (4pm) and Fridays (1pm)
+starting on 10th January 2022 in D110 (Archaeology).</p><blockquote class="book-hint warning"><span>In the first two weeks of term (weeks beginning 10th and 17th
+January), the lectures are <strong>online only</strong>.</span></blockquote><blockquote class="book-hint info"><span><p>You can attend remotely over <a href="https://durhamuniversity.zoom.us/j/94737897412?pwd=ZTFyeG52SUVCK25pZFVuczhDdEVPQT09">zoom</a>, and will need to be
+authenticated with your Durham account.</p><p>Meeting ID: 947 3789 7412<br>Passcode: 756154</p></span></blockquote><h3 id=running-code>Running code
+<a class=anchor href=#running-code>#</a></h3><p>I will do a bunch of live coding during the lectures. You&rsquo;re
+encouraged to play around with things afterwards to make sure you
+understand stuff. All of the code will appear in the <a href=https://github.com/wenceorg/comp2221>course
+repository</a> in <code>./code/lectures/2021-22/</code>.</p><h3 id=practical-sessions>Practical sessions
+<a class=anchor href=#practical-sessions>#</a></h3><p>There are five weeks of practical sessions which will start in the
+first week of term. We&rsquo;ll cover the <a href=https://teaching.wence.uk/comp2221/exercises/>exercises</a>, and any other queries you might have.</p><blockquote class="book-hint warning"><span>In the first week of term (week beginning 10th January), practicals
+are <strong>online only</strong>.</span></blockquote><table><thead><tr><th>Date/time</th><th>Location</th></tr></thead><tbody><tr><td>Monday 2pm&ndash;4pm</td><td>E216A</td></tr><tr><td>Thursday 11am&ndash;1pm</td><td>RH025</td></tr><tr><td>Friday 2pm&ndash;4pm</td><td>RH025</td></tr><tr><td>Friday 2pm&ndash;4pm</td><td>RH025</td></tr></tbody></table><blockquote class="book-hint info"><span><p>You can attend remotely over
+<a href="https://durhamuniversity.zoom.us/j/99562589739?pwd=K3RmekY3aUJKUStaenN6VUxBMmlRUT09">zoom</a>,
+and will need to be logged in with your Durham account.</p><p>Meeting ID: 995 6258 9739<br>Passcode: 283067</p></span></blockquote><h3 id=discussion-forum>Discussion forum
+<a class=anchor href=#discussion-forum>#</a></h3><p>I have set up a <a href=https://github.com/wenceorg/comp2221/discussions>discussion forum</a> where you
+can ask, and answer, questions. You&rsquo;ll need a
+<a href=https://github.com>GitHub</a> account to use it, but you&rsquo;ve all got one
+of those already, right? Note that this repository and forum is
+publicly visible.</p><h3 id=office-hours>Office hours
+<a class=anchor href=#office-hours>#</a></h3><p>Open office hours (no appointment needed) will be advertised here.</p><p>If you need to get in touch some other time, please <a href=mailto:lawrence.mitchell@durham.ac.uk>email
+me</a> to arrange something.</p><h3 id=other-feedback-routes>Other feedback routes
+<a class=anchor href=#other-feedback-routes>#</a></h3><p>Feel free to ask questions in the live sessions if you want, I will
+try and get to them all. You can of course, always <a href=mailto:lawrence.mitchell@durham.ac.uk>email
+me</a>. Finally, I&rsquo;ve set up a
+<a href="https://forms.office.com/Pages/ResponsePage.aspx?id=i9hQcmhLKUW-RNWaLYpvlH6j_ORl2wpMpbvCR6TejgNUNU5HMkk0TDFGQTNKMTRTVTJFRlNCSjQwNi4u">feedback submission
+form</a>
+(which records responses anonymously, though you&rsquo;ll need to be signed
+in with you Durham account) for you to optionally comment on things
+that were good, bad, or you didn&rsquo;t understand about the lectures.</p><h2 id=further-resources>Further resources
+<a class=anchor href=#further-resources>#</a></h2><p>A recommended textbook for the course is Graham Hutton&rsquo;s <a href=http://www.cs.nott.ac.uk/~pszgmh/pih.html><em>Programming
+in Haskell</em></a>. Some
+hardcopies are available <a href="https://library.dur.ac.uk/record=b2094512~S1">in the
+library</a>.</p><p>In addition, there a number of excellent introductory Haskell
+tutorials, which you may find enlightening (if you don&rsquo;t like my
+explanations).</p><p>The <a href=https://wiki.haskell.org/>Haskell wiki</a> links to a number of
+<a href=https://wiki.haskell.org/Learning_Haskell#Online_tutorials>tutorials</a>.</p><p>A slightly cutesy, but nonetheless well-explained, introduction is
+provided by <a href=http://learnyouahaskell.com>learn you a Haskell</a>.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/commit/198deafeeeb2da156fc46b80a0adbfce2f39646c title="Last modified by Lawrence Mitchell | April 7, 2022" target=_blank rel=noopener><img src=/comp2221/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 7, 2022</span></a></div><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/edit/main/site/content/_index.md target=_blank rel=noopener><img src=/comp2221/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><div class="flex flex-wrap align-right"><p>© 2021&ndash; <a href=mailto:lawrence@wence.uk>Lawrence Mitchell</a> & <a href=https://www.dur.ac.uk/>Durham University</a>.</p><p><a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/><img alt="Creative Commons License" style=border-width:0 src=/comp2221/cc-by-sa.svg></a>
+This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/>Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.</p></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#comp2221-functional-programming>COMP2221: Functional programming</a><ul><li><a href=#course-organisation>Course organisation</a><ul><li><a href=#running-code>Running code</a></li><li><a href=#practical-sessions>Practical sessions</a></li><li><a href=#discussion-forum>Discussion forum</a></li><li><a href=#office-hours>Office hours</a></li><li><a href=#other-feedback-routes>Other feedback routes</a></li></ul></li><li><a href=#further-resources>Further resources</a></li></ul></li></ul></nav></aside></main></body></html>

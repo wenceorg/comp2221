@@ -1,0 +1,48 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Running a Haskell interpreter #  We&rsquo;ll use the Glasgow Haskell Compiler as our Haskell implementation in the course. There are a number of ways you can access it.
+Via the mira timesharing service #  You probably obtained a login for the C part of the course last term. If not, you can do so here. If you&rsquo;re happy using mira you can continue to do so. After logging in, the Haskell interpreter is available by launching ghci."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Setup"><meta property="og:description" content><meta property="og:type" content="website"><meta property="og:url" content="https://teaching.wence.uk/comp2221/setup/"><title>Setup | COMP2221 – Functional Programming</title><link rel=manifest href=/comp2221/manifest.json><link rel=icon href=/comp2221/favicon.png type=image/x-icon><link rel=stylesheet href=/comp2221/book.min.b85762cbec3aa7dfc1fa14ce1d900668d26349753560425c37dac8f9e08407d6.css integrity="sha256-uFdiy+w6p9/B+hTOHZAGaNJjSXU1YEJcN9rI+eCEB9Y="></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><div class=book-brand><img class=book-center src=/comp2221/logo.svg alt=Logo><h2><a href=/comp2221>COMP2221 – Functional Programming</a></h2></div><ul><li><a href=/comp2221/setup/ class=active>Setup</a><ul></ul></li><li><a href=/comp2221/slides/>Slides & commentary</a></li><li><a href=/comp2221/exercises/>Exercises</a><ul><li><a href=/comp2221/exercises/exercise1/>Hello, World!</a></li><li><a href=/comp2221/exercises/exercise2/>Types and lists</a></li><li><a href=/comp2221/exercises/exercise3/>List manipulation and sorting</a></li><li><a href=/comp2221/exercises/exercise4/>Lazy evaluation and infinite datastructures</a></li><li><a href=/comp2221/exercises/exercise5/>Folds and function composition</a></li><li><a href=/comp2221/exercises/exercise6/>Some classic data structures</a></li><li><a href=/comp2221/exercises/exercise7/>Another mini expression evaluator</a></li></ul></li><li><span>Past editions</span><ul><li><span>2020/21</span><ul><li><a href=/comp2221/past-editions/2020-21/lectures/>Annotated slides</a></li></ul></li></ul></li></ul></nav><script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/comp2221/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Setup</strong>
+<label for=toc-control><img src=/comp2221/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#running-a-haskell-interpreter>Running a Haskell interpreter</a><ul><li><a href=#via-the-mira-timesharing-service>Via the <code>mira</code> timesharing service</a></li><li><a href=#via-apps-anywhere>Via apps anywhere</a></li><li><a href=#on-your-own-device>On your own device</a></li><li><a href=#editor-support>Editor support</a></li></ul></li></ul></nav></aside></header><article class=markdown><blockquote class="book-hint warning"><span>This course page was updated until March 2022 when I left Durham University.
+For future updates, please visit
+the <a href=https://comp2221.github.io/fp-website/>new version
+of the course pages</a>.</span></blockquote><h1 id=running-a-haskell-interpreter>Running a Haskell interpreter
+<a class=anchor href=#running-a-haskell-interpreter>#</a></h1><p>We&rsquo;ll use the <a href=https://www.haskell.org/ghc/>Glasgow Haskell Compiler</a>
+as our Haskell implementation in the course. There are a number of
+ways you can access it.</p><h2 id=via-the-mira-timesharing-service>Via the <code>mira</code> timesharing service
+<a class=anchor href=#via-the-mira-timesharing-service>#</a></h2><p>You probably obtained a login for the C part of the course last term.
+If not, you can <a href="https://dur.unidesk.ac.uk/tas/public/ssp/content/serviceflow?unid=f407b0f67eec40c1b76c096be31d0451">do so
+here</a>.
+If you&rsquo;re happy using mira you can continue to do so. After logging
+in, the Haskell interpreter is available by launching <code>ghci</code>.</p><h2 id=via-apps-anywhere>Via apps anywhere
+<a class=anchor href=#via-apps-anywhere>#</a></h2><p>On windows managed desktop systems, you can launch the Haskell
+platform via apps anywhere.</p><h2 id=on-your-own-device>On your own device
+<a class=anchor href=#on-your-own-device>#</a></h2><p>This may well be preferable to just using a terminal. Your best bet is
+probably to follow the official instructions and install
+<a href=https://www.haskell.org/ghcup/install/><code>ghcup</code></a> and use that to manage
+installing <code>ghc</code> and any other components. I recommend installing at
+least <code>ghc</code> and the <code>haskell-language-server</code> (for editor
+integration).</p><h2 id=editor-support>Editor support
+<a class=anchor href=#editor-support>#</a></h2><p>If you&rsquo;re running remotely on mira there aren&rsquo;t a lot of editors
+available, so you can just use <code>nano</code>. On your own machine, I suppose
+you already have a favourite editor. Many come with extension packages
+that make editing Haskell code easier (providing syntax highlighting,
+inline error checking and so forth).</p><blockquote class="book-hint info"><span>You don&rsquo;t need any of this fancy stuff, but it might make programming
+in Haskell more pleasant.</span></blockquote><p>For <a href=https://code.visualstudio.com>VS Code</a>, install the <a href="https://marketplace.visualstudio.com/items?itemName=haskell.haskell">Haskell
+extension</a>.
+This will download a bunch of stuff and hook up with your existing
+Haskell installation so that you get type-checking hints and
+autocompletion.</p><p>For <a href=https://www.gnu.org/software/emacs/>Emacs</a>, I recommend LSP, in
+particular the <a href=https://emacs-lsp.github.io/lsp-haskell/>lsp-haskell</a> plugin, which provides
+similar functionality to the VS Code plugin.</p><p>For other editors, you might find some helpful pointers
+<a href=https://wiki.haskell.org/IDEs>here</a>. The best-supported approach is via the <a href=https://microsoft.github.io/language-server-protocol/>language server
+protocol</a>,
+which is implemented for Haskell
+<a href=https://github.com/haskell/haskell-language-server>here</a>. They
+provide some advice on <a href=https://haskell-language-server.readthedocs.io/en/latest/configuration.html#configuring-your-editor>configuring your
+editor</a>.
+This server is installable using <code>ghcup</code> on your own device if you&rsquo;re
+doing that, unfortunately it&rsquo;s not available on mira.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/commit/198deafeeeb2da156fc46b80a0adbfce2f39646c title="Last modified by Lawrence Mitchell | April 7, 2022" target=_blank rel=noopener><img src=/comp2221/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 7, 2022</span></a></div><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/edit/main/site/content/setup/_index.md target=_blank rel=noopener><img src=/comp2221/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><div class="flex flex-wrap align-right"><p>© 2021&ndash; <a href=mailto:lawrence@wence.uk>Lawrence Mitchell</a> & <a href=https://www.dur.ac.uk/>Durham University</a>.</p><p><a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/><img alt="Creative Commons License" style=border-width:0 src=/comp2221/cc-by-sa.svg></a>
+This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/>Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.</p></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#running-a-haskell-interpreter>Running a Haskell interpreter</a><ul><li><a href=#via-the-mira-timesharing-service>Via the <code>mira</code> timesharing service</a></li><li><a href=#via-apps-anywhere>Via apps anywhere</a></li><li><a href=#on-your-own-device>On your own device</a></li><li><a href=#editor-support>Editor support</a></li></ul></li></ul></nav></aside></main></body></html>

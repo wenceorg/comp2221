@@ -1,0 +1,112 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Lazy data, infinite data #  Haskell does not evaluate expressions eagerly, but instead does so lazily. This opens the door to writing very succint programs that operator on infinite datastructures. We can just write them without needing to have a cut-off and then pick out the pieces we want.
+For some more examples, on top of the ones we have here, there&rsquo;s a nice Computerphile video on infinite datastructures, featuring Graham Hutton."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Lazy evaluation and infinite datastructures"><meta property="og:description" content="Lazy data, infinite data #  Haskell does not evaluate expressions eagerly, but instead does so lazily. This opens the door to writing very succint programs that operator on infinite datastructures. We can just write them without needing to have a cut-off and then pick out the pieces we want.
+For some more examples, on top of the ones we have here, there&rsquo;s a nice Computerphile video on infinite datastructures, featuring Graham Hutton."><meta property="og:type" content="article"><meta property="og:url" content="https://teaching.wence.uk/comp2221/exercises/exercise4/"><meta property="article:section" content="exercises"><meta property="article:modified_time" content="2022-04-07T18:06:14+01:00"><title>Lazy evaluation and infinite datastructures | COMP2221 – Functional Programming</title><link rel=manifest href=/comp2221/manifest.json><link rel=icon href=/comp2221/favicon.png type=image/x-icon><link rel=stylesheet href=/comp2221/book.min.b85762cbec3aa7dfc1fa14ce1d900668d26349753560425c37dac8f9e08407d6.css integrity="sha256-uFdiy+w6p9/B+hTOHZAGaNJjSXU1YEJcN9rI+eCEB9Y="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><div class=book-brand><img class=book-center src=/comp2221/logo.svg alt=Logo><h2><a href=/comp2221>COMP2221 – Functional Programming</a></h2></div><ul><li><a href=/comp2221/setup/>Setup</a><ul></ul></li><li><a href=/comp2221/slides/>Slides & commentary</a></li><li><a href=/comp2221/exercises/>Exercises</a><ul><li><a href=/comp2221/exercises/exercise1/>Hello, World!</a></li><li><a href=/comp2221/exercises/exercise2/>Types and lists</a></li><li><a href=/comp2221/exercises/exercise3/>List manipulation and sorting</a></li><li><a href=/comp2221/exercises/exercise4/ class=active>Lazy evaluation and infinite datastructures</a></li><li><a href=/comp2221/exercises/exercise5/>Folds and function composition</a></li><li><a href=/comp2221/exercises/exercise6/>Some classic data structures</a></li><li><a href=/comp2221/exercises/exercise7/>Another mini expression evaluator</a></li></ul></li><li><span>Past editions</span><ul><li><span>2020/21</span><ul><li><a href=/comp2221/past-editions/2020-21/lectures/>Annotated slides</a></li></ul></li></ul></li></ul></nav><script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/comp2221/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Lazy evaluation and infinite datastructures</strong>
+<label for=toc-control><img src=/comp2221/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#lazy-data-infinite-data>Lazy data, infinite data</a><ul><li><a href=#simple-sieving>Simple sieving</a></li><li><a href=#pythagorean-triples-again>Pythagorean triples again</a></li></ul></li></ul></nav></aside></header><article class=markdown><blockquote class="book-hint warning"><span>This course page was updated until March 2022 when I left Durham University.
+For future updates, please visit
+the <a href=https://comp2221.github.io/fp-website/>new version
+of the course pages</a>.</span></blockquote><h1 id=lazy-data-infinite-data>Lazy data, infinite data
+<a class=anchor href=#lazy-data-infinite-data>#</a></h1><p>Haskell does not evaluate expressions eagerly, but instead does so
+<em>lazily</em>. This opens the door to writing very succint programs that
+operator on infinite datastructures. We can just write them without
+needing to have a cut-off and then pick out the pieces we want.</p><p>For some more examples, on top of the ones we have here, there&rsquo;s a
+nice
+<a href=https://www.youtube.com/channel/UC9-y-6csu5WGm29I7JiwpnA>Computerphile</a>
+video on infinite datastructures, <a href="https://www.youtube.com/watch?v=bnRNiE_OVWA">featuring Graham
+Hutton</a>. There&rsquo;s a nice
+succint post on some of Haskell&rsquo;s advantages <a href=https://serokell.io/blog/10-reasons-to-use-haskell#laziness>including
+laziness</a>
+from <a href=https://serokell.io>serokell</a>.</p><p>On with the show.</p><h2 id=simple-sieving>Simple sieving
+<a class=anchor href=#simple-sieving>#</a></h2><p>Our first go with infinite data is going to be to generate prime
+numbers. Let&rsquo;s first generate all the integers greater than or equal
+to 2.</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>candidates</span> <span style=color:#f92672>::</span> <span style=color:#111>[</span><span style=color:#00a8c8>Integer</span><span style=color:#111>]</span>
+<span style=color:#75af00>candidates</span> <span style=color:#f92672>=</span> <span style=color:#111>[</span><span style=color:#ae81ff>2</span><span style=color:#f92672>..</span><span style=color:#111>]</span>
+</code></pre></div><p>These are our candidate primes. We can now generate prime numbers
+using the <a href=https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>sieve of
+Eratosthenes</a>.
+The first element of our candidates is a prime number, we then need to
+cross off all multiples, and repeat.</p><blockquote class=exercise><h3>Exercise</h3><span><p>Write a function</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>sieve</span> <span style=color:#f92672>::</span> <span style=color:#111>[</span><span style=color:#00a8c8>Integer</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#00a8c8>Integer</span><span style=color:#111>]</span>
+</code></pre></div><p>that generates all prime numbers.</p><details><summary>Hint</summary><div class=markdown-inner>Think about using a list comprehension to remove values from your
+candidate list that are multiples of the current prime.</div></details></span></blockquote><blockquote class="book-hint info"><span><p>You&rsquo;ll probably not want to print this list, since <a href=https://en.wikipedia.org/wiki/Euclid%27s_theorem>Euclid
+showed</a> that it is
+infinite in length a while ago.</p><p>Instead, to look at (say) the first five elements use</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>take</span> <span style=color:#ae81ff>5</span> <span style=color:#111>(</span><span style=color:#111>sieve</span> <span style=color:#111>candidates</span><span style=color:#111>)</span>
+</code></pre></div></span></blockquote><blockquote class=question><h3>Question</h3><span><p>Did you come up with a one-liner using <code>mod</code> in your answer? If so, you probably ended up implementing
+finding primes by <a href=https://en.wikipedia.org/wiki/Trial_division>trial
+division</a>.</p><p>The prime sieve shouldn&rsquo;t need to do any arithmetic, doing this
+properly is actually slightly fiddly, if you&rsquo;re interested, this <a href=https://www.cs.hmc.edu/~oneill/papers/Sieve-JFP.pdf>nice
+paper</a> explains
+the problem with the one-liner approach.</p><p>Don&rsquo;t worry, you&rsquo;re not alone in doing this, if you watched the video
+with Graham Hutton above, you might have spotted that he does the same
+thing.</p></span></blockquote><h2 id=pythagorean-triples-again>Pythagorean triples again
+<a class=anchor href=#pythagorean-triples-again>#</a></h2><p><a href=https://teaching.wence.uk/comp2221/exercises/exercise3/>Last time</a> we implemented code to
+generate all Pythagorean triples with entries less than some integer
+$n$.</p><p>This time round, we&rsquo;re going to do something a bit smarter and
+generate an <em>infinite</em> list of all <a href=https://en.wikipedia.org/wiki/Tree_of_primitive_Pythagorean_triples><em>primitive</em> Pythagorean
+triples</a>.
+Recall that a Pythagorean triple is a tuple of three positive integers
+$(a, b, c)$ such that
+$$
+a^2 + b^2 = c^2,
+$$
+it is called <em>primitive</em> if $a$, $b$, and $c$ are all coprime.</p><p>All such primitive triples can be generated from the root truple $(3,
+4, 5)$ by using <a href=https://en.wikipedia.org/wiki/Tree_of_primitive_Pythagorean_triples>matrix
+generators</a>.</p><p>In particular, consider $m > n > 0$ with $m$ and $n$ coprime (and one
+even and the other odd). Then<div id=eq1>$$
+\begin{aligned}
+a &= m^2 - n^2 \\
+ b &= 2 m n\\
+ c &= m^2 + n^2
+\end{aligned}
+$$</div></p><p>is a new primitive Pythagorean triple. Writing $\vec{M} = [m, n]$ as a
+column vector, then the required properties are preserved by
+premultiplying $\vec{M}$ by any of the three matrices</p>$$
+\begin{bmatrix}
+2 & -1\\
+1 & 0
+\end{bmatrix},
+\begin{bmatrix}
+2 & 1 \\
+1 & 0 \\
+\end{bmatrix},\text{ or }
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix}.
+$$
+
+<p>We will use these to generate a tree of all Pythagorean triples. We&rsquo;ll
+build this up in stages by implementing some helper functions.</p><blockquote class=exercise><h3>Exercise</h3><span><p>First write a function</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>mult</span> <span style=color:#f92672>::</span> <span style=color:#111>[[</span><span style=color:#00a8c8>Int</span><span style=color:#111>]]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#00a8c8>Int</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#00a8c8>Int</span><span style=color:#111>]</span>
+</code></pre></div><p>which computes the result of multiplying a matrix (represented as a
+list of lists) onto a vector (represented as a list). You may find the
+functions <code>zipWith</code> and
+<code>repeat</code> helpful.</p><p>Recall that for a matrix, $A \in \mathbb{R}^{n \times m}$ and vector
+$x \in \mathbb{R}^{m}$, the product $\mathbb{R}^n \ni y = Ax$ is
+defined as
+$$
+y_i = \sum_{j=1}^{m} A_{ij} x_j,
+$$
+where $A_{ij}$ is the entry in the $i^{\text{th}}$ row
+and $j^{th}$ column of $A$.</p></span></blockquote><p>Next up, we need to convert an $(m, n)$ pair into a triple</p><blockquote class=exercise><h3>Exercise</h3><span><p>Write</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>pythTriple</span> <span style=color:#f92672>::</span> <span style=color:#111>[</span><span style=color:#00a8c8>Int</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>(</span><span style=color:#00a8c8>Int</span><span style=color:#111>,</span> <span style=color:#00a8c8>Int</span><span style=color:#111>,</span> <span style=color:#00a8c8>Int</span><span style=color:#111>)</span>
+</code></pre></div><p>which uses the relationship <a href=https://teaching.wence.uk/comp2221/exercises/exercise4/#eq1>above</a> to generate a triple from a 2-element
+list. For example</p><pre><code>Prelude&gt; pythTriple [2, 1]
+(3, 4, 5)
+Prelude&gt; pythTriple [3, 2]
+(5, 12, 13)
+</code></pre></span></blockquote><p>Finally, this slightly trickier part, generating the tree of all these
+$(m, n)$ pairs.</p><blockquote class=exercise><h3>Exercise</h3><span><p>Write a function</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>treeGen</span> <span style=color:#f92672>::</span> <span style=color:#111>[[</span><span style=color:#00a8c8>Int</span><span style=color:#111>]]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[[</span><span style=color:#00a8c8>Int</span><span style=color:#111>]]</span>
+</code></pre></div><p>This can be written by using the three generator matrices to create a
+list of the next tree pairs, and then appending the result of a
+recursive call to <code>treeGen</code> to the list.</p><p>You may find one of <code>concatMap</code> or <code>concat</code> useful</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>concatMap</span> <span style=color:#f92672>::</span> <span style=color:#111>(</span><span style=color:#111>a</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#111>b</span><span style=color:#111>])</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#111>b</span><span style=color:#111>]</span>
+<span style=color:#75af00>concat</span> <span style=color:#f92672>::</span> <span style=color:#111>[[</span><span style=color:#111>a</span><span style=color:#111>]]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>]</span>
+</code></pre></div><details><summary>Hint</summary><div class=markdown-inner>Hint: be careful that you don&rsquo;t recurse depth-first down one
+of the leaves of the tree (as I did the first go I had)</div></details><p>For example, you should see something like</p><pre><code>Prelude&gt; take 10 (treeGen [[2, 1]])
+[[3,2],[5,2],[4,1],[4,3],[8,3],[7,2],[8,5],[12,5],[9,2],[7,4]]
+</code></pre><p>Although the order may be different.</p><p>Finally, we can create the pythagorean truples by mapping <code>pythTriple</code>
+over the list of pairs obtained from <code>treeGen</code>, starting with <code>[2, 1]</code>.</p></span></blockquote><div class=markdown-inner><h2 id=solutions>Solutions</h2><p>I&rsquo;ve added some <a href=https://teaching.wence.uk/comp2221/code/exercises/exercise4-solutions.hs>commented solutions</a> to these exercises. If you
+have queries about them please ask in the practical sessions or else
+<a href=https://teaching.wence.uk/comp2221/#discussion-forum>get in touch</a>.</div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/commit/198deafeeeb2da156fc46b80a0adbfce2f39646c title="Last modified by Lawrence Mitchell | April 7, 2022" target=_blank rel=noopener><img src=/comp2221/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 7, 2022</span></a></div><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/edit/main/site/content/exercises/exercise4.md target=_blank rel=noopener><img src=/comp2221/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><div class="flex flex-wrap align-right"><p>© 2021&ndash; <a href=mailto:lawrence@wence.uk>Lawrence Mitchell</a> & <a href=https://www.dur.ac.uk/>Durham University</a>.</p><p><a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/><img alt="Creative Commons License" style=border-width:0 src=/comp2221/cc-by-sa.svg></a>
+This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/>Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.</p></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#lazy-data-infinite-data>Lazy data, infinite data</a><ul><li><a href=#simple-sieving>Simple sieving</a></li><li><a href=#pythagorean-triples-again>Pythagorean triples again</a></li></ul></li></ul></nav></aside></main></body></html>

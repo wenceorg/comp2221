@@ -1,0 +1,144 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Checking for satisfiability #  In this exercise, we&rsquo;re going to develop a very simple SAT solver. To do so, we&rsquo;ll first build data structures to represent boolean expressions. An expression is SAT if there is a consistent assignment of boolean values to the variables in the expression such that it evaluates to True.
+ The point of this exercise is not to develop a good SAT solver. We are doing the naivest possible thing."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Another mini expression evaluator"><meta property="og:description" content="Checking for satisfiability #  In this exercise, we&rsquo;re going to develop a very simple SAT solver. To do so, we&rsquo;ll first build data structures to represent boolean expressions. An expression is SAT if there is a consistent assignment of boolean values to the variables in the expression such that it evaluates to True.
+ The point of this exercise is not to develop a good SAT solver. We are doing the naivest possible thing."><meta property="og:type" content="article"><meta property="og:url" content="https://teaching.wence.uk/comp2221/exercises/exercise7/"><meta property="article:section" content="exercises"><meta property="article:modified_time" content="2022-04-07T18:06:14+01:00"><title>Another mini expression evaluator | COMP2221 – Functional Programming</title><link rel=manifest href=/comp2221/manifest.json><link rel=icon href=/comp2221/favicon.png type=image/x-icon><link rel=stylesheet href=/comp2221/book.min.b85762cbec3aa7dfc1fa14ce1d900668d26349753560425c37dac8f9e08407d6.css integrity="sha256-uFdiy+w6p9/B+hTOHZAGaNJjSXU1YEJcN9rI+eCEB9Y="><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:!0},{left:"$",right:"$",display:!1},{left:"\\(",right:"\\)",display:!1},{left:"\\[",right:"\\]",display:!0}]})})</script></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><div class=book-brand><img class=book-center src=/comp2221/logo.svg alt=Logo><h2><a href=/comp2221>COMP2221 – Functional Programming</a></h2></div><ul><li><a href=/comp2221/setup/>Setup</a><ul></ul></li><li><a href=/comp2221/slides/>Slides & commentary</a></li><li><a href=/comp2221/exercises/>Exercises</a><ul><li><a href=/comp2221/exercises/exercise1/>Hello, World!</a></li><li><a href=/comp2221/exercises/exercise2/>Types and lists</a></li><li><a href=/comp2221/exercises/exercise3/>List manipulation and sorting</a></li><li><a href=/comp2221/exercises/exercise4/>Lazy evaluation and infinite datastructures</a></li><li><a href=/comp2221/exercises/exercise5/>Folds and function composition</a></li><li><a href=/comp2221/exercises/exercise6/>Some classic data structures</a></li><li><a href=/comp2221/exercises/exercise7/ class=active>Another mini expression evaluator</a></li></ul></li><li><span>Past editions</span><ul><li><span>2020/21</span><ul><li><a href=/comp2221/past-editions/2020-21/lectures/>Annotated slides</a></li></ul></li></ul></li></ul></nav><script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/comp2221/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Another mini expression evaluator</strong>
+<label for=toc-control><img src=/comp2221/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#checking-for-satisfiability>Checking for satisfiability</a><ul><li><a href=#introduction>Introduction</a></li><li><a href=#evaluating-an-expression>Evaluating an expression</a></li><li><a href=#enumerating-all-boolean-assignments>Enumerating all boolean assignments</a></li><li><a href=#the-solver>The solver</a></li><li><a href=#extension-existential-and-universal-quantifiers>Extension: existential and universal quantifiers</a></li></ul></li></ul></nav></aside></header><article class=markdown><blockquote class="book-hint warning"><span>This course page was updated until March 2022 when I left Durham University.
+For future updates, please visit
+the <a href=https://comp2221.github.io/fp-website/>new version
+of the course pages</a>.</span></blockquote><h1 id=checking-for-satisfiability>Checking for satisfiability
+<a class=anchor href=#checking-for-satisfiability>#</a></h1><p>In this exercise, we&rsquo;re going to develop a <em>very</em> simple SAT solver.
+To do so, we&rsquo;ll first build data structures to represent boolean
+expressions. An expression is
+<a href=https://en.wikipedia.org/wiki/Boolean_satisfiability_problem><em>SAT</em></a>
+if there is a consistent assignment of boolean values to the variables
+in the expression such that it evaluates to <code>True</code>.</p><blockquote class="book-hint info"><span><p>The point of this exercise is not to develop a good SAT solver. We are
+doing the naivest possible thing.</p><p>If you want an extension that walks you through a classic algorithm,
+try the <a href=http://wp.doc.ic.ac.uk/ajf/sat/>2019 Haskell test</a> from Tony
+Field at Imperial.</p></span></blockquote><p>The template file for this exercise is available as
+<a href=https://teaching.wence.uk/comp2221/code/sat-exercise7.hs><code>code/sat-exercise7.hs</code></a></p><h2 id=introduction>Introduction
+<a class=anchor href=#introduction>#</a></h2><p>We&rsquo;ll use a data type to represent our expressions</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#00a8c8>data</span> <span style=color:#00a8c8>Expr</span>
+  <span style=color:#f92672>=</span> <span style=color:#00a8c8>Const</span> <span style=color:#00a8c8>Bool</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Var</span> <span style=color:#00a8c8>String</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Not</span> <span style=color:#00a8c8>Expr</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>And</span> <span style=color:#111>[</span><span style=color:#00a8c8>Expr</span><span style=color:#111>]</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Or</span> <span style=color:#111>[</span><span style=color:#00a8c8>Expr</span><span style=color:#111>]</span>
+  <span style=color:#00a8c8>deriving</span> <span style=color:#00a8c8>Eq</span>
+</code></pre></div><p>We implement a custom <code>Show</code> instance to pretty-print it.</p><p>The <code>And</code> and <code>Not</code> operators are n-ary, rather than binary. So they
+behave like
+<a href=https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html#v:and><code>and</code></a>
+and
+<a href=https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html#v:or><code>or</code></a>
+by accepting a list of expressions.</p><p>Our solver will be very simple, we will just find all the free
+variables in an expression and exhaustively try all possible
+assignments of boolean values to these variables, checking one such
+assignment results in the expression evaluating to <code>True</code>.</p><h2 id=evaluating-an-expression>Evaluating an expression
+<a class=anchor href=#evaluating-an-expression>#</a></h2><p>Now we need a way of representing a binding of variables to boolean
+values, we will use a list of 2-tuples for this, and introduce a type
+to save on typing</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#00a8c8>type</span> <span style=color:#00a8c8>Bindings</span> <span style=color:#f92672>=</span> <span style=color:#111>[(</span><span style=color:#00a8c8>String</span><span style=color:#111>,</span> <span style=color:#00a8c8>Bool</span><span style=color:#111>)]</span>
+</code></pre></div><blockquote class=exercise><h3>Exercise</h3><span><p>Your first job is to write a function which, given a variable name (of
+type <code>String</code>), looks it up in a list of bindings and returns the
+corresponding value. You can assume that the bindings will contain no
+duplicate entries (we will ensure this later). So define a function</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>find</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>String</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Bindings</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Bool</span>
+</code></pre></div><p>Next we will write a function <code>eval</code> that takes an expression, and
+some variable bindings, and evaluates the expression:</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>eval</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Expr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Bindings</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Bool</span>
+</code></pre></div><p>Test this function on some expressions for which you know the
+answer. For example:</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#00a8c8>Prelude</span><span style=color:#f92672>&gt;</span> <span style=color:#111>eval</span> <span style=color:#111>(</span><span style=color:#00a8c8>Var</span> <span style=color:#d88200>&#34;a&#34;</span><span style=color:#111>)</span> <span style=color:#111>[(</span><span style=color:#d88200>&#34;a&#34;</span><span style=color:#111>,</span> <span style=color:#00a8c8>False</span><span style=color:#111>)]</span>
+<span style=color:#00a8c8>False</span>
+<span style=color:#00a8c8>Prelude</span><span style=color:#f92672>&gt;</span> <span style=color:#111>eval</span> <span style=color:#111>(</span><span style=color:#00a8c8>Or</span> <span style=color:#111>[(</span><span style=color:#00a8c8>Var</span> <span style=color:#d88200>&#34;a&#34;</span><span style=color:#111>),</span> <span style=color:#111>(</span><span style=color:#00a8c8>Const</span> <span style=color:#00a8c8>True</span><span style=color:#111>)])</span> <span style=color:#111>[(</span><span style=color:#d88200>&#34;a&#34;</span><span style=color:#111>,</span> <span style=color:#00a8c8>False</span><span style=color:#111>)]</span>
+<span style=color:#00a8c8>True</span>
+</code></pre></div></span></blockquote><h2 id=enumerating-all-boolean-assignments>Enumerating all boolean assignments
+<a class=anchor href=#enumerating-all-boolean-assignments>#</a></h2><p>We are going to test all possible assignments until we have one that
+satisfies the expression, or else we run out of options (in which case
+the expression is not satisfiable). We need three things for this</p><blockquote class=exercise><h3>Exercise</h3><span><ol><li>A way of extracting variables from an expression<div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>vars</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Expr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#00a8c8>String</span><span style=color:#111>]</span>
+</code></pre></div></li><li>A way of generating all boolean assignments for these variables.
+For these we will take an integer giving the number of variables and
+return lists of boolean values of this length:<div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>bools</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Int</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[[</span><span style=color:#00a8c8>Bool</span><span style=color:#111>]]</span>
+</code></pre></div></li><li>A function which glues these pieces together and returns a list
+of bindings.<div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>bindings</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Expr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#00a8c8>Bindings</span><span style=color:#111>]</span>
+</code></pre></div></li></ol></span></blockquote><p>The vars function should just (similar to <code>eval</code>)
+destructure the expression and return the concatenation of all the
+variable names it finds. You may find the function <code>concatMap</code>
+useful. Do not worry about generating duplicate variable names in this
+list, we will remove them separately.</p><p>For generating all boolean lists of length $n$, notice that the
+following simple recursive approach works. If $n = 0$ the list is
+empty. If $n > 0$, the list is obtained by separately prepending both
+True and False to the lists obtained with $n - 1$.</p><p>For constructing the list of bindings we will find all the unique
+variables in an expression, and zip them up with each set of boolean
+assignments. To build unique variables, you may find the function</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>uniquify</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Eq</span> <span style=color:#111>a</span> <span style=color:#f92672>=&gt;</span> <span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>]</span>
+<span style=color:#75af00>uniquify</span> <span style=color:#00a8c8>[]</span> <span style=color:#f92672>=</span> <span style=color:#00a8c8>[]</span>
+<span style=color:#75af00>uniquify</span> <span style=color:#111>(</span><span style=color:#111>x</span><span style=color:#00a8c8>:</span><span style=color:#111>xs</span><span style=color:#111>)</span> <span style=color:#f92672>=</span> <span style=color:#111>x</span> <span style=color:#00a8c8>:</span> <span style=color:#111>filter</span> <span style=color:#111>(</span><span style=color:#f92672>/=</span> <span style=color:#111>x</span><span style=color:#111>)</span> <span style=color:#111>(</span><span style=color:#111>uniquify</span> <span style=color:#111>xs</span><span style=color:#111>)</span>
+</code></pre></div><p>useful.</p><h2 id=the-solver>The solver
+<a class=anchor href=#the-solver>#</a></h2><blockquote class=exercise><h3>Exercise</h3><span><p>Now we have all the pieces in place, we can write the SAT solver
+itself. Our goal is to write the function:</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>sat</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Expr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Maybe</span> <span style=color:#00a8c8>Bindings</span>
+</code></pre></div></span></blockquote><p>If the expression is satisfiable it should return the variable
+assignments which result in the expression evaluating to True.
+Conversely, if the expression is not satisfiable, you should return
+<code>Nothing</code>.</p><p>You may find it helpful to define a helper function</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>sat&#39;</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Expr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#00a8c8>Bindings</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Maybe</span> <span style=color:#00a8c8>Bindings</span>
+</code></pre></div><p>which iterates through the list of bindings until one of them results
+in the expression being satisfied.</p><h2 id=extension-existential-and-universal-quantifiers>Extension: existential and universal quantifiers
+<a class=anchor href=#extension-existential-and-universal-quantifiers>#</a></h2><p>Sometimes it is convenient to write boolean expressions using
+<a href=https://en.wikipedia.org/wiki/Universal_quantification>universal</a>
+(for all) and
+<a href=https://en.wikipedia.org/wiki/Existential_quantification>existential</a>
+(there exists) quantifiers.</p><p>For example an expression
+$$
+\exists a . a \wedge b
+$$
+read as &ldquo;there exists an $a$ such that $a \wedge b$&rdquo; is true if there
+is an assignment to $a$ such that $a \wedge b$ evaluates to true.</p><p>Similarly, an expression
+$$
+\forall a . a \wedge b
+$$
+read as &ldquo;for all $a$, $a \wedge b$&rdquo; is true if all assignments to $a$
+result in $a \wedge b$ being true.</p><p>To handle this case we could modify our existing <code>data</code> declaration
+to add these new ones.</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#00a8c8>data</span> <span style=color:#00a8c8>Expr</span>
+  <span style=color:#f92672>=</span> <span style=color:#00a8c8>Const</span> <span style=color:#00a8c8>Bool</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Var</span> <span style=color:#00a8c8>String</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Not</span> <span style=color:#00a8c8>Expr</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>And</span> <span style=color:#111>[</span><span style=color:#00a8c8>Expr</span><span style=color:#111>]</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Or</span> <span style=color:#111>[</span><span style=color:#00a8c8>Expr</span><span style=color:#111>]</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Exists</span> <span style=color:#00a8c8>String</span> <span style=color:#00a8c8>Expr</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Forall</span> <span style=color:#00a8c8>String</span> <span style=color:#00a8c8>Expr</span>
+  <span style=color:#00a8c8>deriving</span> <span style=color:#00a8c8>Eq</span>
+</code></pre></div><p>As discussed in the lectures, the disadvantage with this approach is
+that we need to go back and implement all of our functions to handle
+these new cases.</p><p>We will actually handle the quantifiers using <em>rewrite rules</em>. That
+is, we will keep our existing solver for unquantified expressions and
+expand out any quantification
+$$
+\begin{aligned}
+\exists a . e(a) &\to e(\text{True}) \vee e(\text{False}) \\
+\forall a . e(a) &\to e(\text{True}) \wedge e(\text{False}).
+\end{aligned}
+$$</p><p>We could do this eagerly, by providing functions</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>forall</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>String</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Expr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Expr</span>
+<span style=color:#75af00>exists</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>String</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Expr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Expr</span>
+</code></pre></div><p>That construct rewritten expressions on the fly. However, this would
+preclude doing clever things with the quantification. Instead we will
+implement a new <code>QuantifiedExpr</code> type and rewriting functionality.</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#00a8c8>data</span> <span style=color:#00a8c8>QuantifiedExpr</span>
+  <span style=color:#f92672>=</span> <span style=color:#00a8c8>Bare</span> <span style=color:#00a8c8>Expr</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Exists</span> <span style=color:#00a8c8>String</span> <span style=color:#00a8c8>QuantifiedExpr</span>
+  <span style=color:#f92672>|</span> <span style=color:#00a8c8>Forall</span> <span style=color:#00a8c8>String</span> <span style=color:#00a8c8>QuantifiedExpr</span>
+  <span style=color:#00a8c8>deriving</span> <span style=color:#00a8c8>Eq</span>
+</code></pre></div><p>Again, I don&rsquo;t derive from <code>Show</code> because I want a pretty-printable
+version of the expressions.</p><blockquote class=question><h3>Question</h3><span>Do you understand why we need a <code>Bare</code> constructor for the &ldquo;base&rdquo;
+<code>Expr</code> we might want to hold?</span></blockquote><blockquote class=exercise><h3>Exercise</h3><span><p>To handle problems with <code>QuantifiedExpr</code> types, we will rewrite them
+into plain <code>Expr</code> types. That is, we&rsquo;ll write</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>rewrite</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>QuantifiedExpr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Expr</span>
+</code></pre></div><p>A function to check sat of quantified expressions is then just</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>satQuantified</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>QuantifiedExpr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Maybe</span> <span style=color:#00a8c8>Bindings</span>
+<span style=color:#75af00>satQuantified</span> <span style=color:#f92672>=</span> <span style=color:#111>sat</span> <span style=color:#f92672>.</span> <span style=color:#111>rewrite</span>
+</code></pre></div></span></blockquote><p>One approach is to write a helper</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>rewrite&#39;</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>QuantifiedExpr</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Bindings</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Expr</span>
+</code></pre></div><p>that takes a (possibly empty) list of bindings of variables to values
+and attempts to substitute them in the expression. Encountering a
+<code>Forall</code> or <code>Exists</code> should augment the list of bindings with ones for
+the quantified variable.</p><p>For example</p><pre><code>rewrite' (Forall &quot;a&quot; (Bare (Or [Var &quot;a&quot;, Var &quot;b&quot;])) []
+== (And [rewrite' (Bare (Or [Var &quot;a&quot;, Var &quot;b&quot;])) [(&quot;a&quot;, False)],
+         rewrite' (Bare (Or [Var &quot;a&quot;, Var &quot;b&quot;])) [(&quot;a&quot;, True)]])
+== (And [Or [Const False, Var &quot;b&quot;],
+         Or [Const True, Var &quot;b&quot;]])
+</code></pre><p>You may think of a better way of doing this.</p><div class=markdown-inner><h2 id=solutions>Solutions</h2><p>I&rsquo;ve added some <a href=https://teaching.wence.uk/comp2221/code/exercises/exercise7-solutions.hs>commented solutions</a> to these exercises. If you
+have queries about them please ask in the practical sessions or else
+<a href=https://teaching.wence.uk/comp2221/#discussion-forum>get in touch</a>.</div></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/commit/198deafeeeb2da156fc46b80a0adbfce2f39646c title="Last modified by Lawrence Mitchell | April 7, 2022" target=_blank rel=noopener><img src=/comp2221/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 7, 2022</span></a></div><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/edit/main/site/content/exercises/exercise7.md target=_blank rel=noopener><img src=/comp2221/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><div class="flex flex-wrap align-right"><p>© 2021&ndash; <a href=mailto:lawrence@wence.uk>Lawrence Mitchell</a> & <a href=https://www.dur.ac.uk/>Durham University</a>.</p><p><a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/><img alt="Creative Commons License" style=border-width:0 src=/comp2221/cc-by-sa.svg></a>
+This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/>Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.</p></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#checking-for-satisfiability>Checking for satisfiability</a><ul><li><a href=#introduction>Introduction</a></li><li><a href=#evaluating-an-expression>Evaluating an expression</a></li><li><a href=#enumerating-all-boolean-assignments>Enumerating all boolean assignments</a></li><li><a href=#the-solver>The solver</a></li><li><a href=#extension-existential-and-universal-quantifiers>Extension: existential and universal quantifiers</a></li></ul></li></ul></nav></aside></main></body></html>

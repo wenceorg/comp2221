@@ -1,0 +1,91 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Beginnings #  GHC provides either a compiler, with which we can compile a Haskell program into an executable, and an interpreter with a read-eval-print-loop. Initially, we&rsquo;ll start off using the interpreter. It can be invoked with ghci, so at a terminal prompt run
+$ ghci  When I show commands in the terminal, I will use a $ to indicate the prompt (which you should not type), followed by the command to type."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Hello, World!"><meta property="og:description" content="Beginnings #  GHC provides either a compiler, with which we can compile a Haskell program into an executable, and an interpreter with a read-eval-print-loop. Initially, we&rsquo;ll start off using the interpreter. It can be invoked with ghci, so at a terminal prompt run
+$ ghci  When I show commands in the terminal, I will use a $ to indicate the prompt (which you should not type), followed by the command to type."><meta property="og:type" content="article"><meta property="og:url" content="https://teaching.wence.uk/comp2221/exercises/exercise1/"><meta property="article:section" content="exercises"><meta property="article:modified_time" content="2022-04-07T18:06:14+01:00"><title>Hello, World! | COMP2221 – Functional Programming</title><link rel=manifest href=/comp2221/manifest.json><link rel=icon href=/comp2221/favicon.png type=image/x-icon><link rel=stylesheet href=/comp2221/book.min.b85762cbec3aa7dfc1fa14ce1d900668d26349753560425c37dac8f9e08407d6.css integrity="sha256-uFdiy+w6p9/B+hTOHZAGaNJjSXU1YEJcN9rI+eCEB9Y="></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><div class=book-brand><img class=book-center src=/comp2221/logo.svg alt=Logo><h2><a href=/comp2221>COMP2221 – Functional Programming</a></h2></div><ul><li><a href=/comp2221/setup/>Setup</a><ul></ul></li><li><a href=/comp2221/slides/>Slides & commentary</a></li><li><a href=/comp2221/exercises/>Exercises</a><ul><li><a href=/comp2221/exercises/exercise1/ class=active>Hello, World!</a></li><li><a href=/comp2221/exercises/exercise2/>Types and lists</a></li><li><a href=/comp2221/exercises/exercise3/>List manipulation and sorting</a></li><li><a href=/comp2221/exercises/exercise4/>Lazy evaluation and infinite datastructures</a></li><li><a href=/comp2221/exercises/exercise5/>Folds and function composition</a></li><li><a href=/comp2221/exercises/exercise6/>Some classic data structures</a></li><li><a href=/comp2221/exercises/exercise7/>Another mini expression evaluator</a></li></ul></li><li><span>Past editions</span><ul><li><span>2020/21</span><ul><li><a href=/comp2221/past-editions/2020-21/lectures/>Annotated slides</a></li></ul></li></ul></li></ul></nav><script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/comp2221/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Hello, World!</strong>
+<label for=toc-control><img src=/comp2221/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#beginnings>Beginnings</a><ul><li><a href=#hello-world>Hello, World!</a></li><li><a href=#code-in-files>Code in files</a></li><li><a href=#first-steps>First steps</a><ul><li><a href=#naming-requirements-and-layout-rule>Naming requirements and layout rule</a></li><li><a href=#some-simple-library-functions>Some simple library functions</a></li></ul></li></ul></li></ul></nav></aside></header><article class=markdown><blockquote class="book-hint warning"><span>This course page was updated until March 2022 when I left Durham University.
+For future updates, please visit
+the <a href=https://comp2221.github.io/fp-website/>new version
+of the course pages</a>.</span></blockquote><h1 id=beginnings>Beginnings
+<a class=anchor href=#beginnings>#</a></h1><p>GHC provides either a compiler, with which we can compile a Haskell
+program into an executable, and an interpreter with a
+<a href=https://en.wikipedia.org/wiki/Read%e2%80%93eval%e2%80%93print_loop>read-eval-print-loop</a>.
+Initially, we&rsquo;ll start off using the interpreter. It can be invoked
+with <code>ghci</code>, so at a terminal prompt run</p><pre><code>$ ghci
+</code></pre><blockquote class="book-hint info"><span>When I show commands in the terminal, I will use a <code>$</code> to indicate the
+prompt (which you should not type), followed by the command to type.</span></blockquote><p>If everything is installed correctly, you should see a prompt
+(something like this)</p><pre><code>$ ghci
+GHCi, version 8.10.1: https://www.haskell.org/ghc/  :? for help
+Prelude&gt;
+</code></pre><h2 id=hello-world>Hello, World!
+<a class=anchor href=#hello-world>#</a></h2><p>You can type single lines of Haskell code at the prompt and the
+interpreter will evaluate them for you. Strings, which evaluate to
+themselves will just be echoed by the interpreter, so the canonical
+<a href=https://en.wikipedia.org/wiki/%22Hello,_World!%22_program>Hello,
+World</a>
+program is</p><pre><code>Prelude&gt; &quot;Hello, World!&quot;
+&quot;Hello, World!&quot;
+</code></pre><blockquote class="book-hint info"><span>When I show commands in the Haskell interpreter, I&rsquo;ll use <code>Prelude></code>
+as the prompt, again, you shouldn&rsquo;t type this.</span></blockquote><p>If instead, we want to print the string to the screen (so we don&rsquo;t
+have the quote marks) we can use <code>putStrLn</code></p><pre><code>Prelude&gt; putStrLn &quot;Hello, World!&quot;
+Hello, World!
+</code></pre><p>Here we can make our first observation about Haskell. There are no
+parentheses for function calls.</p><h2 id=code-in-files>Code in files
+<a class=anchor href=#code-in-files>#</a></h2><p>It is tedious to always type things at the prompt, and it&rsquo;s easy to
+make a mistake. Instead, we&rsquo;ll put things in files. These
+conventionally have the suffix <code>.hs</code>.</p><p>Let&rsquo;s go ahead and make a file <code>exercise1.hs</code> with the contents<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>hello</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>IO</span> <span style=color:#111>()</span>
+<span style=color:#75af00>hello</span> <span style=color:#f92672>=</span> <span style=color:#111>putStrLn</span> <span style=color:#d88200>&#34;Hello, World!&#34;</span>
+</code></pre></div><p>We can make this available in the interpreter either by running</p><pre><code>$ ghci exercise1.hs
+GHCi, version 8.10.1: https://www.haskell.org/ghc/  :? for help
+[1 of 1] Compiling Main             ( exercise1.hs, interpreted )
+Ok, one module loaded.
+*Main&gt; 
+</code></pre><p>Or else calling <code>:load exercise1.hs</code> after starting the interpreter</p><pre><code>Prelude&gt; :load exercise1.hs
+[1 of 1] Compiling Main             ( exercise1.hs, interpreted )
+Ok, one module loaded.
+*Main&gt;
+</code></pre><p>Notice how the prompt changed, indicating that this new module which
+defines our functions is available.</p><p>Now, all the functions we defined in our file are available, and we
+can call them at the prompt</p><pre><code>*Main&gt; hello
+Hello, World!
+</code></pre><p>If you edit the file to fix bugs or define new functions, you&rsquo;ll
+either need to restart the interpreter and reloading, or using the
+<code>:reload</code> command.</p><blockquote class="book-hint info"><span>To exit the interpreter type <code>Control-d</code>, or use the <code>:quit</code> command.</span></blockquote><h2 id=first-steps>First steps
+<a class=anchor href=#first-steps>#</a></h2><p>Read through the &ldquo;First steps&rdquo; slides (in lecture 2) from <a href=http://www.cs.nott.ac.uk/~pszgmh/pih.html#slides>Graham
+Hutton&rsquo;s notes</a> and
+try some of the expressions.</p><h3 id=naming-requirements-and-layout-rule>Naming requirements and layout rule
+<a class=anchor href=#naming-requirements-and-layout-rule>#</a></h3><p>Haskell has a bunch of requirements on the way types, functions, and
+variables are named, along with the syntax of function calls.</p><p>This code is nearly right, but not quite</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#00a8c8>N</span> <span style=color:#f92672>=</span> <span style=color:#111>a</span> <span style=color:#111>&#39;div&#39;</span> <span style=color:#111>length</span> <span style=color:#111>xs</span>
+    <span style=color:#00a8c8>where</span>
+       <span style=color:#111>a</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>
+      <span style=color:#111>xs</span> <span style=color:#f92672>=</span> <span style=color:#111>[</span><span style=color:#ae81ff>1</span><span style=color:#111>,</span> <span style=color:#ae81ff>2</span><span style=color:#111>,</span> <span style=color:#ae81ff>3</span><span style=color:#111>,</span> <span style=color:#ae81ff>4</span><span style=color:#111>,</span> <span style=color:#ae81ff>5</span><span style=color:#111>]</span>
+</code></pre></div><p>Having read some of the slides, you should be able to fix it.</p><h3 id=some-simple-library-functions>Some simple library functions
+<a class=anchor href=#some-simple-library-functions>#</a></h3><p>Now we&rsquo;ll reimplement some of Haskell&rsquo;s library functions on lists to
+get a feel of how to do so. So that you can check your result, I
+recommend naming your implementation with a trailing <code>'</code>.</p><blockquote class=exercise><h3>Exercise</h3><span>The function <code>last</code> selects the last element of a list (and produces
+an error on the empty list). Using the functions introduced in the
+slides above, write a function <code>last'</code> which does the same.</span></blockquote><blockquote class=question><h3>Question</h3><span>Can you think of a different definition?</span></blockquote><blockquote class=exercise><h3>Exercise</h3><span>The function <code>init</code> removes the last element of a list (and produces
+an error on the empty list). Write two different implementations,
+<code>init'</code> and <code>init''</code> which do the same.</span></blockquote><blockquote class=exercise><h3>Exercise</h3><span><p>Write a function <code>shuffle</code> which takes as an argument a non-empty list
+(that is, you may assume that the list has at least one element),
+removes the first element, and appends it at the end. So, for example</p><pre><code>Prelude&gt; shuffle [1, 2, 3]
+[2, 3, 1]
+</code></pre><p>If your first attempt didn&rsquo;t work, why not?</p><p>Having done that, use pattern matching to extend your definition to
+handle empty lists, where <code>shuffle []</code> should produce <code>[]</code>.</p></span></blockquote><p>Finally, an often-used example of the succinctness of Haskell is
+presented on the last slide of Hutton&rsquo;s first lecture. I reproduce it
+below (without its type annotation)</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>mystery</span> <span style=color:#00a8c8>[]</span> <span style=color:#f92672>=</span> <span style=color:#00a8c8>[]</span>
+<span style=color:#75af00>mystery</span> <span style=color:#111>(</span><span style=color:#111>x</span><span style=color:#00a8c8>:</span><span style=color:#111>xs</span><span style=color:#111>)</span> <span style=color:#f92672>=</span> <span style=color:#111>mystery</span> <span style=color:#111>ys</span> <span style=color:#f92672>++</span> <span style=color:#111>[</span><span style=color:#111>x</span><span style=color:#111>]</span> <span style=color:#f92672>++</span> <span style=color:#111>mystery</span> <span style=color:#111>zs</span>
+  <span style=color:#00a8c8>where</span>
+    <span style=color:#111>ys</span> <span style=color:#f92672>=</span> <span style=color:#111>[</span><span style=color:#111>a</span> <span style=color:#f92672>|</span> <span style=color:#111>a</span> <span style=color:#f92672>&lt;-</span> <span style=color:#111>xs</span><span style=color:#111>,</span> <span style=color:#111>a</span> <span style=color:#f92672>&lt;=</span> <span style=color:#111>x</span><span style=color:#111>]</span>
+    <span style=color:#111>zs</span> <span style=color:#f92672>=</span> <span style=color:#111>[</span><span style=color:#111>a</span> <span style=color:#f92672>|</span> <span style=color:#111>a</span> <span style=color:#f92672>&lt;-</span> <span style=color:#111>xs</span><span style=color:#111>,</span> <span style=color:#111>a</span> <span style=color:#f92672>&gt;</span> <span style=color:#111>x</span><span style=color:#111>]</span>
+</code></pre></div><blockquote class=question><h3>Question</h3><span><p>This function clearly operates on lists, but given a list, what does
+it return?</p><p>Can you spot the algorithm that is used?</p><p>Finally, what would happen if you replaced the line</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs>    <span style=color:#111>ys</span> <span style=color:#f92672>=</span> <span style=color:#111>[</span><span style=color:#111>a</span> <span style=color:#f92672>|</span> <span style=color:#111>a</span> <span style=color:#f92672>&lt;-</span> <span style=color:#111>xs</span><span style=color:#111>,</span> <span style=color:#111>a</span> <span style=color:#f92672>&lt;=</span> <span style=color:#111>x</span><span style=color:#111>]</span>
+</code></pre></div><p>with</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs>    <span style=color:#111>ys</span> <span style=color:#f92672>=</span> <span style=color:#111>[</span><span style=color:#111>a</span> <span style=color:#f92672>|</span> <span style=color:#111>a</span> <span style=color:#f92672>&lt;-</span> <span style=color:#111>xs</span><span style=color:#111>,</span> <span style=color:#111>a</span> <span style=color:#f92672>&lt;</span> <span style=color:#111>x</span><span style=color:#111>]</span>
+</code></pre></div></span></blockquote><div class=markdown-inner><h2 id=solutions>Solutions</h2><p>I&rsquo;ve added some <a href=https://teaching.wence.uk/comp2221/code/exercises/exercise1-solutions.hs>commented solutions</a> to these exercises. If you
+have queries about them please ask in the practical sessions or else
+<a href=https://teaching.wence.uk/comp2221/#discussion-forum>get in touch</a>.</div><section class=footnotes role=doc-endnotes><hr><ol><li id=fn:1 role=doc-endnote><p>We&rsquo;ll cover the meaning of the <code>:: IO ()</code> type annotation later
+in the course.&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></section></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/commit/198deafeeeb2da156fc46b80a0adbfce2f39646c title="Last modified by Lawrence Mitchell | April 7, 2022" target=_blank rel=noopener><img src=/comp2221/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 7, 2022</span></a></div><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/edit/main/site/content/exercises/exercise1.md target=_blank rel=noopener><img src=/comp2221/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><div class="flex flex-wrap align-right"><p>© 2021&ndash; <a href=mailto:lawrence@wence.uk>Lawrence Mitchell</a> & <a href=https://www.dur.ac.uk/>Durham University</a>.</p><p><a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/><img alt="Creative Commons License" style=border-width:0 src=/comp2221/cc-by-sa.svg></a>
+This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/>Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.</p></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#beginnings>Beginnings</a><ul><li><a href=#hello-world>Hello, World!</a></li><li><a href=#code-in-files>Code in files</a></li><li><a href=#first-steps>First steps</a><ul><li><a href=#naming-requirements-and-layout-rule>Naming requirements and layout rule</a></li><li><a href=#some-simple-library-functions>Some simple library functions</a></li></ul></li></ul></li></ul></nav></aside></main></body></html>

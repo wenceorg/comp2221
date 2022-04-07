@@ -1,0 +1,167 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Lecture slides and video links #  As the course progresses, I&rsquo;ll add the annotated slides and live code examples, along with links to the videos (accessible with a Durham account), and some commentary.
+  2022-01-10: Annotated slides, video, code
+We got most of the way through the slides, and then did some live examples. We same some very simple functions and probably quite a lot of syntax that we&rsquo;ll go through in more detail as the course progresses."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Slides & commentary"><meta property="og:description" content="Lecture slides and video links #  As the course progresses, I&rsquo;ll add the annotated slides and live code examples, along with links to the videos (accessible with a Durham account), and some commentary.
+  2022-01-10: Annotated slides, video, code
+We got most of the way through the slides, and then did some live examples. We same some very simple functions and probably quite a lot of syntax that we&rsquo;ll go through in more detail as the course progresses."><meta property="og:type" content="article"><meta property="og:url" content="https://teaching.wence.uk/comp2221/slides/"><meta property="article:section" content><meta property="article:modified_time" content="2022-04-07T18:06:14+01:00"><title>Slides & commentary | COMP2221 – Functional Programming</title><link rel=manifest href=/comp2221/manifest.json><link rel=icon href=/comp2221/favicon.png type=image/x-icon><link rel=stylesheet href=/comp2221/book.min.b85762cbec3aa7dfc1fa14ce1d900668d26349753560425c37dac8f9e08407d6.css integrity="sha256-uFdiy+w6p9/B+hTOHZAGaNJjSXU1YEJcN9rI+eCEB9Y="></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><div class=book-brand><img class=book-center src=/comp2221/logo.svg alt=Logo><h2><a href=/comp2221>COMP2221 – Functional Programming</a></h2></div><ul><li><a href=/comp2221/setup/>Setup</a><ul></ul></li><li><a href=/comp2221/slides/ class=active>Slides & commentary</a></li><li><a href=/comp2221/exercises/>Exercises</a><ul><li><a href=/comp2221/exercises/exercise1/>Hello, World!</a></li><li><a href=/comp2221/exercises/exercise2/>Types and lists</a></li><li><a href=/comp2221/exercises/exercise3/>List manipulation and sorting</a></li><li><a href=/comp2221/exercises/exercise4/>Lazy evaluation and infinite datastructures</a></li><li><a href=/comp2221/exercises/exercise5/>Folds and function composition</a></li><li><a href=/comp2221/exercises/exercise6/>Some classic data structures</a></li><li><a href=/comp2221/exercises/exercise7/>Another mini expression evaluator</a></li></ul></li><li><span>Past editions</span><ul><li><span>2020/21</span><ul><li><a href=/comp2221/past-editions/2020-21/lectures/>Annotated slides</a></li></ul></li></ul></li></ul></nav><script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/comp2221/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Slides & commentary</strong>
+<label for=toc-control><img src=/comp2221/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#lecture-slides-and-video-links>Lecture slides and video links</a></li></ul></nav></aside></header><article class=markdown><blockquote class="book-hint warning"><span>This course page was updated until March 2022 when I left Durham University.
+For future updates, please visit
+the <a href=https://comp2221.github.io/fp-website/>new version
+of the course pages</a>.</span></blockquote><h1 id=lecture-slides-and-video-links>Lecture slides and video links
+<a class=anchor href=#lecture-slides-and-video-links>#</a></h1><p>As the course progresses, I&rsquo;ll add the annotated slides and live code
+examples, along with links to the videos (accessible with a Durham
+account), and some commentary.</p><ul><li><p>2022-01-10: <a href=https://teaching.wence.uk/comp2221/slides/2021-22/Lec01.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=cefca3c8-328b-4b0e-b0a1-ae19011c7e90">video</a>, <a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec01.hs>code</a></p><p>We got most of the way through the slides, and then did some live
+examples. We same some very simple functions and probably quite a
+lot of syntax that we&rsquo;ll go through in more detail as the course
+progresses.</p><p>My editor was a bit angry fruit salad, which I&rsquo;ve toned
+down for next time.</p><p>I would encourage you to get a fancy editor setup so that you too
+can take advantage of the &ldquo;code actions&rdquo; I was using, these are
+provided through
+<a href=https://microsoft.github.io/language-server-protocol/>LSP</a> by the
+<a href=https://haskellwingman.dev>Haskell wingman</a>.</p></li><li><p>2022-01-14: <a href=https://teaching.wence.uk/comp2221/slides/2021-22/Lec02.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=cc24733d-6605-4282-9b8f-ae1d00eaa76f">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec02.hs>code</a></p><p>We finished off by going over the definition of <code>filter</code> we had seen
+at the end of the last session. I&rsquo;ve updated the lecture 1 annotated
+slides above to include my new annotations (I wrote it out more
+neatly).</p><p>We then did some introductory types and started hinting at the idea
+that function types, and especially higher-order functions, are very
+important. We got about halfway through the slides, and I&rsquo;ll pick up
+there next time.</p><p><a href=https://www.destroyallsoftware.com/>Gary Bernhardt</a> has a fun talk
+about type errors, mostly in
+<a href=https://www.destroyallsoftware.com/talks/wat>javascript</a>.</p></li><li><p>2022-01-17: <a href=https://teaching.wence.uk/comp2221/slides/2021-22/Lec03.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e4009fa3-8fb3-4bd2-b1fe-ae20011e6bba">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec02.hs>code (finishing session 2)</a> and <a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec03.hs>starting session 3</a></p><p>We finished off a few slides from session 2 (and I updated the
+annotated ones above). Then we spent quite a lot of time looking at
+defining functions and in particular discussing
+<a href=https://en.wikipedia.org/wiki/Currying>currying</a> and why Haskell
+tends to prefer functions written in curried form.</p><p>Then I showed a few session 3 slides and talked about polymorphic
+functions and monomorphisation. We&rsquo;ll pick up there next time and
+continue with session 3 stuff.</p></li><li><p>2022-01-21:
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=6e60d837-300c-4453-b60c-ae2400eaa0c9">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec03.hs>code (finishing session 3)</a></p><p>We didn&rsquo;t see any slides this time and instead worked our way
+through the definitions of some polymorphic functions. The main
+focus was on figuring out how we might be able to write <a href=https://en.wikipedia.org/wiki/Partial_function>total
+functions</a> which are
+functions which produce valid results for all possible inputs. To do
+so, we introduced the
+<a href=https://hackage.haskell.org/package/base-4.16.0.0/docs/Prelude.html#t:Maybe><code>Maybe</code></a>
+data type, which models a computation that may fail.</p><p>We then saw that to constructively work with <code>Maybe</code> types we are
+likely going to need a way to transform values that live &ldquo;inside&rdquo;
+<code>Maybe</code>s and introduced a function <code>applyInsideMaybe</code> whose type signature bore a
+striking resemblance to that of
+<a href=https://hackage.haskell.org/package/base-4.16.0.0/docs/Prelude.html#v:map><code>map</code></a>,
+which is approximately where we will start next time.</p></li><li><p>2022-01-24:
+<a href=https://teaching.wence.uk/comp2221/slides/2021-22/Lec03.pdf>annotated slides (updated from session 3)</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=39af24fe-316b-42a7-b0e2-ae27011c4f92">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec04.hs>code</a></p><p>We talked a little bit about Haskell type classes and how they are
+used to implement constrained generic programming: that is writing
+generic functions that can specify interfaces that the arguments
+should satisfy.</p><p>The <a href=https://en.wikipedia.org/wiki/Polymorphism_%28computer_science%29>wikipedia
+page</a>
+has a nice overview as usual on polymorphism. The classic work on
+subtyping is from <a href=https://en.wikipedia.org/wiki/Barbara_Liskov>Barbara
+Liskov</a> from 1987. The
+method that Haskell uses for constrained (ad-hoc) polymorphism based
+on type classes was introduced by <a href=http://homepages.inf.ed.ac.uk/wadler/>Phil
+Wadler</a> and <a href=https://www.computing.dcu.ie/~sblott/>Stephen
+Blott</a> in <a href=http://homepages.inf.ed.ac.uk/wadler/topics/type-classes.html#class><em>How to make
+ad-hoc polymorphism less ad
+hoc</em></a>.
+<a href="https://www.youtube.com/watch?v=6COvD8oynmI">Here&rsquo;s a video</a> of
+Simon Peyton Jones giving an introductory talk on type classes and
+their implementation in GHC.</p><p>We implemented our own linked list type and and discussed pattern
+matching a bit more.</p></li><li><p>2022-01-28:
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a9386ccd-4791-4d18-a6fb-ae2b00eeb084">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec05.hs>code</a></p><p>We just did code today, in particular we systematically looked at a
+method for writing recursive functions. We have effectively covered
+the slides up to lecture 5 (as uploaded on blackboard), we just
+started hinting at folds in the last part of the session 5 slides.</p><p>We saw that a number of &ldquo;library&rdquo; functions on lists follow the same
+pattern, and we sketched a higher order function that captures this
+pattern.</p><p>I showed a way to find functions in the Haskell standard
+library (and packages) if you know the type by using
+<a href=https://hoogle.haskell.org>hoogle</a>.</p></li><li><p>2022-01-31:
+<a href=https://teaching.wence.uk/comp2221/slides/2021-22/Lec07.pdf>annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c07d3261-2522-46af-b2b5-ae2e0119a7b9">video</a>,
+no code today</p><p>We introduced, following on from looking for patterns, <code>foldr</code> and
+<code>foldl</code> and saw how they can be seen on lists as rebuilding the
+structure with a new binary operator (instead of <code>(:)</code>) and initial
+element (instead of <code>[]</code>).</p><p>We then also looked at two &ldquo;principled&rdquo; type classes, namely
+<a href=https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html#t:Functor><code>Functor</code></a>
+for mappable types, and
+<a href=https://hackage.haskell.org/package/base-4.16.0.0/docs/Prelude.html#t:Foldable><code>Foldable</code></a>,
+for foldable types.</p><p>The type classes are termed &ldquo;principled&rdquo; because their
+implementations are expected to satisfy certain equational laws that
+mathematically capture certain properties that an implementation
+must obey so that it behaves &ldquo;as expected&rdquo;. We saw the <code>Functor</code>
+laws, but not the <code>Foldable</code> laws (which need more time than we have
+here). Note that although I often ask you to implement <code>Functor</code> and
+<code>Foldable</code> instances, GHC can actually derive them for you if you
+add</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75715e>{-# LANGUAGE DeriveFunctor #-}</span>
+<span style=color:#75715e>{-# LANGUAGE DeriveFoldable #-}</span>
+</code></pre></div><p>at the top of your files.</p><p>I&rsquo;ve diverged a bit from the slides uploaded to blackboard, although
+I have covered the material in a combination of the slides you&rsquo;ve
+seen and the live code: you may wish to browse the slides as well to
+compare with the code we&rsquo;ve seen.</p></li><li><p>2022-02-04:
+<a href=https://teaching.wence.uk/comp2221/slides/2021-22/Lec08.pdf>annotated slides</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec08.hs>code</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=59cd3222-5c2f-463e-858d-ae3200ea66dd">video</a></p><p>I finished the declarations for <code>Functor</code> and <code>Foldable</code> instances
+for the <code>Maybe</code>, <code>BinaryTree</code>, and <code>RoseTree</code> data types we&rsquo;d seen.
+Then we talked about how Haskell evaluations expression graphs and
+how we can do strict (eager) evaluation with <code>($!)</code>. I rushed
+through the last few slides a little bit so will go over them again
+briefly on Monday to wrap up the lazy evaluation aspects and then
+talk about data encapsulation and compile-time safe APIs.</p></li><li><p>2022-02-07:
+<a href=https://teaching.wence.uk/comp2221/slides/2021-22/Lec09.pdf>annotated slides</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec09.hs>code</a> (and <a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Main.hs>main
+file</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c16f703f-b397-4865-99c4-ae35011d2515">video</a></p><p>I showed differences between strict and lazy evaluation for some
+simple folds in terms of performance (particularly between <code>foldl</code>
+and <code>foldl'</code>), though noted for this simple example that GHC does a
+good job determining that it can evaluate things strictly. For more
+details on this, see the <a href=https://wiki.haskell.org/Performance/Strictness>haskell
+wiki</a>.</p><p>I then talked about the design of APIs and &ldquo;type-driven design&rdquo;, and
+how a rich type system can help us in the design of libraries that
+are in some sense impossible to misuse.</p><p>This style of interface is becoming more popular because it
+pushes a bunch of the complexity of keeping track of invariants onto
+the type system and compiler (rather than the programmer&rsquo;s brain).</p><p>In Haskell-ese an often quoted mantra is to <a href=https://buttondown.email/hillelwayne/archive/making-illegal-states-unrepresentable/>&ldquo;make illegal states
+unrepresentable&rdquo;</a>.</p><p>If you&rsquo;re interested in this kind of stuff, here are some starting
+points for further reading</p><ul><li><a href=https://lexi-lambda.github.io>Alexis King</a> has a nice article on
+the idea of <a href=https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/>parsing rather than
+validating</a></li><li>The <a href=https://www.rust-lang.org/>Rust</a> community has really got on
+board with <a href=http://cliffle.com/blog/rust-typestate/>type state
+patterns</a></li><li><a href=https://mobile.twitter.com/banjotragedy>Matt Noonan</a> shows how
+Haskell can provide enough dependent types to encode quite
+complicated invariants (such as the <code>mergeBy</code> example in the
+lecture) <a href=https://kataskeue.com/gdp.pdf>in the type system</a>.</li><li>If you&rsquo;re interested in formal methods and proof systems, <a href=https://dependenttyp.es/>Talia
+Ringer</a> has an introductory course on
+<a href=https://dependenttyp.es/classes/598sp2022.html>proof
+automation</a>, and
+<a href=https://www.imperial.ac.uk/people/k.buzzard>Kevin Buzzard</a>
+writes a lot about <a href=https://xenaproject.wordpress.com>formalising
+mathematics</a> in
+<a href=https://xenaproject.wordpress.com>Lean</a>.</li></ul></li><li><p>2022-02-11: <a href=https://teaching.wence.uk/comp2221/lectures/2021-22/short-summary.pdf>annotated summary slides</a>, <a href=https://teaching.wence.uk/comp2221/lectures/2021-22/Lec10.pdf>slides on IO actions
+(didn&rsquo;t show these, only did the code)</a>, <a href=https://teaching.wence.uk/comp2221/code/lectures/2021-22/Lec10.hs>code</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c894a492-1eaf-4983-b75b-ae3900e95253">video</a></p><p>We talked a little bit about doing I/O in a pure language, which
+forced us to introduce the concept of actions. I showed some
+information about <code>do</code> notation for peeking inside them, and how
+conceptually, doing I/O can be seen as taking the state of the
+universe and producing a new state. The main takeaway is that we
+have to wrap up impure &ldquo;actions&rdquo; so that we don&rsquo;t break referential
+transparency in the language.</p><p>I then summarised the course and talked a little about what I think
+the important bits are.</p><p>There were some questions about pointers to bigger programs in
+Haskell. For self-contained things, you might look at the Imperial
+<a href=http://wp.doc.ic.ac.uk/ajf/haskell-tests/>January Haskell tests</a>.
+For bigger things you might start at the <a href=https://wiki.haskell.org/Applications_and_libraries>Haskell
+wiki</a>. One
+thing to note is that lots of the libraries in the wild will use
+more advanced features than we saw in the course (but maybe that&rsquo;s
+helpful).</p><p>The <a href=#further-resources>resources</a> section of the
+front page also has some pointers.</p><p>Next term there will be a revision lecture scheduled, but this was
+my last term in Durham, so it will come from someone else. Look out
+for announcements via ULTRA.</p><p>Thanks again everyone, and enjoy!</p></li></ul></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/commit/198deafeeeb2da156fc46b80a0adbfce2f39646c title="Last modified by Lawrence Mitchell | April 7, 2022" target=_blank rel=noopener><img src=/comp2221/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 7, 2022</span></a></div><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/edit/main/site/content/slides.md target=_blank rel=noopener><img src=/comp2221/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><div class="flex flex-wrap align-right"><p>© 2021&ndash; <a href=mailto:lawrence@wence.uk>Lawrence Mitchell</a> & <a href=https://www.dur.ac.uk/>Durham University</a>.</p><p><a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/><img alt="Creative Commons License" style=border-width:0 src=/comp2221/cc-by-sa.svg></a>
+This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/>Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.</p></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><nav id=TableOfContents><ul><li><a href=#lecture-slides-and-video-links>Lecture slides and video links</a></li></ul></nav></aside></main></body></html>

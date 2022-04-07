@@ -1,0 +1,225 @@
+<!doctype html><html lang=en dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Lecture slides and video links #  As the course progressed, I uploaded lecture slides, the live code examples, and added links to the videos (accessible with a Durham account).
+  2021-01-12: Annotated slides, video, code
+We got about halfway through the slides, we&rsquo;ll pick up where we left off next time.
+  2021-01-14: Annotated slides, video, code
+We went through the remainder of the slides from Tuesday. I skipped over the dark blue slides introducing Haskell syntax since we saw that in the coding examples as well."><meta name=theme-color content="#FFFFFF"><meta property="og:title" content="Annotated slides"><meta property="og:description" content="Lecture slides and video links #  As the course progressed, I uploaded lecture slides, the live code examples, and added links to the videos (accessible with a Durham account).
+  2021-01-12: Annotated slides, video, code
+We got about halfway through the slides, we&rsquo;ll pick up where we left off next time.
+  2021-01-14: Annotated slides, video, code
+We went through the remainder of the slides from Tuesday. I skipped over the dark blue slides introducing Haskell syntax since we saw that in the coding examples as well."><meta property="og:type" content="article"><meta property="og:url" content="https://teaching.wence.uk/comp2221/past-editions/2020-21/lectures/"><meta property="article:section" content="past-editions"><meta property="article:modified_time" content="2022-04-07T18:06:14+01:00"><title>Annotated slides | COMP2221 – Functional Programming</title><link rel=manifest href=/comp2221/manifest.json><link rel=icon href=/comp2221/favicon.png type=image/x-icon><link rel=stylesheet href=/comp2221/book.min.b85762cbec3aa7dfc1fa14ce1d900668d26349753560425c37dac8f9e08407d6.css integrity="sha256-uFdiy+w6p9/B+hTOHZAGaNJjSXU1YEJcN9rI+eCEB9Y="></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><nav><div class=book-brand><img class=book-center src=/comp2221/logo.svg alt=Logo><h2><a href=/comp2221>COMP2221 – Functional Programming</a></h2></div><ul><li><a href=/comp2221/setup/>Setup</a><ul></ul></li><li><a href=/comp2221/slides/>Slides & commentary</a></li><li><a href=/comp2221/exercises/>Exercises</a><ul><li><a href=/comp2221/exercises/exercise1/>Hello, World!</a></li><li><a href=/comp2221/exercises/exercise2/>Types and lists</a></li><li><a href=/comp2221/exercises/exercise3/>List manipulation and sorting</a></li><li><a href=/comp2221/exercises/exercise4/>Lazy evaluation and infinite datastructures</a></li><li><a href=/comp2221/exercises/exercise5/>Folds and function composition</a></li><li><a href=/comp2221/exercises/exercise6/>Some classic data structures</a></li><li><a href=/comp2221/exercises/exercise7/>Another mini expression evaluator</a></li></ul></li><li><span>Past editions</span><ul><li><span>2020/21</span><ul><li><a href=/comp2221/past-editions/2020-21/lectures/ class=active>Annotated slides</a></li></ul></li></ul></li></ul></nav><script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=/comp2221/svg/menu.svg class=book-icon alt=Menu></label>
+<strong>Annotated slides</strong>
+<label for=toc-control></label></div></header><article class=markdown><blockquote class="book-hint warning"><span>This course page was updated until March 2022 when I left Durham University.
+For future updates, please visit
+the <a href=https://comp2221.github.io/fp-website/>new version
+of the course pages</a>.</span></blockquote><h1 id=lecture-slides-and-video-links>Lecture slides and video links
+<a class=anchor href=#lecture-slides-and-video-links>#</a></h1><p>As the course progressed, I uploaded lecture slides, the live code
+examples, and added links to the videos (accessible with a Durham
+account).</p><ul><li><p>2021-01-12: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec01.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=c27a685e-8450-417b-8eda-acae00dc4ebc">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec01.hs>code</a></p><p>We got about halfway through the slides, we&rsquo;ll pick up where we left
+off next time.</p></li><li><p>2021-01-14: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec02.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=add4bf82-312c-4e35-a99e-acb000d97c33">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec02.hs>code</a></p><p>We went through the remainder of the slides from Tuesday. I skipped
+over the dark blue slides introducing Haskell syntax since we saw
+that in the coding examples as well. We covered most of the stuff in
+the second set of slides. I&rsquo;ll go back over the currying business
+next time. We tried to emphasise the importance of types and showed
+that Haskell is quite strict. For a fun take on the importance of
+type safety, spend five minutes watching <a href=https://www.destroyallsoftware.com/>Gary
+Bernhardt&rsquo;s</a> <a href=https://www.destroyallsoftware.com/talks/wat>WAT
+talk</a>.</p><p>Some of you may have noticed that my definition of <code>xor</code> was not
+particularly succint. I guess I didn&rsquo;t manage it in live conditions!
+In Python we could have written</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-python data-lang=python><span style=color:#00a8c8>def</span> <span style=color:#75af00>xor</span><span style=color:#111>(</span><span style=color:#111>a</span><span style=color:#111>,</span> <span style=color:#111>b</span><span style=color:#111>):</span>
+    <span style=color:#00a8c8>return</span> <span style=color:#111>a</span> <span style=color:#f92672>!=</span> <span style=color:#111>b</span>
+</code></pre></div><p>In Haskell, <code>!=</code> is written as <code>/=</code>, and I could have written</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>xor</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Bool</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Bool</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Bool</span>
+<span style=color:#75af00>xor</span> <span style=color:#111>x</span> <span style=color:#111>y</span> <span style=color:#f92672>=</span> <span style=color:#111>x</span> <span style=color:#f92672>/=</span> <span style=color:#111>y</span>
+</code></pre></div><p>Except that I had defined a new data type for <code>Bool</code> (for expository
+purposes) and we haven&rsquo;t defined equality on it yet.</p></li><li><p>2021-01-19: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec03.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=8e9814b4-f7d2-47d0-b966-acb500d971b0">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec03.hs>code</a></p><p>We started introducing the concept of functions that might fail, and
+the Maybe datatype. We looked a little bit at polymorphism, and I
+touched on constraining polymorphic functions (more next time!),
+when we considered</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75af00>chopPrefix</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Eq</span> <span style=color:#111>a</span> <span style=color:#f92672>=&gt;</span> <span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>]</span> <span style=color:#f92672>-&gt;</span> <span style=color:#00a8c8>Maybe</span> <span style=color:#111>[</span><span style=color:#111>a</span><span style=color:#111>]</span>
+</code></pre></div><p>Much more to come!</p></li><li><p>2021-01-21: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec03a.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=7e061c40-b269-4879-ba02-acb700d9784d">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec04.hs>code</a></p><p>We revisited the <code>chopPrefix</code> example and looked at a little bit of
+theory for different types of polymorphism. The <a href=https://en.wikipedia.org/wiki/Polymorphism_%28computer_science%29>wikipedia
+page</a>
+has a nice overview as usual. The classic work on subtyping is from
+<a href=https://en.wikipedia.org/wiki/Barbara_Liskov>Barbara Liskov</a>
+from 1987. The method that Haskell uses for constrained (ad-hoc)
+polymorphism based on type classes was introduced by <a href=http://homepages.inf.ed.ac.uk/wadler/>Phil Wadler</a>
+and <a href=https://www.computing.dcu.ie/~sblott/>Stephen Blott</a> in <a href=http://homepages.inf.ed.ac.uk/wadler/topics/type-classes.html#class><em>How
+to make ad-hoc polymorphism less ad
+hoc</em></a>.
+<a href="https://www.youtube.com/watch?v=6COvD8oynmI">Here&rsquo;s a video</a> of
+Simon Peyton Jones giving an introductory talk on type classes and
+their implementation in GHC.</p><p>We introduced some example type classes and how we implement them
+for our own types.</p><p>The &ldquo;Lecture 4&rdquo; slides are unannotated (so what is on DUO is fine)
+but they are also available <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec04.pdf>here</a>.</p></li><li><p>2021-01-26: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec05.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=5bd9d66c-b4ba-4d86-8603-acbc00d86fe5">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec05.hs>code</a></p><p>We finished off writing some functions on our own list type, and
+saw two ways of writing reversal of a list, one slow and one fast.
+To understand the fast approach, I talked a little bit about tail
+recursion, and how you can write &ldquo;loopy&rdquo; code in a recursive
+language.</p><p>I then discussed a step-by-step approach to writing recursive
+functions. We then got a bit side-tracked talking about what it
+means to drop a negative number of entries from a list, and I
+showed a way to enforce that dropping values from a list can only
+take positive integers. This way the type system enforces
+correctness. It&rsquo;s rather ugly to do this, so I added a few notes
+and pointers to what people are doing around Haskell with
+<a href=https://serokell.io/blog/why-dependent-haskell>dependent</a>
+and <a href=https://ucsd-progsys.github.io/liquidhaskell-blog/>refinement
+types</a>, which
+provide more sophisticated approaches to type safety.</p><p>We didn&rsquo;t make it as far as the &ldquo;maps and folds&rdquo; section of the
+slides so we&rsquo;ll do that next time.</p><p>I added some commented solutions for the first two exercise pages.</p></li><li><p>2021-01-28: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec06.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=ec066488-74e4-4dfd-b26b-acbe00d9dd09">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec06.hs>code</a></p><p>I didn&rsquo;t go through a lot of slides this time and mostly did the
+code (which is annotated). We looked at some list comprehensions,
+which are very similar to those available in Python.</p><p>I also showed &ldquo;parallel&rdquo; list comprehensions which run multiple
+generators in parallel.</p><p>We then talked a bit about higher order functions (of which <code>map</code> is
+an example), and I said a little bit about why these patterns are
+useful in library design. They give us a common interface with a
+contract behind which we can hide all sorts of fancy implementation.
+For example, mapping over a list can be trivially parallelised in a
+language where there is a guarantee that states are not modified in
+place (because we can do things in any order). This is the
+parallelisation paradigm that is the foundation of the
+<a href=https://en.wikipedia.org/wiki/MapReduce>mapreduce</a> programming
+model.</p><p>Finally we started looking for recognisable patterns in some of the
+recursive functions we&rsquo;ve been writing on lists. We wrote the
+implementation of a few &ldquo;summarisation&rdquo; functions that linearly
+recurse on the list and combine the entries in some way to produce a
+result.</p><p>We then spotted a common pattern and wrote a &ldquo;fold&rdquo; function that
+abstracted this out. We&rsquo;ll start there next time.</p></li><li><p>2021-02-02: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec06a.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e0ef9d4e-77e9-4fb7-91cd-acc300dc21cf">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec07.hs>code</a></p><p>Following on from the end of last time, we introduce <code>foldr</code> and
+<code>foldl</code> and discussed how they can be seen on lists as rebuilding
+the structure with a new binary operator (instead of <code>(:)</code>) and
+termination element (instead of <code>[]</code>).</p><p>We then looked at a little bit of theory on data types, particularly
+<a href=https://en.wikipedia.org/wiki/Tagged_union>sum</a> and
+<a href=https://en.wikipedia.org/wiki/Product_type>product</a> types.
+Haskell&rsquo;s datatypes are <a href=https://en.wikipedia.org/wiki/Algebraic_data_type>Algebraic
+Datatypes</a>. I
+also pointed to this nice article on <a href=https://chadaustin.me/2015/07/sum-types/>why sum types are nice to
+have</a>.</p><p>We then defined a few more of our own data structures including a
+binary tree and a <a href=https://en.wikipedia.org/wiki/Rose_tree>rose
+tree</a> (the latter is what
+you get if you import the
+<a href=https://hackage.haskell.org/package/containers-0.6.4.1/docs/Data-Tree.html><code>Data.Tree</code></a>
+module).</p><p>We looked at the mapping pattern which lifts a function <code>a -> b</code> to
+a function between containers of <code>as</code> and <code>bs</code> (e.g. <code>[a] -> [b]</code>
+for lists), and noticed that the same pattern appears in mapping
+over lots of datatypes. To make this generic, we introduced
+Haskell&rsquo;s
+<a href=https://hackage.haskell.org/package/base-4.14.1.0/docs/Prelude.html#t:Functor><code>Functor</code></a>
+type class which implements a generic <code>fmap</code>.</p><p>We foreshadowed, but didn&rsquo;t do, an equivalent interface for
+&ldquo;foldable&rdquo; datatypes.</p></li><li><p>2021-02-04: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec07.pdf>Annotated slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=a380fb7b-8c34-421f-8170-acc500dc51e0">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec08.hs>code</a></p><p>We looked at examples of containers that are not functorial. Then we
+looked at building <code>Foldable</code> instances for some datatypes. GHC can
+actually derive these for you (and <code>Functor</code> instances) if you add</p><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#75715e>{-# LANGUAGE DeriveFunctor #-}</span>
+<span style=color:#75715e>{-# LANGUAGE DeriveFoldable #-}</span>
+</code></pre></div><p>at the top of your files. It&rsquo;s useful to think about to understand
+what is going on though.</p><p>We then went through some slides on lazy evaluation, and we looked
+at the difference between the call-by-value of <em>eager</em> languages and
+call-by-name of <em>lazy</em> languages (like Haskell). We just about got
+on to sharing of expression evaluation.</p><p>At the end of the lecture someone asked for another explanation of
+the <code>Maybe</code> datatype, and why it might be useful. So I went through
+that (there&rsquo;s about 5 or so minutes). There&rsquo;s a brief explanation of
+the usefulness in the section &ldquo;Sum types are general&rdquo; of <a href=https://chadaustin.me/2015/07/sum-types/>this
+post</a>.</p></li><li><p>2021-02-09: Annotated slides (<a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec07a.pdf>lazy eval</a>, <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec08.pdf>IO</a>),
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=798b939c-ed53-4974-8d8f-acca00db13bf">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec09.hs>code</a></p><p>There wasn&rsquo;t actually a lot of code today. I talked a little bit
+about how Haskell evaluates expression graphs. Then how we might do
+strict (eager) evaluation with <code>($!)</code>. We had a question on whether
+GHC would optimise the difference between lazy and strict
+expressions, and I thought it wouldn&rsquo;t. We can check this with a bit
+of profiling.</p><div class=book-include><div class=book-include-heading><tt>strictvslazy.hs</tt></div><div class=book-include-download><a href=https://teaching.wence.uk/comp2221/code/strictvslazy.hs>Download</a></div><div class=book-include-content><div class=highlight><pre style=color:#272822;background-color:#fafafa><code class=language-hs data-lang=hs><span style=color:#00a8c8>module</span> <span style=color:#111>Main</span> <span style=color:#00a8c8>where</span>
+<span style=color:#00a8c8>import</span> <span style=color:#111>Data.Foldable</span> <span style=color:#111>(</span><span style=color:#75af00>foldr&#39;</span><span style=color:#111>,</span> <span style=color:#75af00>foldl&#39;</span><span style=color:#111>)</span>
+
+<span style=color:#75af00>main</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>IO</span> <span style=color:#111>()</span>
+<span style=color:#75af00>main</span> <span style=color:#f92672>=</span> <span style=color:#00a8c8>do</span>
+  <span style=color:#00a8c8>let</span> <span style=color:#111>xs</span> <span style=color:#f92672>=</span> <span style=color:#111>replicate</span> <span style=color:#111>(</span><span style=color:#ae81ff>10</span><span style=color:#f92672>^</span><span style=color:#ae81ff>7</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Int</span><span style=color:#111>)</span> <span style=color:#111>(</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>::</span> <span style=color:#00a8c8>Int</span><span style=color:#111>)</span>
+  <span style=color:#111>print</span> <span style=color:#d88200>&#34;Computing last&#34;</span>
+  <span style=color:#111>print</span> <span style=color:#f92672>$</span> <span style=color:#75715e>{-# SCC last_xs #-}</span> <span style=color:#111>last</span> <span style=color:#111>xs</span>
+  <span style=color:#111>print</span> <span style=color:#d88200>&#34;Computing length&#34;</span>
+  <span style=color:#111>print</span> <span style=color:#f92672>$</span> <span style=color:#75715e>{-# SCC length_xs #-}</span> <span style=color:#111>length</span> <span style=color:#111>xs</span>
+  <span style=color:#111>print</span> <span style=color:#d88200>&#34;lazy foldr&#34;</span>
+  <span style=color:#111>print</span> <span style=color:#f92672>$</span> <span style=color:#75715e>{-# SCC foldr_lazy #-}</span> <span style=color:#111>foldr</span> <span style=color:#111>(</span><span style=color:#f92672>+</span><span style=color:#111>)</span> <span style=color:#ae81ff>0</span> <span style=color:#111>xs</span>
+  <span style=color:#111>print</span> <span style=color:#d88200>&#34;strict foldr&#39;&#34;</span>
+  <span style=color:#111>print</span> <span style=color:#f92672>$</span> <span style=color:#75715e>{-# SCC foldr_strict #-}</span> <span style=color:#111>foldr&#39;</span> <span style=color:#111>(</span><span style=color:#f92672>+</span><span style=color:#111>)</span> <span style=color:#ae81ff>0</span> <span style=color:#111>xs</span>
+  <span style=color:#111>print</span> <span style=color:#d88200>&#34;lazy foldl&#34;</span>
+  <span style=color:#111>print</span> <span style=color:#f92672>$</span> <span style=color:#75715e>{-# SCC foldl_lazy #-}</span> <span style=color:#111>foldl</span> <span style=color:#111>(</span><span style=color:#f92672>+</span><span style=color:#111>)</span> <span style=color:#ae81ff>0</span> <span style=color:#111>xs</span>
+  <span style=color:#111>print</span> <span style=color:#d88200>&#34;strict foldl&#34;</span>
+  <span style=color:#111>print</span> <span style=color:#f92672>$</span> <span style=color:#75715e>{-# SCC foldl_strict #-}</span> <span style=color:#111>foldl&#39;</span> <span style=color:#111>(</span><span style=color:#f92672>+</span><span style=color:#111>)</span> <span style=color:#ae81ff>0</span> <span style=color:#111>xs</span>  
+</code></pre></div></div></div><p>GHC has some facility for
+<a href=https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/profiling.html>profiling</a>
+built in. So if I invoke the relevant magic incantations and run the
+program I get a <code>strictvslazy.prof</code> output file that includes</p><pre><code>      Tue Feb  9 17:55 2021 Time and Allocation Profiling Report  (Final)
+
+     strictvslazy +RTS -P -V0.0001 -RTS
+
+  total time  =        0.43 secs   (4302 ticks @ 100 us, 1 processor)
+  total alloc = 880,079,712 bytes  (excludes profiling overheads)
+
+ COST CENTRE  MODULE SRC                       %time %alloc  ticks     bytes
+
+ foldr_strict Main   strictvslazy.hs:14:36-50   27.8   45.5   1194 400000000
+ foldr_lazy   Main   strictvslazy.hs:12:34-47   24.4    0.0   1050        16
+ main.xs      Main   strictvslazy.hs:6:7-45     15.3   54.5    659 480000032
+ foldl_lazy   Main   strictvslazy.hs:16:34-47   10.7    0.0    459        16
+ foldl_strict Main   strictvslazy.hs:18:36-50   10.4    0.0    449        16
+ length_xs    Main   strictvslazy.hs:10:33-41    7.6    0.0    329         0
+ last_xs      Main   strictvslazy.hs:8:31-37     3.7    0.0    161        16
+</code></pre><p>So it seems an appropriate optimisation is being done in this case
+for the lazy vs. strict versions of <code>foldl</code>, but not for <code>foldr</code>
+(although note that the strict version churns through a lot of
+memory).</p><p>For most of the rest of the session we covered input/output and the
+type <code>IO a</code>. The main takeaway here is that we have to wrap these
+impure &ldquo;actions&rdquo; up so that we don&rsquo;t break purity and referential
+transparency in the language.</p><p>We introduced <code>do</code> notation for peeking inside actions.</p><p>I didn&rsquo;t get to it, but the slides develop a simple &ldquo;hangman&rdquo;
+program that demonstrates some composition of IO actions. This is
+modified slightly from an example in <a href>Graham Hutton&rsquo;s book</a> and the code
+is available in <a href=https://teaching.wence.uk/comp2221/code/lectures/hangman.hs><code>code/lectures/hangman.hs</code></a></p></li><li><p>2021-02-11: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/Lec10.pdf>Handwritten slides</a>,
+<a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=cc5f85e3-2586-4ef7-9adf-accc00db2388">video</a>,
+<a href=https://teaching.wence.uk/comp2221/code/lectures/2020-21/Lec10.lean>code</a></p><p>We recapped the concept of reducible expressions with an example of
+an expression graph with reducible and irreducible bits.</p><p>I talked for a while about what I thought the important and
+interesting concepts were that we covered through the course. I
+mentioned <a href=https://www.rust-lang.org>Rust</a> again, when talking
+about compile-time correct APIs for communication and cryptographic
+protocols. If you&rsquo;re interested, here&rsquo;s a nice article about the
+<a href=http://cliffle.com/blog/rust-typestate/>typestate pattern</a> that&rsquo;s
+a concrete realisation of this idea. Aside: I think Rust is an
+excellent language to try and come to grips with if you like
+slightly &ldquo;low-level&rdquo; programming.</p><p>I showed an example in the
+<a href=https://leanprover-community.github.io>Lean</a> theorem prover of
+proving the Functor laws for <code>map</code> on a list. I don&rsquo;t expect you to
+know any Lean really, but hopefully it was interesting.</p><p>We also talked a bit about the exam in the summer. The major change
+is that there won&rsquo;t be any bookwork questions. I will summarise
+those questions from past papers that I think are relevant for
+looking at. The paper will have 2 questions predominantly on the
+Haskell part of the course (and 2 on the OO part). In each case
+there will be one question worth in total 30 marks, and a &ldquo;short
+essay&rdquo; question worth 20 marks. The idea is that you show some
+understanding of the programming aspect, and then also synthesis of
+concepts. I will prepare a model paper (since none of the past
+papers have essay questions in them) before the end of term.</p><p>There&rsquo;ll be some revision lectures at the start of Term 3, so look
+out for those.</p><p>There were some questions about pointers to bigger programs in
+Haskell. For self-contained things, you might look at the Imperial
+<a href=http://wp.doc.ic.ac.uk/ajf/haskell-tests/>January Haskell tests</a>.
+For bigger things you might start at the <a href=https://wiki.haskell.org/Applications_and_libraries>Haskell
+wiki</a>. One
+thing to note is that lots of the libraries in the wild will use
+more advanced features than we saw in the course (but maybe that&rsquo;s
+helpful).</p><p>Finally, please do fill out the <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=i9hQcmhLKUW-RNWaLYpvlH6j_ORl2wpMpbvCR6TejgNUNU5HMkk0TDFGQTNKMTRTVTJFRlNCSjQwNi4u">anonymous feedback
+form</a>
+if you have any comments (preferably constructive) on the course.</p></li><li><p>2021-05-04: <a href=https://teaching.wence.uk/comp2221/slides/2020-21/revision.pdf>Annotated slides</a>, <a href="https://durham.cloud.panopto.eu/Panopto/Pages/Viewer.aspx?id=e3a85195-913f-4a55-ad83-ad1e00cb673c">video</a><div id=revision></p><p>We briefly went over the key points from the course and discussed
+some of the styles of exam questions, along with a bit of logistics.
+We then recapped some queries from the course.</p><p>If you have further questions during revision, do <a href=https://teaching.wence.uk/comp2221/#discussion-forum>get in touch</a>.</p></li></ul></article><footer class=book-footer><div class="flex flex-wrap justify-between"><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/commit/198deafeeeb2da156fc46b80a0adbfce2f39646c title="Last modified by Lawrence Mitchell | April 7, 2022" target=_blank rel=noopener><img src=/comp2221/svg/calendar.svg class=book-icon alt=Calendar>
+<span>April 7, 2022</span></a></div><div><a class="flex align-center" href=https://github.com/wenceorg/comp2221/edit/main/site/content/past-editions/2020-21/lectures.md target=_blank rel=noopener><img src=/comp2221/svg/edit.svg class=book-icon alt=Edit>
+<span>Edit this page</span></a></div></div><div class="flex flex-wrap align-right"><p>© 2021&ndash; <a href=mailto:lawrence@wence.uk>Lawrence Mitchell</a> & <a href=https://www.dur.ac.uk/>Durham University</a>.</p><p><a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/><img alt="Creative Commons License" style=border-width:0 src=/comp2221/cc-by-sa.svg></a>
+This work is licensed under a <a rel=license href=http://creativecommons.org/licenses/by-sa/4.0/>Creative
+Commons Attribution-ShareAlike 4.0 International License</a>.</p></div></footer><label for=menu-control class="hidden book-menu-overlay"></label></div></main></body></html>
